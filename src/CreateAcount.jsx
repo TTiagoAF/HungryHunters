@@ -152,6 +152,12 @@ const CriarConta = () => {
                 : null;
                 }}
               />
+              <input
+              type="date"
+              id="datePicker"
+              name="datePicker"
+              className='data-nascimento'
+            />
             <div className="container-input-senha">
               <input
                 type={"password"}
