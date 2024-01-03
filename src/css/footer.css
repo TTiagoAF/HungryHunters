@@ -23,13 +23,13 @@
 .footer-titulo {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #007c47; /* Verde */
+  color: #007c47;
 }
 
 .footer-titulo-direita {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #007c47; /* Verde */
+  color: #007c47;
   text-align: left;
   margin-left: 200px;
 }
@@ -79,7 +79,7 @@
 }
 
 .footer-termos {
-  color: #007c47; /* Verde */
+  color: #007c47;
 }
 
 .footer-botao:before {
@@ -92,7 +92,6 @@
   opacity: 0.4;
 }
 
-/* Estilos para os ícones de redes sociais no footer */
 .footer-social {
   display: flex;
   align-items: center;
@@ -110,4 +109,39 @@
 
 .footer-social-icon:hover {
   color: #007bff;
+}
+
+@media only screen and (min-width: 1024px) {
+  .footer-informacao,
+  .footer-links {
+    flex-basis: 48%;
+  }
+
+  .footer-menu,
+  .footer-titulo-direita {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1023px) {
+  .footer-informacao,
+  .footer-links {
+    flex-basis: 48%;
+  }
+
+  .footer-menu {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .footer-informacao,
+  .footer-links {
+    flex-basis: 100%;
+  }
+
+  .footer-menu,
+  .footer-titulo-direita {
+    margin-left: 0;
+  }
 }

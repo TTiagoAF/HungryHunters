@@ -7,9 +7,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-conteudo">
         <div className="footer-informacao">
-          <h3 className="footer-titulo">About us</h3>
+          <h3 className="footer-titulo">Sobre nós</h3>
           <p className="footer-descricao">
-          Somos uma plataforma inovadora que conecta os amantes da gastronomia aos melhores restaurantes da cidade. Nossa missão é tornar a experiência gastronômica mais incrível e conveniente.          </p>
+          Somos uma plataforma inovadora que conecta os amantes da gastronomia aos melhores restaurantes do pais. Nossa missão é tornar a experiência gastronômica mais incrível e eficiente.          </p>
         </div>
         <div className="footer-links">
           <h3 className="footer-titulo-direita">Links Úteis</h3>

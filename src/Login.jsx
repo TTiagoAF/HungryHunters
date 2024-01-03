@@ -3,27 +3,71 @@ import { Link } from 'react-router-dom';
 import logo from './../img/logo.png';
 import image from './../img/restaurante-login.jpg';
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import "./css/login.css"
+import { useNavigate } from 'react-router-dom';
+
 
 const PaginaLogin = () => {
   const {
-    register,
-    formState: { errors },
     handleSubmit
   } = useForm({
     criteriaMode: "all"
   });
   const onSubmit = (data) => console.log(data);
-  const [, setEmail] = useState('');
-  const [, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const apiUrl = 'https://localhost:7286';
   
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setErrorMessage("");
   };
   
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setErrorMessage("");
+  };
+  
+  const handleLogin = async () => {
+    await LoginUtilizadores(email, password)
+
+    setEmail("");
+    setPassword("");
+
+    navigate('/Home/');
+  }
+
+  const LoginUtilizadores = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Contas/Login`, { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.token) {
+          console.log('Token:', data.token);
+        } else {
+          console.error('Token ausente na resposta:', data);
+        }
+      } else {
+        const dataerro = await response.json();
+        setErrorMessage(dataerro.mensagem);
+        throw new Error('Falha no login:');
+      }
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      throw error;
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -49,50 +93,17 @@ const PaginaLogin = () => {
               placeholder="E-mail"
               onChange={handleEmailChange}
               className="input-login"
-              {...register("multipleErrorInput", {
-                required: "Este campo é obrigatório.",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Por favor inserir um email válido."
-                }
-              })}
             />
-            <ErrorMessage
-              errors={errors}
-              name="multipleErrorInput"
-              render={({ messages }) => {
-              console.log("messages", messages);
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                  <p key={type}>{message}</p>
-                  ))
-                : null;
-                }}
-              />
             <div className="container-input-senha">
               <input
                 type={"password"}
                 placeholder="Password"
                 onChange={handlePasswordChange}
                 className="input-login"
-                {...register("multipleErrorInputs", {
-                  required: "Este campo é obrigatório.",
-                })}
-              />
-              <ErrorMessage
-              errors={errors}
-              name="multipleErrorInputs"
-              render={({ messages }) => {
-              console.log("messages", messages);
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                  <p key={type}>{message}</p>
-                  ))
-                : null;
-                }}
               />
             </div>
-            <input className="botao-login" type="submit" value={"Entrar"}/>
+            <input className="botao-login" type="submit" value={"Entrar"} onClick={handleLogin}/>
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
           </form>
           <div className="links-login">
             <p className="esqueceu-senha-login">

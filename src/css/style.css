@@ -10,6 +10,7 @@ body {
 }
 
 /* Estilos para a introdução da app */
+
 .texto-introducao {
   max-width: 800px;
   margin: 0 auto;
@@ -31,7 +32,6 @@ body {
   color: #000000;
 }
 
-/* Estilos para a seção "Tem um restaurante?" */
 .tem-restaurante {
   background-color: #f2f2f2;
   padding: 40px;
@@ -105,7 +105,12 @@ body {
 }
 
 .imagem-inicial {
-  width: 100%;
+  width: 110%;
+  display: flex;
+  position: relative;
+  height: 100vh;
+  transform: translateZ(-1px) scale(2);
+  z-index: -1;
 }
 
 .imagem-main {
@@ -121,18 +126,51 @@ body {
   overflow-y: scroll;
 }
 
-.imagem-inicial {
-  display: flex;
-  flex: 1 0 auto;
-  position: relative;
-  height: 100vh;
-  transform: translateZ(-1px) scale(2);
-  z-index: -1;
-}
-
 .pos-parallax {
   display: block;
   position: relative;
   background-color: white;
   z-index: 1;
+}
+@media (max-width: 1417px) {
+  .titulo-restaurante {
+    margin-left: 15px;
+  }
+
+  .caixa {
+    flex-direction: column;
+  }
+
+  .texto {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+  }
+
+  .div-imagem {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+/* Responsividade para larguras menores que 1055px */
+@media (max-width: 1055px) {
+  .titulo-restaurante {
+    margin-left: 10px !important;
+  }
+
+  .caixa {
+    max-width: 100%;
+  }
+
+  .texto {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    text-align: center;
+  }
+
+  .div-imagem {
+    text-align: center;
+    margin-top: 15px !important;
+  }
 }
