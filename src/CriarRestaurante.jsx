@@ -14,7 +14,7 @@ const CriarRestaurante = () => {
   });
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [nomeRestaurante, setNomeRestaurante] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState(''); 
   const [errorMessage2, setErrorMessage2] = useState('');
@@ -24,8 +24,8 @@ const CriarRestaurante = () => {
 
 
   const handleUsername = (e) => {
-    const usernameInput = e.target.value;
-    setUsername(usernameInput);
+    const nomeInput = e.target.value;
+    setNomeRestaurante(nomeInput);
     setErrorMessage2('');
   };
 
@@ -51,10 +51,8 @@ const CriarRestaurante = () => {
 
   const handleCreateAcount = async () => {
 
-    if (username.length < 5 || username.length > 15 ) {
-
-    return setErrorMessage2('O username deve ter entre 5 e 15 caracteres e não deve conter espaços.');
-
+    if (nomeRestaurante == null || nomeRestaurante == "") {
+    return setErrorMessage2('Campo obrigatório');
     } 
 
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -76,7 +74,7 @@ const CriarRestaurante = () => {
     } 
 
     setEmail("");
-    setUsername("");
+    setNomeRestaurante("");
     setPassword("");
     setConfirm("");
 
@@ -84,11 +82,9 @@ const CriarRestaurante = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Lógica para fazer login com o Google aqui
   };
 
   const handleFacebookLogin = () => {
-    // Lógica para fazer login com o Facebook aqui
   };
 
   return (
@@ -104,7 +100,7 @@ const CriarRestaurante = () => {
             <input
               type="text"
               placeholder="Username"
-              value={username}
+              value={nomeRestaurante}
               onChange={handleUsername}
               className="input-login"
             />

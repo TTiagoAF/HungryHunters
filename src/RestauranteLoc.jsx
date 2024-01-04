@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from './../img/logo.png';
 import imagem from './../img/restaurantcriar.jpg';
 import { useForm } from "react-hook-form";
-import "./css/login.css";
+import "./css/RestauranteLoc.css";
 
 const RestauranteLoc = () => {
   const {
@@ -23,8 +23,8 @@ const RestauranteLoc = () => {
 
 
   const handleGPS = (e) => {
-    const usernameInput = e.target.value;
-    setGps(usernameInput);
+    const gpsinput = e.target.value;
+    setGps(gpsinput);
     setErrorMessage2('');
   };
 
@@ -62,25 +62,25 @@ const RestauranteLoc = () => {
     setGps("");
     setPhone("");
 
-    navigate('/RestauranteDisponiblidade/');
+    navigate('/RestauranteAberto/');
   };
 
   return (
-    <div className="pagina-login">
-      <img src={imagem} alt="Imagem" className="imagem-login" />
-      <div className="container-login">
-        <div className="login-esquerda">
-          <img src={logo} alt="Logo" className="logo-login" />
+    <div className="pagina-loc">
+      <img src={imagem} alt="Imagem" className="imagem-loc" />
+      <div className="container-loc">
+        <div className="loc-esquerda">
+          <img src={logo} alt="Logo" className="logo-loc" />
         </div>
-        <div className="login-direita">
-          <h1 className="titulo-login">Bem-vindo à HungryHunters</h1>
-          <form className="formulario-login" onSubmit={handleSubmit(onSubmit)}>
+        <div className="loc-direita">
+          <h1 className="titulo-loc">Bem-vindo à HungryHunters</h1>
+          <form className="formulario-loc" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
               placeholder="Localização exata"
               value={gps}
               onChange={handleGPS}
-              className="input-login"
+              className="input-loc"
               onMouseOver={() => setMostrarTooltip(true)}
               onMouseOut={() => setMostrarTooltip(false)}
               onFocus={() => setMostrarTooltip(true)}
@@ -96,23 +96,21 @@ const RestauranteLoc = () => {
               placeholder="Distrito"
               value={distrito}
               onChange={handleDistrito}
-              className="input-login"
+              className="input-loc"
             />
             {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
-            <div className="container-input-senha">
             <input
                 type="tel"
                 placeholder="Telemóvel"
                 value={phone}
                 onChange={handlePhone}
-                className="input-login"
+                className="input-loc"
               />
               {errorMessage4 && <div style={{ color: 'red' }}>{errorMessage4}</div>}
-            </div>
-            <input className="botao-login" type="submit" value={"Criar"} onClick={handleCreateAcount}/>
+            <input className="botao-loc" type="submit" value={"Criar"} onClick={handleCreateAcount}/>
           </form>
-          <div className="links-login">
-            <p className="registro-login">
+          <div className="links-loc">
+            <p className="registro-loc">
               Já têm conta?
               <Link to="/Login/" class="Voltar">
                 <a href="#2">Login</a>

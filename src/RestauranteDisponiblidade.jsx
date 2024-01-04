@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import "./css/Disponibilidade.css";
+import { useNavigate } from 'react-router-dom';
 
 function RestauranteDisponiblidade() {
+  const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+  const [diaSelecionado, setDiaSelecionado] = useState(null);
   const [horarios, setHorarios] = useState([]);
   const [errorMessage2, setErrorMessage2] = useState('');
+  const navigate = useNavigate();
 
   const handleAdicionarHorario = () => {
     setHorarios([...horarios, '']);
+  };
+
+  const handleDiaChange = (dia) => {
+    setDiaSelecionado(dia);
+    setHorarios([]);
   };
 
   const handleRemoverHorario = (index) => {
@@ -34,20 +43,35 @@ function RestauranteDisponiblidade() {
       return setErrorMessage2('Adicione um horário');
     }
 
-    // Enviar os dados para o backend
     console.log('Horários de funcionamento:', horarios);
     setErrorMessage2('');
+
+    navigate('/RestauranteLoc/');
     
   };
   
 
   return (
-    <div>
-      <h1 className='titulo-principal'>Registro de Restaurante</h1>
+    <div className='container'>
+      <div className='titulo'>
+        <h1 className='titulo-principal'>Registro de Restaurante</h1>
+      </div>
       <div className="horarios-container">
       <form className='formulario-horarios'>
+      {diasDaSemana.map((dia, index) => (
+            <div key={index}>
+              <input
+                type="radio"
+                id={`radio-${index}`}
+                value={dia}
+                checked={diaSelecionado === dia}
+                onChange={() => handleDiaChange(dia)}
+              />
+              <label htmlFor={`radio-${index}`}>{dia}</label>
+            </div>
+          ))}
         <h2 className='titulo-secundario'>Horários de funcionamento</h2>
-          {horarios.map((horario, index) => (
+          {diaSelecionado && horarios.map((horario, index) => (
             <div key={index} className="horario-input">
               <label htmlFor={`horario-${index}`} className='etiqueta-horarios'>Adicionar horário:</label>
               <input

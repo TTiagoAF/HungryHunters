@@ -6,6 +6,7 @@ import imagem from './../img/restaurant-register.jpg';
 import { useForm } from "react-hook-form";
 import "./css/login.css";
 
+
 const CriarConta = () => {
   const {
     handleSubmit,
@@ -22,6 +23,7 @@ const CriarConta = () => {
   const [errorMessage5, setErrorMessage5] = useState('');
   const [, setApi] = useState([]);
   const apiUrl = 'https://localhost:7286';
+  const [mostrarTooltip, setMostrarTooltip] = useState(false);
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
@@ -60,7 +62,7 @@ const CriarConta = () => {
         const data = await response.json();
         setApi(data);
       } catch (erro) {
-        console.error('Erro ao obter os brinquedos da API:', erro);
+        console.error('Erro ao obter as contas da API:', erro);
       }
     };
     fetchContas();
@@ -118,11 +120,9 @@ const CriarConta = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Lógica para fazer login com o Google aqui
   };
 
   const handleFacebookLogin = () => {
-    // Lógica para fazer login com o Facebook aqui
   };
 
   return (
@@ -156,7 +156,15 @@ const CriarConta = () => {
               className='data-nascimento'
               value={selectedDate}
               onChange={handleDateChange}
+              onMouseOver={() => setMostrarTooltip(true)}
+              onMouseOut={() => setMostrarTooltip(false)}
+              onFocus={() => setMostrarTooltip(true)}
+              onBlur={() => setMostrarTooltip(false)}
             />
+            <div className="icon" onMouseOver={() => setMostrarTooltip(true)} onFocus={() => setMostrarTooltip(true)}>
+              &#9432;
+              {mostrarTooltip && <div className="tooltip">Preencher com a data de nascimento</div>}
+            </div>
             <div className="container-input-senha">
               <input
                 type={"password"}

@@ -1,0 +1,78 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.app {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 400px;
+}
+
+.title {
+  font-size: 28px;
+  color: #2ecc71;
+  margin-bottom: 20px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.checkbox-item {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.checkbox-input:checked {
+  background-color: #3498db;
+  border: 2px solid #3498db;
+}
+
+.checkbox-label {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.next-button {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-button:hover {
+  background-color: #27ae60;
+}

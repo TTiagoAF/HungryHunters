@@ -7,7 +7,7 @@ import "./css/login.css"
 import { useNavigate } from 'react-router-dom';
 
 
-const PaginaLogin = () => {
+const PaginaLogin = ({setIsLoggedIn}) => {
   const {
     handleSubmit
   } = useForm({
@@ -19,7 +19,7 @@ const PaginaLogin = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const apiUrl = 'https://localhost:7286';
-  
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setErrorMessage("");
@@ -55,7 +55,10 @@ const PaginaLogin = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.token) {
+          document.cookie = `token=${data.token}; max-age=86400; path=/Home/`;
+          localStorage.setItem('token', JSON.stringify(data.token));
           console.log('Token:', data.token);
+          setIsLoggedIn(true);
         } else {
           console.error('Token ausente na resposta:', data);
         }
