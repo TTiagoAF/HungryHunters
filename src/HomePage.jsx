@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import imagem from './../img/chef-cozinha.jpg';
 import img from './../img/restaurante-main.jpg'
 import "./css/style.css"
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const [id, ] = useState(Cookies.get("id"));
+
+  useEffect(() => {
+    console.log(id)
+    if(Cookies.get("token") == undefined)
+    {
+      navigate("/Login/")
+    }
+  }, []);
+
   return (
     <div className="home-page">
       <Header/>

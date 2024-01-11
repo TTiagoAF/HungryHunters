@@ -46,7 +46,7 @@ function RestauranteDisponiblidade() {
     console.log('Horários de funcionamento:', horarios);
     setErrorMessage2('');
 
-    navigate('/RestauranteLoc/');
+    navigate('/ImagemRestaurante/');
     
   };
   

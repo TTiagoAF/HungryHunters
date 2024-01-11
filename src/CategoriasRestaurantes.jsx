@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './css/Categorias.css';
+import { useNavigate } from 'react-router-dom';
 
 const CategoriasRestaurante = () => {
-  const categoriasDisponiveis = ['Italiano', 'Japonês', 'Mexicano', 'Vegetariana', 'Peixe', 'Churrascaria', 'Marisqueira', 'Indiano', 'Pizzaria', 'Vegan', 'Buffet', 'Fast-Food', 'Gourmet', 'Carne', 'Tradicional', 'Petiscos' ];
-
+  const categoriasDisponiveis = ['Italiano', 'Japonês', 'Mexicano', 'Vegetariano', 'Peixe', 'Churrasqueira', 'Marisqueira', 'Indiano', 'Pizzaria', 'Vegan', 'Buffet', 'Fast-Food', 'Gourmet', 'Carne', 'Tradicional', 'Petiscos' ];
+  const navigate = useNavigate();
   const [categoriaSelecionada, setCategoriaSelecionada] = useState([]);
 
   const handleCategoriaChange = (categoria) => {
@@ -18,6 +19,7 @@ const CategoriasRestaurante = () => {
 
   const handleSubmit = () => {
     console.log("Categorias", categoriaSelecionada);
+    navigate("/RestauranteAberto/")
   }
 
   return (

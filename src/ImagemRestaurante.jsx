@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './css/ImagemPlanta.css';
+import './css/ImagemMenu.css';
 
-const ImagemPlanta = () => {
-  const navigate = useNavigate();
-  const [planta, setPlanta] = useState([]);
+const ImagemRestaurante = () => {
+  const [imagem, setImagem] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleImagemChange = (event) => {
-    const plantaselecionada = Array.from(event.target.files);
+    const imagemselecionada = Array.from(event.target.files);
 
-    if (planta.length + plantaselecionada.length > 1) {
-      setErrorMessage('Limite máximo de 1 imagem');
+    if (imagem.length + imagemselecionada.length > 5) {
+      setErrorMessage('Limite máximo de 5 imagens alcançado.');
       return;
     }
 
     setErrorMessage('');
-    setPlanta([...planta, ...plantaselecionada]);
+    setImagem([...imagem, ...imagemselecionada]);
   };
 
   const handleEleminarImagem = (index) => {
-    const plantaAtualizada = [...planta];
-    plantaAtualizada.splice(index, 1);
-    setPlanta(plantaAtualizada);
+    const imagemAtualizada = [...imagem];
+    imagemAtualizada.splice(index, 1);
+    setImagem(imagemAtualizada);
   };
 
   const handleSubmit = () => {
-    if(planta.length == 0)
+    if(imagem.length == 0)
     {
-        return setErrorMessage("Campo obrigatório")
+        return setErrorMessage("Não existe nada para submeter")
     }
-    console.log("Submetido", planta)
-    navigate("/RestauranteMenu/")
+    console.log("Submetido", imagem)
+  }
+
+  const handleSeguinte = () => {
+    console.log("Submetido", imagem)
   }
 
   return (
     <div>
-      <h1 className='titulo-principal'>Inserir imagem da planta completa com as mesas numeradas de um até ao número de mesas</h1>
+      <h1 className='titulo-principal'>Insira algumas fotos do seu restaurante</h1>
       <input
         type="file"
         id="file-input"
@@ -51,9 +52,9 @@ const ImagemPlanta = () => {
       </label>
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
       <div className="ver-imagem">
-        {planta.map((planta, index) => (
+        {imagem.map((imagem, index) => (
           <div key={index} className="imagem-container">
-            <img src={URL.createObjectURL(planta)} alt={`Imagem ${index + 1}`} />
+            <img src={URL.createObjectURL(imagem)} alt={`Imagem ${index + 1}`} />
             <div className="imagem-buttons">
               <button className='eliminar-button' onClick={() => handleEleminarImagem(index)}>Eliminar</button>
             </div>
@@ -61,8 +62,9 @@ const ImagemPlanta = () => {
         ))}
       </div>
       <button className='submeter-button' onClick={handleSubmit}>Submeter imagem</button>
+      <button className='submeter-button' onClick={handleSeguinte}>Criar conta</button>
     </div>
   );
 };
 
-export default ImagemPlanta;
+export default ImagemRestaurante;

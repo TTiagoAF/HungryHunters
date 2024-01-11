@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/ImagemMenu.css';
 
 const ImagemMenu = () => {
   const [imagem, setImagem] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleImagemChange = (event) => {
     const imagemselecionada = Array.from(event.target.files);
@@ -29,6 +31,7 @@ const ImagemMenu = () => {
         return setErrorMessage("Campo obrigatório")
     }
     console.log("Submetido", imagem)
+    navigate("/CategoriasRestaurante/")
   }
 
   return (

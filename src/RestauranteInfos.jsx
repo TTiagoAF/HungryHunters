@@ -13,15 +13,17 @@ const RestauranteInfos = () => {
     criteriaMode: "all"
   });
   const navigate = useNavigate();
-  const [mesas, setMesas] = useState('');
-  const [preco, setPreco] = useState('');
+  const [mesas, setMesas] = useState(0);
+  const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState('');
-  const [pessoas, setPessoas] = useState('');
+  const [pessoas, setPessoas] = useState(0);
   const [errorMessage2, setErrorMessage2] = useState('');
   const [errorMessage3, setErrorMessage3] = useState('');
   const [errorMessage4, setErrorMessage4] = useState('');
   const [errorMessage5, setErrorMessage5] = useState('');
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
+  const apiUrl = 'https://localhost:7286';
+  
 
   const handleMesas = (e) => {
     const mesasinput = e.target.value;
@@ -49,26 +51,62 @@ const RestauranteInfos = () => {
 
   const handleInfos = async () => {
 
-    if(mesas == ""){
+    if(mesas <= 0 || mesas == "" || mesas == null){
       return setErrorMessage2('Campo obrigatório');
     }
-    if(preco == ""){
+    if(preco <= 0 || preco == "" || preco == null){
       return setErrorMessage3('Campo obrigatório');
     }
     if (descricao == "") {
       return setErrorMessage4('Campo obrigatório');
     }
-    if (pessoas == "") {
+    if (pessoas <= 0 || pessoas == "" || pessoas == null) {
         return setErrorMessage5('Campo obrigatório');
     }
 
+    const novoRestaurante = {
+      Email: sessionStorage.getItem("email"),
+      Nome: sessionStorage.getItem("nome"),
+      PrecoMedio: preco,
+      NumeroMesas: mesas,
+      Distrito: sessionStorage.getItem("distrito"),
+      Coordenadas: sessionStorage.getItem("gps"),
+      Telemovel: sessionStorage.getItem("tel"),
+      Descricao: descricao,
+      CapacidadeGrupo: pessoas,
+      Autorizado: false,
+      Password: sessionStorage.getItem("password")
+  };
+  await adicionarConta([novoRestaurante]);
+  
     setMesas("");
     setPreco("");
     setDescricao("");
     setPessoas("");
 
-    navigate('/RestauranteAberto/');
+    navigate('/ImagemPlanta/');
   };
+
+  const adicionarConta = async (novoRestaurante) => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/AdicionarRestaurante`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(novoRestaurante)
+      });
+    
+      if (response.ok) {
+        console.log('Nova conta adicionada na API');
+      } else {
+        throw new Error('Erro ao adicionar nova conta na API');
+      }
+    } catch (error) {
+        console.error('Erro ao adicionar nova conta na API:', error);
+        throw error;
+    }
+    };
 
   return (
     <div className="pagina-infos">

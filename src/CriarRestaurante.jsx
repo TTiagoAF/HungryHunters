@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import logo from './../img/logo.png';
 import imagem from './../img/restaurantcriar.jpg';
-import { useForm } from "react-hook-form";
 import "./css/login.css";
+import { useForm } from "react-hook-form";
 
 const CriarRestaurante = () => {
   const {
@@ -14,77 +14,110 @@ const CriarRestaurante = () => {
   });
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [nomeRestaurante, setNomeRestaurante] = useState('');
   const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState(''); 
-  const [errorMessage2, setErrorMessage2] = useState('');
-  const [errorMessage3, setErrorMessage3] = useState('');
-  const [errorMessage4, setErrorMessage4] = useState('');
-  const [errorMessage5, setErrorMessage5] = useState('');
-
-
-  const handleUsername = (e) => {
-    const nomeInput = e.target.value;
-    setNomeRestaurante(nomeInput);
-    setErrorMessage2('');
-  };
+  const [confirm, setConfirm] = useState('');
+  const [nipc, setNipc] = useState('');
+  const [razaoSocial, setRazaoSocial] = useState('');
+  const [numRestaurante, setNumRestaurante] = useState(0);
+  const [tel, setTel] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage7, setErrorMessage7] = useState('');
+  const apiUrl = 'https://localhost:7286';
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    setErrorMessage3('');
+    setErrorMessage('');
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setErrorMessage4('');
+    setErrorMessage('');
   };
 
   const handleConfirm = (e) => {
     setConfirm(e.target.value);
-    setErrorMessage5('');
+    setErrorMessage7('');
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const handleNipc = (e) => {
+    setNipc(e.target.value);
+    setErrorMessage('');
+  };
+
+  const handleRazaoSocial = (e) => {
+    setRazaoSocial(e.target.value);
+    setErrorMessage('');
+  };
+
+  const handleNumRestaurante = (e) => {
+    setNumRestaurante(e.target.value);
+    setErrorMessage('');
+  };
+
+  const handleTel = (e) => {
+    setTel(e.target.value);
+    setErrorMessage('');
   };
 
 
   const handleCreateAcount = async () => {
 
-    if (nomeRestaurante == null || nomeRestaurante == "") {
-    return setErrorMessage2('Campo obrigatório');
-    } 
-
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-    if(!emailRegex.test(email))
-    {
-      return setErrorMessage3('Email inválido');
-    }
-    const passwordregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])/;
-
-    if (password.length < 5 || password.length > 20 || password.includes(' ') || !passwordregex.test(password)) {
-
-      return setErrorMessage4('A password deve ter entre 5 e 20 caracteres, não deve conter espaços e têm de conter letras maiusculas, minusculas, número e caracter especial.');
-    
-    }
     if(password != confirm)
     {
-      return setErrorMessage5('As password têm de coincidir');
+      return setErrorMessage7('As password têm de coincidir');
     } 
 
+    const newEmpresa = {
+      Nipc: nipc,
+      Razao_social: razaoSocial,
+      Email: email,
+      Num_Restaurante: numRestaurante,
+      Telemovel: tel,
+      Password: password
+  };
+    
+    await adicionarEmpresa([newEmpresa]);
     setEmail("");
-    setNomeRestaurante("");
+    setRazaoSocial("");
     setPassword("");
     setConfirm("");
+    
+    navigate('/RestauranteLoc/');   
+};
 
-    navigate('/RestauranteLoc/');
-  };
+const adicionarEmpresa = async (newEmpresa) => {
+  try {
+    const response = await fetch(`${apiUrl}/api/Empresas/AdicionarEmpresa`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newEmpresa)
+    });
+
+    if (response.ok) {
+      console.log('Nova conta adicionada na API');
+    } else {
+      const dataerro = await response.json();
+      console.error('Erro na operação:', dataerro);
+      console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+      setErrorMessage(dataerro.mensagem);
+      throw new Error('Erro ao adicionar nova conta na API');
+    }
+  } catch (error) {
+      console.error('Erro ao adicionar nova conta na API:', error);
+      throw error;
+  }
+};
 
   const handleGoogleLogin = () => {
   };
 
   const handleFacebookLogin = () => {
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -97,14 +130,20 @@ const CriarRestaurante = () => {
         <div className="login-direita">
           <h1 className="titulo-login">Bem-vindo à HungryHunters</h1>
           <form className="formulario-login" onSubmit={handleSubmit(onSubmit)}>
-            <input
+          <input
               type="text"
-              placeholder="Username"
-              value={nomeRestaurante}
-              onChange={handleUsername}
+              placeholder="NIPC"
+              value={nipc}
+              onChange={handleNipc}
               className="input-login"
             />
-            {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
+          <input
+              type="text"
+              placeholder="Razão Social"
+              value={razaoSocial}
+              onChange={handleRazaoSocial}
+              className="input-login"
+            />
             <input
               type="email"
               placeholder="E-mail"
@@ -112,7 +151,20 @@ const CriarRestaurante = () => {
               onChange={handleEmailChange}
               className="input-login"
             />
-            {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
+            <input
+              type="number"
+              placeholder="Número de restaurante"
+              value={numRestaurante}
+              onChange={handleNumRestaurante}
+              className="input-login"
+            />
+            <input
+                type="tel"
+                placeholder="Telemóvel"
+                value={tel}
+                onChange={handleTel}
+                className="input-loc"
+              />
             <div className="container-input-senha">
               <input
                 type={"password"}
@@ -121,7 +173,6 @@ const CriarRestaurante = () => {
                 onChange={handlePasswordChange}
                 className="input-login"
               />
-              {errorMessage4 && <div style={{ color: 'red' }}>{errorMessage4}</div>}
             </div>
             <div className="container-input-senha">
               <input
@@ -131,9 +182,10 @@ const CriarRestaurante = () => {
                 onChange={handleConfirm}
                 className="input-login"
               />
-              {errorMessage5 && <div style={{ color: 'red' }}>{errorMessage5}</div>}
-            </div>
+              {errorMessage7 && <div style={{ color: 'red' }}>{errorMessage7}</div>}
             <input className="botao-login" type="submit" value={"Criar"} onClick={handleCreateAcount}/>
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+            </div>
           </form>
           <div className="links-login">
             <p className="registro-login">

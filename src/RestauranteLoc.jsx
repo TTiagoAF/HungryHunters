@@ -13,14 +13,20 @@ const RestauranteLoc = () => {
     criteriaMode: "all"
   });
   const navigate = useNavigate();
+  const [nome, setNome] = useState('');
   const [distrito, setDistrito] = useState('');
   const [gps, setGps] = useState('');
-  const [phone, setPhone] = useState('');
+  const [tel, setTel] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [errorMessage2, setErrorMessage2] = useState('');
   const [errorMessage3, setErrorMessage3] = useState('');
   const [errorMessage4, setErrorMessage4] = useState('');
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
 
+  const handleNome = (e) => {
+    setNome(e.target.value);
+    setErrorMessage('');
+  };
 
   const handleGPS = (e) => {
     const gpsinput = e.target.value;
@@ -33,8 +39,8 @@ const RestauranteLoc = () => {
     setErrorMessage3('');
   };
 
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
+  const handleTel = (e) => {
+    setTel(e.target.value);
     setErrorMessage4('');
   };
 
@@ -44,25 +50,29 @@ const RestauranteLoc = () => {
 
   const handleCreateAcount = async () => {
 
+    if(nome == ""){
+      return setErrorMessage('Campo obrigatório');
+    }
     if(gps == ""){
       return setErrorMessage2('Campo obrigatório');
     }
     if(distrito == ""){
       return setErrorMessage3('Campo obrigatório');
     }
-    const newPhone = /\D/g;
-    if (phone.length != 9 || newPhone.test(phone)) {
-
+    const newTel = /\D/g;
+    if (tel.length != 9 || newTel.test(tel) || tel == "") {
       return setErrorMessage4('Número de telefone inválido');
-  
     }
-    
+
+    sessionStorage.setItem("gps", gps);
+    sessionStorage.setItem("distrito", distrito);
+    sessionStorage.setItem("tel", tel);
 
     setDistrito("");
     setGps("");
-    setPhone("");
+    setTel("");
 
-    navigate('/RestauranteAberto/');
+    navigate('/RestauranteInfos/');
   };
 
   return (
@@ -75,6 +85,14 @@ const RestauranteLoc = () => {
         <div className="loc-direita">
           <h1 className="titulo-loc">Bem-vindo à HungryHunters</h1>
           <form className="formulario-loc" onSubmit={handleSubmit(onSubmit)}>
+          <input
+              type="text"
+              placeholder="Nome do restaurante"
+              value={nome}
+              onChange={handleNome}
+              className="input-loc"
+            />
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
             <input
               type="text"
               placeholder="Localização exata"
@@ -102,8 +120,8 @@ const RestauranteLoc = () => {
             <input
                 type="tel"
                 placeholder="Telemóvel"
-                value={phone}
-                onChange={handlePhone}
+                value={tel}
+                onChange={handleTel}
                 className="input-loc"
               />
               {errorMessage4 && <div style={{ color: 'red' }}>{errorMessage4}</div>}

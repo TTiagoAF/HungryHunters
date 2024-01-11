@@ -2,7 +2,7 @@ import PaginaLogin from "./Login";
 import CreateAcount from "./CreateAcount";
 import ForgotPassword from "./ForgotPassword";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HomePage from "./HomePage";
 import CriarRestaurante from "./CriarRestaurante";
@@ -14,7 +14,7 @@ import RestauranteMenu from "./RestauranteMenu";
 import ImagemMenu from "./ImagemMenu";
 import ImagemPlanta from "./PlantaRestaurante";
 import CategoriasRestaurante from "./CategoriasRestaurantes";
-import { useState } from "react";
+import ImagemRestaurante from "./ImagemRestaurante";
 
 //É o que renderiza a página principal e a página de detalhes através do BrowserRouter 7
 const queryClient = new QueryClient({
@@ -28,8 +28,6 @@ const queryClient = new QueryClient({
 
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
     return(
     <BrowserRouter>
         <QueryClientProvider client={queryClient}>
@@ -37,9 +35,9 @@ const App = () => {
                 <div>
                     <Routes>
                         <Route path="/CreateAcount/" element={<CreateAcount />} />
-                        <Route path="/Login/" element={<PaginaLogin setIsLoggedIn={setIsLoggedIn} />} />
-                        <Route path="/Forgot/" element={<ForgotPassword />} />
-                        <Route path="/Home/" element={isLoggedIn ? <HomePage /> : <Navigate to="/Login/" />} />
+                        <Route path="/Login/" element={<PaginaLogin />} />
+                        <Route path="/Forgot/" element={<ForgotPassword />}/>
+                        <Route path="/Home/:id" element={<HomePage />}/>
                         <Route path="/CriarRestaurante/" element={<CriarRestaurante />} />
                         <Route path="/RestauranteLoc/" element={<RestauranteLoc />} />
                         <Route path="/RestauranteDisponiblidade/" element={<RestauranteDisponiblidade />} />
@@ -49,6 +47,7 @@ const App = () => {
                         <Route path="/ImagemMenu/" element={<ImagemMenu />} />
                         <Route path="/ImagemPlanta/" element={<ImagemPlanta />} />
                         <Route path="/CategoriasRestaurante/" element={<CategoriasRestaurante />} />
+                        <Route path="/ImagemRestaurante/" element={<ImagemRestaurante />} />
                     </Routes>
                 </div>                   
             </header>
