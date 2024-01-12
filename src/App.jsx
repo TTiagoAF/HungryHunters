@@ -15,6 +15,9 @@ import ImagemMenu from "./ImagemMenu";
 import ImagemPlanta from "./PlantaRestaurante";
 import CategoriasRestaurante from "./CategoriasRestaurantes";
 import ImagemRestaurante from "./ImagemRestaurante";
+import LoginEmpresas from "./LoginRestaurante";
+import GerirEmpresa from "./GerirEmpresas";
+import GerirRestuarante from "./GerirRestaurante";
 
 //É o que renderiza a página principal e a página de detalhes através do BrowserRouter 7
 const queryClient = new QueryClient({
@@ -48,6 +51,9 @@ const App = () => {
                         <Route path="/ImagemPlanta/" element={<ImagemPlanta />} />
                         <Route path="/CategoriasRestaurante/" element={<CategoriasRestaurante />} />
                         <Route path="/ImagemRestaurante/" element={<ImagemRestaurante />} />
+                        <Route path="/LoginEmpresas/" element={<LoginEmpresas />} />
+                        <Route path="/GerirEmpresas/" element={<GerirEmpresa />} />
+                        <Route path="/GerirRestaurante/" element={<GerirRestuarante />} />
                     </Routes>
                 </div>                   
             </header>

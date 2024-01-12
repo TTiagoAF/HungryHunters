@@ -5,6 +5,7 @@ import logo from './../img/logo.png';
 import imagem from './../img/restaurantcriar.jpg';
 import { useForm } from "react-hook-form";
 import "./css/Restauranteinfo.css";
+import Cookies from 'js-cookie';
 
 const RestauranteInfos = () => {
   const {
@@ -17,10 +18,7 @@ const RestauranteInfos = () => {
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState('');
   const [pessoas, setPessoas] = useState(0);
-  const [errorMessage2, setErrorMessage2] = useState('');
-  const [errorMessage3, setErrorMessage3] = useState('');
-  const [errorMessage4, setErrorMessage4] = useState('');
-  const [errorMessage5, setErrorMessage5] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
   const apiUrl = 'https://localhost:7286';
   
@@ -28,21 +26,21 @@ const RestauranteInfos = () => {
   const handleMesas = (e) => {
     const mesasinput = e.target.value;
     setMesas(mesasinput);
-    setErrorMessage2('');
+    setErrorMessage('');
   };
 
   const handlePreco = (e) => {
     setPreco(e.target.value);
-    setErrorMessage3('');
+    setErrorMessage('');
   };
 
   const handleDescricao = (e) => {
     setDescricao(e.target.value);
-    setErrorMessage4('');
+    setErrorMessage('');
   };
   const handlePessoas = (e) => {
     setPessoas(e.target.value);
-    setErrorMessage5('');
+    setErrorMessage('');
   };
 
   const onSubmit = (data) => {
@@ -51,31 +49,16 @@ const RestauranteInfos = () => {
 
   const handleInfos = async () => {
 
-    if(mesas <= 0 || mesas == "" || mesas == null){
-      return setErrorMessage2('Campo obrigatório');
-    }
-    if(preco <= 0 || preco == "" || preco == null){
-      return setErrorMessage3('Campo obrigatório');
-    }
-    if (descricao == "") {
-      return setErrorMessage4('Campo obrigatório');
-    }
-    if (pessoas <= 0 || pessoas == "" || pessoas == null) {
-        return setErrorMessage5('Campo obrigatório');
-    }
-
     const novoRestaurante = {
-      Email: sessionStorage.getItem("email"),
-      Nome: sessionStorage.getItem("nome"),
+      NipcEmpresa: Cookies.get("nipc"),
+      Nome: Cookies.get("nome"),
       PrecoMedio: preco,
       NumeroMesas: mesas,
-      Distrito: sessionStorage.getItem("distrito"),
-      Coordenadas: sessionStorage.getItem("gps"),
-      Telemovel: sessionStorage.getItem("tel"),
+      Distrito: Cookies.get("distrito"),
+      Coordenadas: Cookies.get("gps"),
       Descricao: descricao,
       CapacidadeGrupo: pessoas,
       Autorizado: false,
-      Password: sessionStorage.getItem("password")
   };
   await adicionarConta([novoRestaurante]);
   
@@ -84,7 +67,20 @@ const RestauranteInfos = () => {
     setDescricao("");
     setPessoas("");
 
-    navigate('/ImagemPlanta/');
+    try {
+      const response = await fetch(`${apiUrl}/api/Empresas/MenosRestaurante/${Cookies.get("nipc")}`, {
+        method: 'POST'
+      });
+      if (response.ok) {
+        console.log('ok');
+      } else {
+        console.error('Erro');
+      }
+    } catch (erro) {
+      console.error('Erro:', erro);
+    }
+
+    navigate('/GerirRestaurante/');
   };
 
   const adicionarConta = async (novoRestaurante) => {
@@ -100,7 +96,11 @@ const RestauranteInfos = () => {
       if (response.ok) {
         console.log('Nova conta adicionada na API');
       } else {
-        throw new Error('Erro ao adicionar nova conta na API');
+        const dataerro = await response.json();
+      console.error('Erro na operação:', dataerro);
+      console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+      setErrorMessage(dataerro.mensagem);
+      throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
         console.error('Erro ao adicionar nova conta na API:', error);
@@ -125,7 +125,6 @@ const RestauranteInfos = () => {
               onChange={handleMesas}
               className="input-infos"
             />
-            {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
             <input
               type="number"
               placeholder="Preço médio"
@@ -133,7 +132,6 @@ const RestauranteInfos = () => {
               onChange={handlePreco}
               className="input-infos"
             />
-            {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
             <textarea
                 type="text"
                 placeholder="Descrição"
@@ -142,7 +140,6 @@ const RestauranteInfos = () => {
                 className="textarea-input"
                 maxLength={2000}
               />
-              {errorMessage4 && <div style={{ color: 'red' }}>{errorMessage4}</div>}
               <input
               type="number"
               placeholder="Grupos"
@@ -154,12 +151,12 @@ const RestauranteInfos = () => {
               onFocus={() => setMostrarTooltip(true)}
               onBlur={() => setMostrarTooltip(false)}
             />
-            {errorMessage5 && <div style={{ color: 'red' }}>{errorMessage5}</div>}
             <div className="icon" onMouseOver={() => setMostrarTooltip(true)} onFocus={() => setMostrarTooltip(true)}>
               &#9432;
               {mostrarTooltip && <div className="tooltip">Preencher com o máximo de pessoas que aceitam por grupo para almoçar</div>}
             </div>
             <input className="botao-infos" type="submit" value={"Criar"} onClick={handleInfos}/>
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
           </form>
           <div className="links-infos">
             <p className="registro-infos">

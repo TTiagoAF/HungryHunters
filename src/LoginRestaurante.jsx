@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../img/logo.png';
 import image from './../img/restaurante-login.jpg';
@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 
-const PaginaLogin = () => {
+
+const LoginEmpresas = () => {
   const {
     handleSubmit
   } = useForm({
@@ -16,13 +17,19 @@ const PaginaLogin = () => {
   });
   const onSubmit = (data) => console.log(data);
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [nipc, setNipc] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const apiUrl = 'https://localhost:7286';
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  useEffect(() => {
+    Cookies.remove("token");
+    Cookies.remove("Razao");
+    Cookies.remove("nipc");
+  }, []);
+
+  const handleNipcChange = (e) => {
+    setNipc(e.target.value);
     setErrorMessage("");
   };
   
@@ -32,38 +39,32 @@ const PaginaLogin = () => {
   };
   
   const handleLogin = async () => {
-    await LoginUtilizadores(email, password)
+    await LoginDasEmpresas(nipc, password)
 
-    setEmail("");
+    setNipc("");
     setPassword("");
     
-    
+    navigate('/GerirEmpresas/');
   }
 
-  const LoginUtilizadores = async () => {
+  const LoginDasEmpresas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Contas/Login`, { 
+      const response = await fetch(`${apiUrl}/api/Empresas/LoginEmpresas`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email,
-          password: password,
+          Nipc: nipc,
+          Password: password,
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        if (data.token) {
-          if(data.id != null)
-          {
-            Cookies.set("id", data.id, {expires: 0.001})
-            console.log('Id:', data.id);
-            navigate('/Home/' + data.id);
-          }
-          console.log('Token:', data.token);
-          Cookies.set("token", data.token, {expires: 0.001})
+        if (data.token) {         
+          Cookies.set("token", data.token, {expires: 1})
+          Cookies.set("Razao", data.razao, {expires: 1})
         } else {
           console.error('Token ausente na resposta:', data);
         }
@@ -97,9 +98,9 @@ const PaginaLogin = () => {
           <h1 className="titulo-login">Bem-vindo à HungryHunters</h1>
           <form className="formulario-login" onSubmit={handleSubmit(onSubmit)}>
             <input
-              type={"email"}
-              placeholder="E-mail"
-              onChange={handleEmailChange}
+              type="text"
+              placeholder="Nipc"
+              onChange={handleNipcChange}
               className="input-login"
             />
             <div className="container-input-senha">
@@ -121,7 +122,7 @@ const PaginaLogin = () => {
             </p>
             <p className="registro-login">
               Ainda não tem uma conta? 
-              <Link to="/CreateAcount/" class="Voltar">
+              <Link to="/CriarRestaurante/" class="Voltar">
                 <a href="#2">Registre-se</a>
               </Link>
             </p>
@@ -136,4 +137,4 @@ const PaginaLogin = () => {
   );
 };
 
-export default PaginaLogin;
+export default LoginEmpresas;

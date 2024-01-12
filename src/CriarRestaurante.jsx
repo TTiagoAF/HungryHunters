@@ -77,12 +77,16 @@ const CriarRestaurante = () => {
   };
     
     await adicionarEmpresa([newEmpresa]);
+    
     setEmail("");
     setRazaoSocial("");
     setPassword("");
     setConfirm("");
+    setNumRestaurante("");
+    setTel("");
+    setNipc("");
     
-    navigate('/RestauranteLoc/');   
+    navigate('/LoginEmpresas/');   
 };
 
 const adicionarEmpresa = async (newEmpresa) => {

@@ -5,6 +5,7 @@ import logo from './../img/logo.png';
 import imagem from './../img/restaurantcriar.jpg';
 import { useForm } from "react-hook-form";
 import "./css/RestauranteLoc.css";
+import Cookies from 'js-cookie';
 
 const RestauranteLoc = () => {
   const {
@@ -16,11 +17,9 @@ const RestauranteLoc = () => {
   const [nome, setNome] = useState('');
   const [distrito, setDistrito] = useState('');
   const [gps, setGps] = useState('');
-  const [tel, setTel] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [errorMessage2, setErrorMessage2] = useState('');
   const [errorMessage3, setErrorMessage3] = useState('');
-  const [errorMessage4, setErrorMessage4] = useState('');
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
 
   const handleNome = (e) => {
@@ -39,11 +38,6 @@ const RestauranteLoc = () => {
     setErrorMessage3('');
   };
 
-  const handleTel = (e) => {
-    setTel(e.target.value);
-    setErrorMessage4('');
-  };
-
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -59,18 +53,14 @@ const RestauranteLoc = () => {
     if(distrito == ""){
       return setErrorMessage3('Campo obrigatório');
     }
-    const newTel = /\D/g;
-    if (tel.length != 9 || newTel.test(tel) || tel == "") {
-      return setErrorMessage4('Número de telefone inválido');
-    }
 
-    sessionStorage.setItem("gps", gps);
-    sessionStorage.setItem("distrito", distrito);
-    sessionStorage.setItem("tel", tel);
+    Cookies.set("nome", nome);
+    Cookies.set("gps", gps);
+    Cookies.set("distrito", distrito);
 
+    setNome("");
     setDistrito("");
     setGps("");
-    setTel("");
 
     navigate('/RestauranteInfos/');
   };
@@ -117,14 +107,6 @@ const RestauranteLoc = () => {
               className="input-loc"
             />
             {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
-            <input
-                type="tel"
-                placeholder="Telemóvel"
-                value={tel}
-                onChange={handleTel}
-                className="input-loc"
-              />
-              {errorMessage4 && <div style={{ color: 'red' }}>{errorMessage4}</div>}
             <input className="botao-loc" type="submit" value={"Criar"} onClick={handleCreateAcount}/>
           </form>
           <div className="links-loc">

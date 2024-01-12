@@ -5,7 +5,7 @@ import imagem from './../img/chef-cozinha.jpg';
 import img from './../img/restaurante-main.jpg'
 import "./css/style.css"
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -34,7 +34,9 @@ const HomePage = () => {
             <p className='texto-cadastrar'>Aqui pode ver algumas informações para registrar o seu restaurante.</p>
             <button className='botao-cadastrar'>Ver mais informações</button>
             <h2 className='titulo-cadastrar-2'>Registrar restaurante</h2>
+            <Link to="/CriarRestaurante/">
             <button className='botao-cadastrar'>Registrar</button>
+            </Link>
           </div>
         <div className='div-imagem'>
         <img src={imagem} alt="Imagem" className="imagem"/>
