@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import logo from './../img/logo.png';
@@ -21,6 +21,13 @@ const RestauranteLoc = () => {
   const [errorMessage2, setErrorMessage2] = useState('');
   const [errorMessage3, setErrorMessage3] = useState('');
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
+
+  useEffect(() => {
+    if(Cookies.get("nipc") == undefined)
+    {
+      navigate("/GerirEmpresas/")
+    }
+  }, []);
 
   const handleNome = (e) => {
     setNome(e.target.value);

@@ -50,7 +50,7 @@
   background-color: #45a049;
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  transform: scale(1.05); /* Efeito de escala no hover */
+  transform: scale(1.05);
 }
 
 .add-restaurant-button,

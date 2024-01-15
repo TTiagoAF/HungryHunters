@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import logo from './../img/logo.png';
@@ -22,6 +22,15 @@ const RestauranteInfos = () => {
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
   const apiUrl = 'https://localhost:7286';
   
+  useEffect(() => {
+    if(Cookies.get("nipc") == undefined)
+    {
+      navigate("/GerirEmpresas/")
+      Cookies.remove("nome");
+      Cookies.remove("gps");
+      Cookies.remove("distrito");
+    }
+  }, []);
 
   const handleMesas = (e) => {
     const mesasinput = e.target.value;
@@ -52,13 +61,13 @@ const RestauranteInfos = () => {
     const novoRestaurante = {
       NipcEmpresa: Cookies.get("nipc"),
       Nome: Cookies.get("nome"),
-      PrecoMedio: preco,
+      PrecoMedio: preco.toFixed(2),
       NumeroMesas: mesas,
       Distrito: Cookies.get("distrito"),
       Coordenadas: Cookies.get("gps"),
       Descricao: descricao,
       CapacidadeGrupo: pessoas,
-      Autorizado: false,
+      Autorizado: "false",
   };
   await adicionarConta([novoRestaurante]);
   
@@ -68,7 +77,7 @@ const RestauranteInfos = () => {
     setPessoas("");
 
     try {
-      const response = await fetch(`${apiUrl}/api/Empresas/MenosRestaurante/${Cookies.get("nipc")}`, {
+      const response = await fetch(`${apiUrl}/api/Empresas/MenosRestauranteporNipc/${Cookies.get("nipc")}`, {
         method: 'POST'
       });
       if (response.ok) {
@@ -79,6 +88,10 @@ const RestauranteInfos = () => {
     } catch (erro) {
       console.error('Erro:', erro);
     }
+
+    Cookies.remove("gps");
+    Cookies.remove("distrito");
+    Cookies.remove("nipc");
 
     navigate('/GerirRestaurante/');
   };
