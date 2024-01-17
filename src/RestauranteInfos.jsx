@@ -23,7 +23,7 @@ const RestauranteInfos = () => {
   const apiUrl = 'https://localhost:7286';
   
   useEffect(() => {
-    if(Cookies.get("nipc") == undefined)
+    if(Cookies.get("nipc") == undefined || Cookies.get("nome") == undefined || Cookies.get("gps") == undefined || Cookies.get("distrito") == undefined )
     {
       navigate("/GerirEmpresas/")
       Cookies.remove("nome");

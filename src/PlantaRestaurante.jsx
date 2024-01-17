@@ -6,6 +6,7 @@ const ImagemPlanta = () => {
   const navigate = useNavigate();
   const [planta, setPlanta] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const apiUrl = 'https://localhost:7286';
 
   const handleImagemChange = (event) => {
     const plantaselecionada = Array.from(event.target.files);
@@ -29,6 +30,30 @@ const ImagemPlanta = () => {
     if(planta.length == 0)
     {
         return setErrorMessage("Campo obrigatório")
+    }
+    try {
+      const formData = new FormData();
+      formData.append('arquivo', planta);
+
+      const response = fetch(`${apiUrl}/api/Restaurantes/AdicionarRestaurante`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(planta)
+      });
+    
+      if (response.ok) {
+        console.log('Nova conta adicionada na API');
+      } else {
+        const dataerro = response.json();
+      console.error('Erro na operação:', dataerro);
+      console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+      setErrorMessage(dataerro.mensagem);
+      throw new Error('Erro ao adicionar nova conta na API');
+      }
+    } catch (error) {
+      console.error('Erro ao fazer upload:', error);
     }
     console.log("Submetido", planta)
     navigate("/RestauranteMenu/")

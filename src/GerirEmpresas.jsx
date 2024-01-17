@@ -11,7 +11,7 @@ import { IoIosRestaurant } from "react-icons/io";
 const GerirEmpresa = () => {
   const navigate = useNavigate();
   const [razaosocial,] = useState(Cookies.get("Razao"));
-  const [numRestaurantes, setNumRestaurantes] = useState(4);
+  const [numRestaurantes, setNumRestaurantes] = useState(0);
   const [nome, setNome] = useState({});
   const [nipc, setNipc] = useState();
   const [escolher, setEscolher] = useState(false);
@@ -26,7 +26,11 @@ const GerirEmpresa = () => {
     }
     const fetchContas = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/Empresas/Empresaspor${razaosocial}`);
+        const response = await fetch(`${apiUrl}/api/Empresas/Empresaspor${razaosocial}`, {
+          headers: {
+            'Authorization': 'Bearer ' + Cookies.get("token"),
+          }
+        });
         const data = await response.json();
         setApi(data);
         if (data) {
@@ -50,13 +54,16 @@ const GerirEmpresa = () => {
   }, []);
 
   const handleAddRestaurant = async () => {
-    setNumRestaurantes(numRestaurantes + 1);
     try {
       const response = await fetch(`${apiUrl}/api/Empresas/MaisRestaurante/${razaosocial}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
       });
       if (response.ok) {
         console.log('ok');
+        setNumRestaurantes(numRestaurantes + 1);
       } else {
         console.error('Erro');
       }
@@ -66,13 +73,35 @@ const GerirEmpresa = () => {
   };
 
   const handleRemoveRestaurant = async () => {
-    setNumRestaurantes(numRestaurantes - 1);
     try {
       const response = await fetch(`${apiUrl}/api/Empresas/MenosRestaurante/${razaosocial}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
       });
       if (response.ok) {
         console.log('ok');
+        setNumRestaurantes(numRestaurantes - 1);
+      } else {
+        console.error('Erro');
+      }
+    } catch (erro) {
+      console.error('Erro:', erro);
+    }
+  };
+
+  const handleRemove = async (nomeRestaurante) => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/DeleteRestaurantes/${nomeRestaurante}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
+      });
+      if (response.ok) {
+        console.log('ok');
+        window.location.reload();
       } else {
         console.error('Erro');
       }
@@ -89,32 +118,37 @@ const GerirEmpresa = () => {
 
   const handleEscolher = () => {
     setEscolher(true);
-    const fetchEmpresas = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/api/Restaurantes/RestaurantesporNipc/${nipc}`);
-        const data = await response.json();
-        setApi2(data);
-        if (data) {
-          console.log('Entrou no if2', data);
-          console.log(' no if2', api2);
-          const nome = Object.values(data).map(nome => nome.nome);
-          setNome(nome);
-        } else {
-          console.log('Não entrou no if');
-        }
-      } catch (erro) {
-        console.error('Erro ao obter as contas da API:', erro);
-      }
-    };
     fetchEmpresas();
   }
+
+  const fetchEmpresas = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/RestaurantesporNipc/${nipc}`, {
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
+      });
+      const data = await response.json();
+      setApi2(data);
+      if (data) {
+        console.log('Entrou no if2', data);
+        console.log(' no if2', api2);
+        const nome = Object.values(data).map(nome => nome.nome);
+        setNome(nome);
+      } else {
+        console.log('Não entrou no if');
+      }
+    } catch (erro) {
+      console.error('Erro ao obter as contas da API:', erro);
+    }
+  };
 
   const handleEscolher2 = () => {
     setEscolher(false);
   }
 
   const handleRestaurante = (nomeRestaurante) => {   
-    Cookies.set('nome', nomeRestaurante);
+    Cookies.set('nome', nomeRestaurante, {expires: 1});
     navigate("/GerirRestaurante/");
  };
 
@@ -138,6 +172,7 @@ const GerirEmpresa = () => {
         {Object.values(nome).map((nomeRestaurante, index) => (escolher == true &&(
         <div key={index} className="restaurant-button-container">
         <button className="restaurant-button" onClick={() => handleRestaurante(nomeRestaurante)}> <IoIosRestaurant/>  {nomeRestaurante}</button>
+        <button onClick={() => handleRemove(nomeRestaurante)} className="remove-restaurant-button"> <FaRegTrashAlt/></button>
       </div>
       )))}
       </div>

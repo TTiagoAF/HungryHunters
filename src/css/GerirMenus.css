@@ -1,0 +1,47 @@
+.home-page {
+  background-color: #f8f9fa;
+  color: #343a40;
+  padding-bottom: 20px;
+}
+
+.restaurant-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.menu-item {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  width: 1350px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background: linear-gradient(145deg, #ffffff, #e6e4da);
+}
+
+.menu-item:hover {
+  transform: scale(1.05);
+}
+
+.nome {
+  color: #000000;
+  font-size: 18px;
+  margin-left: 10px;
+}
+.preco {
+  color: #000000;
+  font-size: 15px;
+  margin-left: 1300px;
+  margin-bottom: 10px;
+}
+.desc {
+  color: #000000;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import "./css/RestauranteMenu.css";
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function RestauranteMenu() {
-  const [pratos, setPratos] = useState([{ nome: '', preco: 0 , desc: ''}]);
+  const [pratos, setPratos] = useState([{restauranteid: Cookies.get("id"), nome: '', preco: 0 , desc_prato: ''}]);
   const [errorMessage2, setErrorMessage2] = useState('');
   const navigate = useNavigate();
+  const apiUrl = 'https://localhost:7286';
 
   const handleAdicionarPrato = () => {
-    setPratos([...pratos, { nome: '', preco: 0, desc: ''}]);
+    setPratos([...pratos, {restauranteid: Cookies.get("id"), nome: '', preco: 0, desc_prato: ''}]);
   };
 
   const handleRemoverPrato = (index) => {
@@ -25,16 +27,37 @@ function RestauranteMenu() {
 
   const handleSetPrato = (event) => {
     event.preventDefault();
-    if (pratos.length === 0 || pratos.some(pratos => !pratos.nome || !pratos.preco) || pratos.preco == 0 || pratos.desc == "") {
-      return setErrorMessage2('Preencha todos os campos de prato, preço e descrição');
-    }
-
-    // Enviar os dados para o backend
+    
+    fetchmenus();
     console.log('Pratos:', pratos);
     setErrorMessage2('');
-
-    navigate('/ImagemMenu/');
   };
+  
+  const fetchmenus = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/RestauranteMenus/AdicionarMenu`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pratos)
+      });
+  
+      if (response.ok) {
+        console.log('Nova conta adicionada na API');
+        navigate('/GerirRestaurante/');
+        setPratos("");
+      } else {
+        const dataerro = await response.json();
+        console.error('Erro na operação:', dataerro);
+        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+        setErrorMessage2(dataerro.mensagem);
+        throw new Error('Erro ao adicionar nova conta na API');
+      }
+    } catch (error) {
+        console.error('Erro ao adicionar nova conta na API:', error);
+        throw error;
+    }}
 
   return (
     <div>
@@ -70,7 +93,7 @@ function RestauranteMenu() {
                 type="text"
                 placeholder="Descrição"
                 value={pratos.desc}
-                onChange={(e) => handlePratoChange(index, 'desc', e.target.value)}
+                onChange={(e) => handlePratoChange(index, 'desc_prato', e.target.value)}
                 className="textarea-input"
                 maxLength={2000}
               />

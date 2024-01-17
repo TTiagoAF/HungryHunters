@@ -18,6 +18,15 @@ import ImagemRestaurante from "./ImagemRestaurante";
 import LoginEmpresas from "./LoginRestaurante";
 import GerirEmpresa from "./GerirEmpresas";
 import GerirRestuarante from "./GerirRestaurante";
+import TodosRestaurantes from "./TodosRestaurantes";
+import GerirMenus from "./GerirMenu";
+import Example from "./teste";
+import GerirCategorias from "./GerirCategorias";
+import GerirDias from "./GerirDias";
+import GerirHorarios from "./GerirHorarios";
+import GerirImagemMenu from "./GerirImagemMenu";
+import GerirImagens from "./GerirImagens";
+import GerirPlanta from "./GerirPlanta";
 
 //É o que renderiza a página principal e a página de detalhes através do BrowserRouter 7
 const queryClient = new QueryClient({
@@ -54,6 +63,15 @@ const App = () => {
                         <Route path="/LoginEmpresas/" element={<LoginEmpresas />} />
                         <Route path="/GerirEmpresas/" element={<GerirEmpresa />} />
                         <Route path="/GerirRestaurante/" element={<GerirRestuarante />} />
+                        <Route path="/TodosRestaurantes/" element={<TodosRestaurantes />} />
+                        <Route path="/GerirMenus/" element={<GerirMenus />} />
+                        <Route path="/Teste/" element={<Example />} />
+                        <Route path="/GerirCategorias/" element={<GerirCategorias />} />
+                        <Route path="/GerirDias/" element={<GerirDias />} />
+                        <Route path="/GerirHorarios/" element={<GerirHorarios />} />
+                        <Route path="/GerirImagemMenu/" element={<GerirImagemMenu />} />
+                        <Route path="/GerirImagens/" element={<GerirImagens />} />
+                        <Route path="/GerirPlanta/" element={<GerirPlanta />} />
                     </Routes>
                 </div>                   
             </header>

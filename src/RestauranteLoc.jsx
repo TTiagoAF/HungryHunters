@@ -61,9 +61,9 @@ const RestauranteLoc = () => {
       return setErrorMessage3('Campo obrigatório');
     }
 
-    Cookies.set("nome", nome);
-    Cookies.set("gps", gps);
-    Cookies.set("distrito", distrito);
+    Cookies.set("nome", nome, {expires: 1});
+    Cookies.set("gps", gps, {expires: 1});
+    Cookies.set("distrito", distrito, {expires: 1});
 
     setNome("");
     setDistrito("");
