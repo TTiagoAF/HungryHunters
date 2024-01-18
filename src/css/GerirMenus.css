@@ -1,16 +1,23 @@
-.home-page {
-  background-color: #f8f9fa;
-  color: #343a40;
-  padding-bottom: 20px;
+.home-menu {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.restaurant-page {
-  max-width: 1400px;
-  margin: 0 auto;
+.menu-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  margin: 20px;
 }
 
 .menu-item {

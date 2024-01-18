@@ -84,35 +84,35 @@ const GerirRestuarante = () => {
   }
 
   return (
-    <div className="home-page">
+    <div className="home-restaurante">
       <HeaderEmpresas />
-      <div className="restaurant-page">
+      <div className="restaurante-page">
         <h1 className='h1'>A gerir restaurante {nome}</h1>
         {autorizado == "false" && (
           <h2 className='h2'>Espere até o seu restaurante ser autorizado</h2>
         )}
         {autorizado == "true" && (
           <div>
-            <div className="restaurant-buttons">
-              <button className="restaurant-button" onClick={handleEscolherImagemMenus}>
+            <div className="restaurante-buttons">
+              <button className="restaurante-button" onClick={handleEscolherImagemMenus}>
                 Imagem do Menu
               </button>
-              <button className="restaurant-button" onClick={handleEscolherMenus}>
+              <button className="restaurante-button" onClick={handleEscolherMenus}>
                 Pratos do Restaurante
               </button>
-              <button className="restaurant-button" onClick={handleEscolherImagens}>
+              <button className="restaurante-button" onClick={handleEscolherImagens}>
                 Imagens do Restaurante
               </button>
-              <button className="restaurant-button" onClick={handleEscolherDias}>
+              <button className="restaurante-button" onClick={handleEscolherDias}>
                 Dias de Funcionamento
               </button>
-              <button className="restaurant-button" onClick={handleEscolherHorarios}>
+              <button className="restaurante-button" onClick={handleEscolherHorarios}>
                 Horários
               </button>
-              <button className="restaurant-button" onClick={handleEscolherCategorias}>
+              <button className="restaurante-button" onClick={handleEscolherCategorias}>
                 Categorias do Restaurante
               </button>
-              <button className="restaurant-button" onClick={handleEscolherPlanta}>
+              <button className="restaurante-button" onClick={handleEscolherPlanta}>
                 Planta do Restaurante
               </button>
             </div>

@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function RestauranteMenu() {
-  const [pratos, setPratos] = useState([{restauranteid: Cookies.get("id"), nome: '', preco: 0 , desc_prato: ''}]);
+  const [pratos, setPratos] = useState([{restauranteid: Cookies.get("id"), nome: '', preco: 0 , desc_prato: '', categoriaprato: ''}]);
   const [errorMessage2, setErrorMessage2] = useState('');
   const navigate = useNavigate();
   const apiUrl = 'https://localhost:7286';
 
   const handleAdicionarPrato = () => {
-    setPratos([...pratos, {restauranteid: Cookies.get("id"), nome: '', preco: 0, desc_prato: ''}]);
+    setPratos([...pratos, {restauranteid: Cookies.get("id"), nome: '', preco: 0, desc_prato: '', categoriaprato: ''}]);
   };
 
   const handleRemoverPrato = (index) => {
@@ -38,6 +38,7 @@ function RestauranteMenu() {
       const response = await fetch(`${apiUrl}/api/RestauranteMenus/AdicionarMenu`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(pratos)
@@ -97,6 +98,24 @@ function RestauranteMenu() {
                 className="textarea-input"
                 maxLength={2000}
               />
+
+              <select
+                id={`categoria-${index}`}
+                value={pratos.categoriaprato}
+                onChange={(e) => handlePratoChange(index, 'categoriaprato', e.target.value)}
+                required
+                className='inserir-menu'
+              >
+                <option value="">Selecione uma categoria</option>
+                <option value="Pequeno almoço">Pequeno almoço</option>
+                <option value="Entradas">Entradas</option>
+                <option value="Petiscos">Petiscos</option>
+                <option value="Prato do dia">Prato do dia</option>
+                <option value="Pratos principais">Pratos principais</option>
+                <option value="Sobremesas">Sobremesas</option>
+                <option value="Bebidas">Bebidas</option>
+                <option value="Café">Café</option>
+              </select>
 
               <button type="button" onClick={() => handleRemoverPrato(index)} className='button-remover'>
                 Remover

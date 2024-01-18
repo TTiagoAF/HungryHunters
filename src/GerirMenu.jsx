@@ -41,9 +41,9 @@ const GerirMenus = () => {
   }, []);
 
   return (
-    <div className="home-page">
+    <div className="home-menu">
       <HeaderEmpresas/>
-      <div className="restaurant-page">
+      <div className="restaurant-menu">
         {menu.map((prato, index) => (
           <MenuItem
             key={index}

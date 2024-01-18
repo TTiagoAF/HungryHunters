@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import "./css/Disponibilidade.css";
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function RestauranteDisponiblidade() {
-  const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-  const [diaSelecionado, setDiaSelecionado] = useState(null);
   const [horarios, setHorarios] = useState([]);
   const [errorMessage2, setErrorMessage2] = useState('');
+  const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
+const [id, ] = useState(Cookies.get("id"));
 
   const handleAdicionarHorario = () => {
     setHorarios([...horarios, '']);
-  };
-
-  const handleDiaChange = (dia) => {
-    setDiaSelecionado(dia);
-    setHorarios([]);
   };
 
   const handleRemoverHorario = (index) => {
@@ -43,35 +39,49 @@ function RestauranteDisponiblidade() {
       return setErrorMessage2('Adicione um horário');
     }
 
+    fetchhorarios();
     console.log('Horários de funcionamento:', horarios);
     setErrorMessage2('');
-
-    navigate('/ImagemRestaurante/');
     
   };
+
+  const fetchhorarios = async () => {
+    try {
+      const horariosData = horarios.map((horario) => ({
+        RestauranteId: id,
+        HoraReserva: horario,
+      }));
+      const response = await fetch(`${apiUrl}/api/Horarios/AdicionarHorarios`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(horariosData),
+      });
   
+      if (response.ok) {
+        console.log('Nova conta adicionada na API');
+        navigate('/GerirRestaurante/');
+        setHorarios("");
+      } else {
+        const dataerro = await response.json();
+        console.error('Erro na operação:', dataerro);
+        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+        setErrorMessage2(dataerro.mensagem);
+        throw new Error('Erro ao adicionar nova conta na API');
+      }
+    } catch (error) {
+        console.error('Erro ao adicionar nova conta na API:', error);
+        throw error;
+    }}
 
   return (
-    <div className='container'>
-      <div className='titulo'>
-        <h1 className='titulo-principal'>Registro de Restaurante</h1>
-      </div>
+    <div>
+      <h1 className='titulo-principal'>Registro de Restaurante</h1>
       <div className="horarios-container">
       <form className='formulario-horarios'>
-      {diasDaSemana.map((dia, index) => (
-            <div key={index}>
-              <input
-                type="radio"
-                id={`radio-${index}`}
-                value={dia}
-                checked={diaSelecionado === dia}
-                onChange={() => handleDiaChange(dia)}
-              />
-              <label htmlFor={`radio-${index}`}>{dia}</label>
-            </div>
-          ))}
         <h2 className='titulo-secundario'>Horários de funcionamento</h2>
-          {diaSelecionado && horarios.map((horario, index) => (
+          {horarios.map((horario, index) => (
             <div key={index} className="horario-input">
               <label htmlFor={`horario-${index}`} className='etiqueta-horarios'>Adicionar horário:</label>
               <input

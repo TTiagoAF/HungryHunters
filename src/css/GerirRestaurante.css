@@ -1,17 +1,23 @@
-.home-page {
-  font-family: "Arial", sans-serif;
-  background-color: #f8f9fa;
-  color: #343a40;
-  padding-bottom: 20px;
+.home-restaurante {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.restaurant-page {
-  max-width: 800px;
-  margin: 0 auto;
+.restaurante-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  margin: 20px;
 }
 
 .h1 {
@@ -22,11 +28,11 @@
   color: #dc3545;
 }
 
-.restaurant-button-container {
+.restaurante-button-container {
   margin-bottom: 20px;
 }
 
-.restaurant-button {
+.restaurante-button {
   background-color: #28a745;
   color: #fff;
   padding: 12px 24px;
@@ -37,16 +43,16 @@
   transition: background-color 0.3s ease;
 }
 
-.restaurant-button:hover {
+.restaurante-button:hover {
   background-color: #218838;
 }
 
-.restaurant-buttons {
+.restaurante-buttons {
   display: flex;
   flex-wrap: wrap;
 }
 
-.restaurant-buttons button {
+.restaurante-buttons button {
   flex: 1 1 200px;
   margin: 10px;
   background-color: #007bff;
@@ -59,7 +65,7 @@
   transition: background-color 0.3s ease;
 }
 
-.restaurant-buttons button:hover {
+.restaurante-buttons button:hover {
   background-color: #0056b3;
 }
 
