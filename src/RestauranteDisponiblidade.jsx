@@ -8,7 +8,7 @@ function RestauranteDisponiblidade() {
   const [errorMessage2, setErrorMessage2] = useState('');
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
-const [id, ] = useState(Cookies.get("id"));
+  const [id, ] = useState(Cookies.get("id"));
 
   const handleAdicionarHorario = () => {
     setHorarios([...horarios, '']);
@@ -54,6 +54,7 @@ const [id, ] = useState(Cookies.get("id"));
       const response = await fetch(`${apiUrl}/api/Horarios/AdicionarHorarios`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(horariosData),
@@ -74,6 +75,10 @@ const [id, ] = useState(Cookies.get("id"));
         console.error('Erro ao adicionar nova conta na API:', error);
         throw error;
     }}
+
+    const handleHorarios = () => {  
+      navigate("/GerirHorarios/") 
+   };
 
   return (
     <div>
@@ -102,6 +107,9 @@ const [id, ] = useState(Cookies.get("id"));
         </button>
         <input type="submit" value="Registrar Horários" onClick={handleSetHorarios} className='submeter-horario'/>
         {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
+        <button type="button" onClick={handleHorarios} className='button-novo-horario'>
+          Voltar
+        </button>
       </form>
       </div>
     </div>

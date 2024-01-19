@@ -13,6 +13,9 @@ function RestauranteAberto() {
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
   const [id, ] = useState(Cookies.get("id"));
+  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage2, setErrorMessage2] = useState('');
+  const [errorMessage3, setErrorMessage3] = useState('');
 
   const handleCheckboxChange = (index) => {
     const newCheckedDays = [...checkedDays];
@@ -34,15 +37,15 @@ function RestauranteAberto() {
   };
 
   const handleNextButtonClick = () => {
-    navigate("/GerirMenu/");
+    navigate("/GerirDias/");
   };
   const handleDias = () => {
     console.log('Dias selecionados:', checkedDays);
     console.log('Dias selecionados:', checkedDias);
-    fetchhorarios();
+    fetchDias();
   };
 
-  const fetchhorarios = async () => {
+  const fetchDias = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/DiasDeFuncionamentoes/AdicionarDias`, {
         method: 'POST',
@@ -56,9 +59,12 @@ function RestauranteAberto() {
   
       if (response.ok) {
         console.log('Nova conta adicionada na API');
+        setErrorMessage("");
       } else {
-        console.error('Erro na operação:');
-        console.error('Erro ao adicionar nova conta na API');
+        const dataerro = await response.json();
+        console.error('Erro na operação:', dataerro);
+        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+        setErrorMessage(dataerro.mensagem);
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -78,6 +84,7 @@ function RestauranteAberto() {
       const response = await fetch(`${apiUrl}/api/Ferias/AdicionarFerias`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify([{RestauranteId: id, InicioFerias: inicioFerias, FimFerias: fimFerias}]),
@@ -85,9 +92,12 @@ function RestauranteAberto() {
   
       if (response.ok) {
         console.log('Nova conta adicionada na API');
+        setErrorMessage2("");
       } else {
-        console.error('Erro na operação:');
-        console.error('Erro ao adicionar nova conta na API');
+        const dataerro = await response.json();
+        console.error('Erro na operação:', dataerro);
+        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+        setErrorMessage2(dataerro.mensagem);
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -106,6 +116,7 @@ function RestauranteAberto() {
       const response = await fetch(`${apiUrl}/api/DiasFestivos/AdicionarDiasFestivos`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify([{RestauranteId: id, DiaFestivo: diafestivo}]),
@@ -113,9 +124,12 @@ function RestauranteAberto() {
   
       if (response.ok) {
         console.log('Nova conta adicionada na API');
+        setErrorMessage3("");
       } else {
-        console.error('Erro na operação:');
-        console.error('Erro ao adicionar nova conta na API');
+        const dataerro = await response.json();
+        console.error('Erro na operação:', dataerro);
+        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+        setErrorMessage3(dataerro.mensagem);
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -146,6 +160,7 @@ function RestauranteAberto() {
         <button className="next-button-aberto" onClick={handleDias}>
           Enviar
         </button>
+        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
       </div>
       <div className="ferias-form-aberto">
         <h2>Período de Férias</h2>
@@ -167,10 +182,11 @@ function RestauranteAberto() {
             required
           />
           <button className='enviar-button-aberto' type="submit">Enviar</button>
+          {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
         </form>
       </div>
       <div className="festivo-form-aberto">
-        <h2>Dias festivos em que estão fechados</h2>
+        <h2>Dias festivos em que estão abertos</h2>
         <form onSubmit={handleFestivoSubmit}>
           <label htmlFor="diafestivo">Dia festivo</label>
           <input
@@ -181,6 +197,7 @@ function RestauranteAberto() {
             required
           />
           <button className='enviar-button-aberto' type="submit">Enviar</button>
+          {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
         </form>
       </div>
       <div className="button-container-aberto">

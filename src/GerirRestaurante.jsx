@@ -83,6 +83,11 @@ const GerirRestuarante = () => {
     navigate("/GerirPlanta/");
   }
 
+  const handleEscolherMesas = () => {
+    Cookies.set("id", id);
+    navigate("/GerirMesas/");
+  }
+
   return (
     <div className="home-restaurante">
       <HeaderEmpresas />
@@ -114,6 +119,9 @@ const GerirRestuarante = () => {
               </button>
               <button className="restaurante-button" onClick={handleEscolherPlanta}>
                 Planta do Restaurante
+              </button>
+              <button className="restaurante-button" onClick={handleEscolherMesas}>
+                Mesas
               </button>
             </div>
           </div>

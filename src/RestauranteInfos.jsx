@@ -61,7 +61,7 @@ const RestauranteInfos = () => {
     const novoRestaurante = {
       NipcEmpresa: Cookies.get("nipc"),
       Nome: Cookies.get("nome"),
-      PrecoMedio: preco.toFixed(2),
+      PrecoMedio: preco,
       NumeroMesas: mesas,
       Distrito: Cookies.get("distrito"),
       Coordenadas: Cookies.get("gps"),
@@ -78,7 +78,10 @@ const RestauranteInfos = () => {
 
     try {
       const response = await fetch(`${apiUrl}/api/Empresas/MenosRestauranteporNipc/${Cookies.get("nipc")}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        },
       });
       if (response.ok) {
         console.log('ok');
@@ -101,6 +104,7 @@ const RestauranteInfos = () => {
       const response = await fetch(`${apiUrl}/api/Restaurantes/AdicionarRestaurante`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(novoRestaurante)

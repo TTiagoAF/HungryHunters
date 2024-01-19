@@ -7,7 +7,7 @@ const GerirCategorias = () => {
   return (
     <div className="home-page">
       <HeaderEmpresas/>
-      
+        
       <Footer/>
     </div>
   );
