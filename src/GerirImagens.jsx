@@ -1,4 +1,4 @@
-import HeaderEmpresas from './HeaderEmpresas';
+import HeaderRestaurantes from './HeaderRestaurantes';
 import Footer from './Footer';
 import "./css/GerirMenus.css"
 
@@ -6,7 +6,7 @@ const GerirImagens = () => {
 
   return (
     <div className="home-page">
-      <HeaderEmpresas/>
+      <HeaderRestaurantes/>
       
       <Footer/>
     </div>

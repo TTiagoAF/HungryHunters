@@ -19,7 +19,6 @@ import LoginEmpresas from "./LoginRestaurante";
 import GerirEmpresa from "./GerirEmpresas";
 import GerirRestuarante from "./GerirRestaurante";
 import GerirMenus from "./GerirMenu";
-import Example from "./teste";
 import GerirCategorias from "./GerirCategorias";
 import GerirDias from "./GerirDias";
 import GerirHorarios from "./GerirHorarios";
@@ -37,8 +36,6 @@ const queryClient = new QueryClient({
         },
     },
 });
-
-
 const App = () => {
     return(
     <BrowserRouter>
@@ -64,7 +61,6 @@ const App = () => {
                         <Route path="/GerirEmpresas/" element={<GerirEmpresa />} />
                         <Route path="/GerirRestaurante/" element={<GerirRestuarante />} />
                         <Route path="/GerirMenus/" element={<GerirMenus />} />
-                        <Route path="/Teste/" element={<Example />} />
                         <Route path="/GerirCategorias/" element={<GerirCategorias />} />
                         <Route path="/GerirDias/" element={<GerirDias />} />
                         <Route path="/GerirHorarios/" element={<GerirHorarios />} />

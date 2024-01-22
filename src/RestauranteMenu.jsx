@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import "./css/RestauranteMenu.css";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
 
 function RestauranteMenu() {
   const [pratos, setPratos] = useState([{restauranteid: Cookies.get("id"), nome: '', preco: 0 , desc_prato: '', categoriaprato: ''}]);
-  const [errorMessage2, setErrorMessage2] = useState('');
   const navigate = useNavigate();
   const apiUrl = 'https://localhost:7286';
 
@@ -30,7 +30,6 @@ function RestauranteMenu() {
     
     fetchmenus();
     console.log('Pratos:', pratos);
-    setErrorMessage2('');
   };
   
   const fetchmenus = async () => {
@@ -45,20 +44,28 @@ function RestauranteMenu() {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
+        toast.success("Sucesso a adicionar o seu prato", {
+          closeOnClick: true,
+          draggable: true,
+          });
         navigate('/GerirRestaurante/');
         setPratos("");
       } else {
         const dataerro = await response.json();
-        console.error('Erro na operação:', dataerro);
-        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
-        setErrorMessage2(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
         console.error('Erro ao adicionar nova conta na API:', error);
         throw error;
     }}
+
+    const handleMenu = () => {
+      navigate("/GerirMenus/")
+    };
 
   return (
     <div>
@@ -110,6 +117,7 @@ function RestauranteMenu() {
                 <option value="Pequeno almoço">Pequeno almoço</option>
                 <option value="Entradas">Entradas</option>
                 <option value="Petiscos">Petiscos</option>
+                <option value="Sopa">Sopa</option>
                 <option value="Prato do dia">Prato do dia</option>
                 <option value="Pratos principais">Pratos principais</option>
                 <option value="Sobremesas">Sobremesas</option>
@@ -126,7 +134,10 @@ function RestauranteMenu() {
             Adicionar Prato
           </button>
           <input type="submit" value="Registrar Menu" onClick={handleSetPrato} className='submeter-menu'/>
-          {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
+          <button type="button" onClick={handleMenu} className='button-novo-menu'>
+            Gerir Menu
+          </button>
+            <ToastContainer/>
         </form>
       </div>
     </div>

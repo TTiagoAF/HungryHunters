@@ -6,6 +6,7 @@ import imagem from './../img/restaurantcriar.jpg';
 import { useForm } from "react-hook-form";
 import "./css/Restauranteinfo.css";
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
 
 const RestauranteInfos = () => {
   const {
@@ -18,7 +19,6 @@ const RestauranteInfos = () => {
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState('');
   const [pessoas, setPessoas] = useState(0);
-  const [errorMessage, setErrorMessage] = useState('');
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
   const apiUrl = 'https://localhost:7286';
   
@@ -35,21 +35,17 @@ const RestauranteInfos = () => {
   const handleMesas = (e) => {
     const mesasinput = e.target.value;
     setMesas(mesasinput);
-    setErrorMessage('');
   };
 
   const handlePreco = (e) => {
     setPreco(e.target.value);
-    setErrorMessage('');
   };
 
   const handleDescricao = (e) => {
     setDescricao(e.target.value);
-    setErrorMessage('');
   };
   const handlePessoas = (e) => {
     setPessoas(e.target.value);
-    setErrorMessage('');
   };
 
   const onSubmit = (data) => {
@@ -111,12 +107,16 @@ const RestauranteInfos = () => {
       });
     
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
+        toast.success("Sucesso a adicionar o seu restaurante", {
+          closeOnClick: true,
+          draggable: true,
+          });
       } else {
         const dataerro = await response.json();
-      console.error('Erro na operação:', dataerro);
-      console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
-      setErrorMessage(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
       throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -173,7 +173,7 @@ const RestauranteInfos = () => {
               {mostrarTooltip && <div className="tooltip">Preencher com o máximo de pessoas que aceitam por grupo para almoçar</div>}
             </div>
             <input className="botao-infos" type="submit" value={"Criar"} onClick={handleInfos}/>
-            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+            <ToastContainer/>
           </form>
           <div className="links-infos">
             <p className="registro-infos">

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import "./css/login.css"
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const PaginaLogin = () => {
@@ -18,17 +19,14 @@ const PaginaLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const apiUrl = 'https://localhost:7286';
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    setErrorMessage("");
   };
   
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setErrorMessage("");
   };
   
   const handleLogin = async () => {
@@ -64,12 +62,19 @@ const PaginaLogin = () => {
           }
           console.log('Token:', data.token);
           Cookies.set("token", data.token, {expires: 0.001})
+          toast.success("Bem vindo", {
+            closeOnClick: true,
+            draggable: true,
+            });
         } else {
           console.error('Token ausente na resposta:', data);
         }
       } else {
         const dataerro = await response.json();
-        setErrorMessage(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
         throw new Error('Falha no login:');
       }
     } catch (error) {
@@ -111,7 +116,7 @@ const PaginaLogin = () => {
               />
             </div>
             <input className="botao-login" type="submit" value={"Entrar"} onClick={handleLogin}/>
-            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+            <ToastContainer/>
           </form>
           <div className="links-login">
             <p className="esqueceu-senha-login">

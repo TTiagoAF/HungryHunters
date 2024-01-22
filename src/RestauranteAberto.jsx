@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './css/RestauranteAberto.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RestauranteAberto() {
   const [checkedDays, setCheckedDays] = useState([false, false, false, false, false, false, false]);
@@ -13,9 +15,6 @@ function RestauranteAberto() {
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
   const [id, ] = useState(Cookies.get("id"));
-  const [errorMessage, setErrorMessage] = useState('');
-  const [errorMessage2, setErrorMessage2] = useState('');
-  const [errorMessage3, setErrorMessage3] = useState('');
 
   const handleCheckboxChange = (index) => {
     const newCheckedDays = [...checkedDays];
@@ -58,13 +57,16 @@ function RestauranteAberto() {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
-        setErrorMessage("");
+        toast.success("Sucesso a marcar o seu dia de folga", {
+          closeOnClick: true,
+          draggable: true,
+          });
       } else {
         const dataerro = await response.json();
-        console.error('Erro na operação:', dataerro);
-        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
-        setErrorMessage(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -91,13 +93,16 @@ function RestauranteAberto() {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
-        setErrorMessage2("");
+        toast.success("Sucesso a marcar o seu periodo de férias", {
+          closeOnClick: true,
+          draggable: true,
+          });
       } else {
         const dataerro = await response.json();
-        console.error('Erro na operação:', dataerro);
-        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
-        setErrorMessage2(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -123,13 +128,16 @@ function RestauranteAberto() {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
-        setErrorMessage3("");
+        toast.success("Sucesso a adicionar o dia festivo", {
+          closeOnClick: true,
+          draggable: true,
+          });
       } else {
         const dataerro = await response.json();
-        console.error('Erro na operação:', dataerro);
-        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
-        setErrorMessage3(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -160,7 +168,6 @@ function RestauranteAberto() {
         <button className="next-button-aberto" onClick={handleDias}>
           Enviar
         </button>
-        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
       </div>
       <div className="ferias-form-aberto">
         <h2>Período de Férias</h2>
@@ -182,7 +189,6 @@ function RestauranteAberto() {
             required
           />
           <button className='enviar-button-aberto' type="submit">Enviar</button>
-          {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
         </form>
       </div>
       <div className="festivo-form-aberto">
@@ -197,13 +203,13 @@ function RestauranteAberto() {
             required
           />
           <button className='enviar-button-aberto' type="submit">Enviar</button>
-          {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
         </form>
       </div>
       <div className="button-container-aberto">
         <button className="next-button-aberto" onClick={handleNextButtonClick}>
-          Gerir os meus menus
+          Gerir os meus dias
         </button>
+        <ToastContainer />
       </div>
     </div>
   );

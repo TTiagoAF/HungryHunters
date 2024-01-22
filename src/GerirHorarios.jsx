@@ -1,4 +1,4 @@
-import HeaderEmpresas from './HeaderEmpresas';
+import HeaderRestaurantes from './HeaderRestaurantes';
 import Footer from './Footer';
 import "./css/GerirHorario.css"
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { CiClock2 } from "react-icons/ci";
+import { ToastContainer, toast } from 'react-toastify';
 
 const GerirHorarios = () => {
 
@@ -32,8 +33,11 @@ const GerirHorarios = () => {
         }
       });
       if (response.ok) {
-        console.log('ok');
         window.location.reload();
+        toast.success("Horário eliminado", {
+          closeOnClick: true,
+          draggable: true,
+          });
       } else {
         console.error('Erro');
       }
@@ -79,7 +83,7 @@ const GerirHorarios = () => {
 
   return (
     <div className="home-page-gerir-horario">
-      <HeaderEmpresas/>
+      <HeaderRestaurantes/>
       <div className="gerir-horario-page">
       <h1>Administrar horários</h1>
       <div className="gerir-horario-buttons">
@@ -93,6 +97,7 @@ const GerirHorarios = () => {
       <button onClick={handleEscolher2} className="add-gerir-horario-button"> Esconder os meus horários</button>
       <button onClick={handleEscolher} className="add-gerir-horario-button"> Ver os meus horários</button>
       <button onClick={handleHorarios} className="add-gerir-horario-button">Adicionar horários</button>
+      <ToastContainer/>
     </div>
       <Footer/>
     </div>

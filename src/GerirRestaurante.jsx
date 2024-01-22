@@ -4,6 +4,12 @@ import Footer from './Footer';
 import "./css/GerirRestaurante.css"
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { BsCalendar2Date } from "react-icons/bs";
+import { FaRegHourglass } from "react-icons/fa";
+import { BiDish } from "react-icons/bi";
+import { CiPizza } from "react-icons/ci";
+import { MdOutlineTableBar } from "react-icons/md";
+import { CiImageOn } from "react-icons/ci";
 
 
 const GerirRestuarante = () => {
@@ -38,6 +44,7 @@ const GerirRestuarante = () => {
           setNipc(nipc);
           const idRestaurante = Object.values(data).map(id => id.id_restaurante);
           setId(parseInt(idRestaurante));
+          Cookies.set("id", idRestaurante);
         } else {
           console.log('Não entrou no if');
         }
@@ -100,28 +107,28 @@ const GerirRestuarante = () => {
           <div>
             <div className="restaurante-buttons">
               <button className="restaurante-button" onClick={handleEscolherImagemMenus}>
-                Imagem do Menu
+              <CiImageOn/> Imagem do Menu
               </button>
               <button className="restaurante-button" onClick={handleEscolherMenus}>
-                Pratos do Restaurante
+               <BiDish/> Pratos do Restaurante
               </button>
               <button className="restaurante-button" onClick={handleEscolherImagens}>
-                Imagens do Restaurante
+              <CiImageOn/> Imagens do Restaurante
               </button>
               <button className="restaurante-button" onClick={handleEscolherDias}>
-                Dias de Funcionamento
+                <BsCalendar2Date/> Dias de Funcionamento
               </button>
               <button className="restaurante-button" onClick={handleEscolherHorarios}>
-                Horários
+               <FaRegHourglass/> Horários
               </button>
               <button className="restaurante-button" onClick={handleEscolherCategorias}>
-                Categorias do Restaurante
+               <CiPizza/> Categorias do Restaurante
               </button>
               <button className="restaurante-button" onClick={handleEscolherPlanta}>
-                Planta do Restaurante
+               <CiImageOn/> Planta do Restaurante
               </button>
               <button className="restaurante-button" onClick={handleEscolherMesas}>
-                Mesas
+               <MdOutlineTableBar/> Mesas
               </button>
             </div>
           </div>

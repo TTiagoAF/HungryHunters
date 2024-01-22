@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./css/Disponibilidade.css";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RestauranteDisponiblidade() {
   const [horarios, setHorarios] = useState([]);
@@ -26,13 +28,24 @@ function RestauranteDisponiblidade() {
       setHorarios(novosHorarios);
   };
 
+  const notify = async () => toast.error('Um dos horários adicionados está inválido formato correto(HH:mm)', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
   const handleSetHorarios = (event) => {
     event.preventDefault();
     const formatoInvalido = horarios.some((horario) => !/^([01]\d|2[0-3]):[0-5]\d$/.test(horario));
 
-    if (formatoInvalido) {
-      return setErrorMessage2('Um dos horários adicionados está inválido formato correto(HH:mm)');
+    if (formatoInvalido) {     
+      return notify();
     }
     if (horarios.length == 0)
     {
@@ -61,14 +74,18 @@ function RestauranteDisponiblidade() {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
+        toast.success("Sucesso a adicionar o seu horário", {
+          closeOnClick: true,
+          draggable: true,
+          });
         navigate('/GerirRestaurante/');
         setHorarios("");
       } else {
         const dataerro = await response.json();
-        console.error('Erro na operação:', dataerro);
-        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
-        setErrorMessage2(dataerro.mensagem);
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+          });
         throw new Error('Erro ao adicionar nova conta na API');
       }
     } catch (error) {
@@ -105,6 +122,7 @@ function RestauranteDisponiblidade() {
         <button type="button" onClick={handleAdicionarHorario} className='button-novo-horario'>
           Adicionar Horário
         </button>
+        <ToastContainer />
         <input type="submit" value="Registrar Horários" onClick={handleSetHorarios} className='submeter-horario'/>
         {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
         <button type="button" onClick={handleHorarios} className='button-novo-horario'>

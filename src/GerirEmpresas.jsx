@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { CiCirclePlus } from "react-icons/ci";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosRestaurant } from "react-icons/io";
+import { ToastContainer, toast } from 'react-toastify';
 
 const GerirEmpresa = () => {
   const navigate = useNavigate();
@@ -62,7 +63,10 @@ const GerirEmpresa = () => {
         }
       });
       if (response.ok) {
-        console.log('ok');
+        toast.success("Já podes adicionar mais um restaurante", {
+          closeOnClick: true,
+          draggable: true,
+          });
         setNumRestaurantes(numRestaurantes + 1);
       } else {
         console.error('Erro');
@@ -81,7 +85,10 @@ const GerirEmpresa = () => {
         }
       });
       if (response.ok) {
-        console.log('ok');
+        toast.success("Menos um restaurante que podes adicionar", {
+          closeOnClick: true,
+          draggable: true,
+          });
         setNumRestaurantes(numRestaurantes - 1);
       } else {
         console.error('Erro');
@@ -100,7 +107,10 @@ const GerirEmpresa = () => {
         }
       });
       if (response.ok) {
-        console.log('ok');
+        toast.success("Eliminaste o teu restaurante", {
+          closeOnClick: true,
+          draggable: true,
+          });
         window.location.reload();
       } else {
         console.error('Erro');
@@ -178,6 +188,7 @@ const GerirEmpresa = () => {
       </div>
       <button onClick={handleEscolher2} className="add-restaurant-button">Esconder os meus restaurantes</button>
       <button onClick={handleEscolher} className="add-restaurant-button">Ver os meus restaurantes</button>
+      <ToastContainer/>
     </div>
       <Footer/>
     </div>

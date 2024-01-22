@@ -1,10 +1,12 @@
-import HeaderEmpresas from './HeaderEmpresas';
+import HeaderRestaurantes from './HeaderRestaurantes';
 import Footer from './Footer';
 import "./css/GerirMesas.css"
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { FaRegTrashAlt } from "react-icons/fa";
+import { MdOutlineTableBar } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 const GerirMesas = () => {
 
@@ -31,7 +33,10 @@ const GerirMesas = () => {
         }
       });
       if (response.ok) {
-        console.log('ok');
+        toast.success("Mesa adicionada", {
+          closeOnClick: true,
+          draggable: true,
+          });
         setMesas(mesas + 1);
       } else {
         console.error('Erro');
@@ -50,7 +55,10 @@ const GerirMesas = () => {
         }
       });
       if (response.ok) {
-        console.log('ok');
+        toast.success("Mesa eliminada", {
+          closeOnClick: true,
+          draggable: true,
+          });
         setMesas(mesas - 1);
       } else {
         console.error('Erro');
@@ -93,20 +101,21 @@ const GerirMesas = () => {
 
   return (
     <div className="home-page-gerir-mesas">
-      <HeaderEmpresas/>
+      <HeaderRestaurantes/>
       <div className="gerir-mesas-page">
       <h1>Administrar horários</h1>
       <div className="gerir-mesas-buttons">
         {[...Array(mesas)].map((_, index) => (escolher == true &&(
           <div key={index} className="mesas-button-container">
-            <button className="mesas-button" onClick={handleEscolher}> Mesa {index + 1}</button>
+            <button className="mesas-button" onClick={handleEscolher}> <MdOutlineTableBar/> Mesa {index + 1}</button>
             <button onClick={() => handleRemove(index)} className="remove-mesas-button"> <FaRegTrashAlt/></button>
           </div>
         )))}
       </div>
       <button onClick={handleEscolher2} className="add-mesas-button"> Esconder as minhas mesas</button>
       <button onClick={handleEscolher} className="add-mesas-button"> Ver as minhas mesas</button>
-      <button onClick={handleAddRestaurant} className="add-restaurant-button"> Adicionar Restaurante</button>
+      <button onClick={handleAddRestaurant} className="add-restaurant-button"> Adicionar Mesa</button>
+      <ToastContainer/>
     </div>
       <Footer/>
     </div>

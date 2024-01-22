@@ -1,0 +1,70 @@
+.home-page-gerir-dias {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.gerir-dias-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 20px;
+}
+
+.dias-button-container {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-dias-button {
+  margin: 15px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.remove-dias-button:hover {
+  background-color: #45a049;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.add-gerir-dias-button {
+  margin: 15px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #4caf50;
+  margin-left: 680px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-gerir-dias-button:hover {
+  background-color: #45a049;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
