@@ -12,6 +12,8 @@ const HeaderEmpresas = () => {
   const handleLogout = () => {
         Cookies.remove("token");
         Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
 }
 
   return (

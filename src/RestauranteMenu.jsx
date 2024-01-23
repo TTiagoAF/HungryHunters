@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./css/RestauranteMenu.css";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -8,6 +8,17 @@ function RestauranteMenu() {
   const [pratos, setPratos] = useState([{restauranteid: Cookies.get("id"), nome: '', preco: 0 , desc_prato: '', categoriaprato: ''}]);
   const navigate = useNavigate();
   const apiUrl = 'https://localhost:7286';
+
+  useEffect(() => {
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
+  }, []);
 
   const handleAdicionarPrato = () => {
     setPratos([...pratos, {restauranteid: Cookies.get("id"), nome: '', preco: 0, desc_prato: '', categoriaprato: ''}]);

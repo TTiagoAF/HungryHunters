@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./css/Disponibilidade.css";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -11,6 +11,17 @@ function RestauranteDisponiblidade() {
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
   const [id, ] = useState(Cookies.get("id"));
+
+  useEffect(() => {
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
+  }, []);
 
   const handleAdicionarHorario = () => {
     setHorarios([...horarios, '']);

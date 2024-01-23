@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/ImagemPlanta.css';
+import Cookies from 'js-cookie';
 
 const ImagemPlanta = () => {
   const navigate = useNavigate();
   const [planta, setPlanta] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const apiUrl = 'https://localhost:7286';
+
+  useEffect(() => {
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
+  }, []);
 
   const handleImagemChange = (event) => {
     const plantaselecionada = Array.from(event.target.files);
@@ -31,20 +43,22 @@ const ImagemPlanta = () => {
     {
         return setErrorMessage("Campo obrigatório")
     }
+    const formdata = new FormData();
+    formdata.append("Planta_image", planta);
+    formdata.append("Planta_titulo", "planta");
+    formdata.append("RestauranteId", Cookies.get("id"));
     try {
-      const formData = new FormData();
-      formData.append('arquivo', planta);
-
-      const response = fetch(`${apiUrl}/api/Restaurantes/AdicionarRestaurante`, {
+      const response = fetch(`${apiUrl}/api/PlantaRestaurantes/AdicionarPlanta`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(planta)
+        body: formdata,
       });
     
       if (response.ok) {
         console.log('Nova conta adicionada na API');
+        navigate("/RestauranteMenu/")
       } else {
         const dataerro = response.json();
       console.error('Erro na operação:', dataerro);
@@ -56,7 +70,7 @@ const ImagemPlanta = () => {
       console.error('Erro ao fazer upload:', error);
     }
     console.log("Submetido", planta)
-    navigate("/RestauranteMenu/")
+    
   }
 
   return (

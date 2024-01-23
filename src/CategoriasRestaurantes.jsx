@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/Categorias.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -10,6 +10,17 @@ const CategoriasRestaurante = () => {
   const [categoriaSelecionada, setCategoriaSelecionada] = useState([]);
   const apiUrl = 'https://localhost:7286';
   const [id, ] = useState(Cookies.get("id"));
+
+  useEffect(() => {
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
+  }, []);
 
   const handleCategoriaChange = (categoria) => {
     if (categoriaSelecionada.includes(categoria)) {
@@ -64,7 +75,7 @@ const CategoriasRestaurante = () => {
 
   return (
     <div className='pagina-categoria'>
-      <h1 className='titulo-principal'>Escolha até 3 Categorias para o Seu Restaurante</h1>
+      <h1 className='titulo-principal'>Escolha até 3 Categorias para o seu restaurante</h1>
       <div className='container-categoria'>
         {categoriasDisponiveis.map((categoria) => (
           <div key={categoria} className="categoria-checkbox">

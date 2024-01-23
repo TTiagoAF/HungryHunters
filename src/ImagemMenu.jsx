@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/ImagemMenu.css';
+import Cookies from 'js-cookie';
 
 const ImagemMenu = () => {
   const [imagem, setImagem] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
+  }, []);
 
   const handleImagemChange = (event) => {
     const imagemselecionada = Array.from(event.target.files);

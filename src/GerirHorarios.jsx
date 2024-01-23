@@ -18,8 +18,12 @@ const GerirHorarios = () => {
   const apiUrl = 'https://localhost:7286';
   
   useEffect(() => {
-    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined)
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
     {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
       navigate("/LoginEmpresas/")
     }
   }, []);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/RestauranteAberto.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -15,6 +15,17 @@ function RestauranteAberto() {
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
   const [id, ] = useState(Cookies.get("id"));
+
+  useEffect(() => {
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
+  }, []);
 
   const handleCheckboxChange = (index) => {
     const newCheckedDays = [...checkedDays];
@@ -192,9 +203,9 @@ function RestauranteAberto() {
         </form>
       </div>
       <div className="festivo-form-aberto">
-        <h2>Dias festivos em que estão abertos</h2>
+        <h2>Dias em que estão abertos mesmo que seja dia de folga</h2>
         <form onSubmit={handleFestivoSubmit}>
-          <label htmlFor="diafestivo">Dia festivo</label>
+          <label htmlFor="diafestivo">Dia de trabalho</label>
           <input
             type="date"
             id="diafestivo"

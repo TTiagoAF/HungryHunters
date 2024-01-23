@@ -23,8 +23,13 @@ const GerirEmpresa = () => {
   useEffect(() => {
     if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined)
     {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
       navigate("/LoginEmpresas/")
     }
+    
     const fetchContas = async () => {
       try {
         const response = await fetch(`${apiUrl}/api/Empresas/Empresaspor${razaosocial}`, {

@@ -24,8 +24,13 @@ const GerirRestuarante = () => {
   useEffect(() => {
     if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("nome") == undefined)
     {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
       navigate("/LoginEmpresas/")
     }
+
     const fetchContas = async () => {
       try {
         const response = await fetch(`${apiUrl}/api/Restaurantes/Restaurantespor${nome}`, {
@@ -56,42 +61,42 @@ const GerirRestuarante = () => {
   }, []);
 
   const handleEscolherImagemMenus = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirImagemMenu/");
   }
 
   const handleEscolherMenus = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirMenus/");
   }
 
   const handleEscolherImagens = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirImagens/");
   }
 
   const handleEscolherDias = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirDias/");
   }
 
   const handleEscolherHorarios = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirHorarios/");
   }
 
   const handleEscolherCategorias = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirCategorias/");
   }
 
   const handleEscolherPlanta = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirPlanta/");
   }
 
   const handleEscolherMesas = () => {
-    Cookies.set("id", id);
+    Cookies.set("id", id, {expires: 1});
     navigate("/GerirMesas/");
   }
 

@@ -6,6 +6,9 @@ import Cookies from 'js-cookie';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { TbBeach } from "react-icons/tb";
+import { MdWorkOutline } from "react-icons/md";
+import { MdOutlineWorkOff } from "react-icons/md";
 
 const GerirDias = () => {
   const navigate = useNavigate();
@@ -95,6 +98,14 @@ const GerirDias = () => {
     carregarFerias();
     carregarDiasFestivos();
     carregarDiaFolgaRestaurante();
+    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    {
+      Cookies.remove("token");
+        Cookies.remove("Razao");
+        Cookies.remove("id");
+        Cookies.remove("nome");
+      navigate("/LoginEmpresas/")
+    }
   }, []);
 
   const handleDias = () => {  
@@ -105,7 +116,7 @@ const GerirDias = () => {
     <div className="home-page-gerir-dias">
       <HeaderRestaurantes />
       <div className="gerir-dias-page">
-        <h2>Gerenciar Férias</h2>
+        <h2>Gerenciar Férias <TbBeach/></h2>
         {ferias.map((feria) => (
           <div key={feria.id_ferias} className="dias-button-container">
             <p>Inicio das ferias: {feria.inicioFerias} -- Fim das férias: {feria.fimFerias}</p>
@@ -114,7 +125,7 @@ const GerirDias = () => {
         ))}
       </div>
       <div className="gerir-dias-page">
-        <h2>Gerenciar Dias Festivos</h2>
+        <h2>Gerenciar Dias de trabalho obrigatório <MdWorkOutline/></h2>
         {diasFestivos.map((diaFestivo) => (
           <div key={diaFestivo.id_festivo} className="dias-button-container">
             <p>Data: {diaFestivo.diaFestivo}</p>
@@ -123,7 +134,7 @@ const GerirDias = () => {
         ))}
       </div>
       <div className="gerir-dias-page">
-        <h2>Dia de Folga do Restaurante</h2>
+        <h2>Dia de Folga do Restaurante <MdOutlineWorkOff/></h2>
         {diaFolgaRestaurante ? (
           <div>
             <p>{diaFolgaRestaurante.Segunda}</p>
