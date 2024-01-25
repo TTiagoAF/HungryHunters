@@ -1,0 +1,48 @@
+.home-page-main {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.app-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.app-heading {
+  width: 100%;
+  text-align: center;
+  color: #333;
+}
+
+.restaurante-card {
+  flex: 0 0 calc(20% - 50px);
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.restaurante-card:hover {
+  transform: scale(1.05);
+}
+
+.restaurante-nome {
+  font-size: 2em;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.restaurante-info {
+  margin-bottom: 0.5px;
+  font-size: 1.2em;
+  color: #555;
+  text-align: left;
+}

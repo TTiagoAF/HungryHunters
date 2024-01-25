@@ -7,14 +7,15 @@ const ImagemMenu = () => {
   const [imagem, setImagem] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const apiUrl = 'https://localhost:7286';
 
   useEffect(() => {
     if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
     {
       Cookies.remove("token");
-        Cookies.remove("Razao");
-        Cookies.remove("id");
-        Cookies.remove("nome");
+      Cookies.remove("Razao");
+      Cookies.remove("id");
+      Cookies.remove("nome");
       navigate("/LoginEmpresas/")
     }
   }, []);
@@ -37,13 +38,39 @@ const ImagemMenu = () => {
     setImagem(imagemAtualizada);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if(imagem.length == 0)
     {
         return setErrorMessage("Campo obrigatório")
     }
-    console.log("Submetido", imagem)
-    navigate("/CategoriasRestaurante/")
+
+    const formdata = new FormData();
+    for (var i = 0; i < imagem.length; i++) {
+      formdata.append('Menu_imagem', imagem[i]);
+      formdata.append("RestauranteId", Cookies.get("id"));
+      formdata.append("Imagem_titulo", "imagem");
+  }
+  try {
+    const response = await fetch(`${apiUrl}/api/ImagemMenus/AdicionarImagemMenu`, {
+      method: 'POST',
+      headers: {
+      },
+      body: formdata,
+    });
+    
+      if (response.ok) {
+        console.log('Nova conta adicionada na API');
+        navigate("/GerirImagemMenu/")
+      } else {
+        const dataerro = response.json();
+      console.error('Erro na operação:', dataerro);
+      console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
+      setErrorMessage(dataerro.mensagem);
+      throw new Error('Erro ao adicionar nova conta na API');
+      }
+    } catch (error) {
+      console.error('Erro ao fazer upload:', error);
+    }
   }
 
   return (

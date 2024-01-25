@@ -38,27 +38,27 @@ const ImagemPlanta = () => {
     setPlanta(plantaAtualizada);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if(planta.length == 0)
     {
         return setErrorMessage("Campo obrigatório")
     }
     const formdata = new FormData();
-    formdata.append("Planta_image", planta);
-    formdata.append("Planta_titulo", "planta");
-    formdata.append("RestauranteId", Cookies.get("id"));
-    try {
-      const response = fetch(`${apiUrl}/api/PlantaRestaurantes/AdicionarPlanta`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: formdata,
-      });
+  formdata.append("Planta_image", planta[0]);
+  formdata.append("Planta_titulo", "planta");
+  formdata.append("RestauranteId", Cookies.get("id"));
+
+  try {
+    const response = await fetch(`${apiUrl}/api/PlantaRestaurantes/AdicionarPlanta`, {
+      method: 'POST',
+      headers: {
+      },
+      body: formdata,
+    });
     
       if (response.ok) {
         console.log('Nova conta adicionada na API');
-        navigate("/RestauranteMenu/")
+        navigate("/GerirPlanta/")
       } else {
         const dataerro = response.json();
       console.error('Erro na operação:', dataerro);

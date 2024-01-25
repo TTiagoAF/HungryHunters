@@ -14,7 +14,13 @@ const GerirDias = () => {
   const navigate = useNavigate();
   const [ferias, setFerias] = useState([]);
   const [diasFestivos, setDiasFestivos] = useState([]);
-  const [diaFolgaRestaurante, ] = useState(null);
+  const [segunda, setSegunda] = useState([]);
+  const [terca, setTerca] = useState([]);
+  const [quarta, setQuarta] = useState([]);
+  const [quinta, setQuinta] = useState([]);
+  const [sexta, setSexta] = useState([]);
+  const [sabado, setSabado] = useState([]);
+  const [domingo, setDomingo] = useState([]);
   const apiUrl = 'https://localhost:7286';
 
   const carregarFerias = async () => {  
@@ -48,6 +54,31 @@ const GerirDias = () => {
   };
 
   const carregarDiaFolgaRestaurante = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/DiasDeFuncionamentoes/ListadeDiaspor${Cookies.get("id")}`, {
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
+      });
+      const data = await response.json();
+      console.log(data);
+      const segundas = Object.values(data).map(dia => dia.segunda);
+      setSegunda(segundas);
+      const tercas = Object.values(data).map(dia => dia.terca);
+      setTerca(tercas);
+      const quartas = Object.values(data).map(dia => dia.quarta);
+      setQuarta(quartas);
+      const quintas = Object.values(data).map(dia => dia.quinta);
+      setQuinta(quintas);
+      const sextas = Object.values(data).map(dia => dia.sexta);
+      setSexta(sextas);
+      const sabados = Object.values(data).map(dia => dia.sabado);
+      setSabado(sabados);
+      const domingos = Object.values(data).map(dia => dia.domingo);
+      setDomingo(domingos);
+    } catch (erro) {
+      console.error('Erro ao obter o cardápio da API:', erro);
+    }
   };
 
   const eliminarFeria = async (feriaId) => {
@@ -135,12 +166,54 @@ const GerirDias = () => {
       </div>
       <div className="gerir-dias-page">
         <h2>Dia de Folga do Restaurante <MdOutlineWorkOff/></h2>
-        {diaFolgaRestaurante ? (
+        {segunda == "true" ?(
           <div>
-            <p>{diaFolgaRestaurante.Segunda}</p>
+            <p>Estamos fechados á segunda</p>
           </div>
         ) : (
-          <p>Não há dia de folga configurado para o restaurante.</p>
+          <p>Estamos abertos á segunda</p>
+        )}
+         {terca == "true" ?(
+          <div>
+            <p>Estamos fechados á terça</p>
+          </div>
+        ) : (
+          <p>Estamos abertos á terça</p>
+        )}
+         {quarta == "true" ?(
+          <div>
+            <p>Estamos fechados á quarta</p>
+          </div>
+        ) : (
+          <p>Estamos abertos á quarta</p>
+        )}
+         {quinta == "true" ?(
+          <div>
+            <p>Estamos fechados á quinta</p>
+          </div>
+        ) : (
+          <p>Estamos abertos á quinta</p>
+        )}
+         {sexta == "true" ?(
+          <div>
+            <p>Estamos fechados á sexta</p>
+          </div>
+        ) : (
+          <p>Estamos abertos á sexta</p>
+        )}
+         {sabado == "true" ?(
+          <div>
+            <p>Estamos fechados ao sábado</p>
+          </div>
+        ) : (
+          <p>Estamos abertos ao sábado</p>
+        )}
+         {domingo == "true" ?(
+          <div>
+            <p>Estamos fechados ao domingo</p>
+          </div>
+        ) : (
+          <p>Estamos abertos ao domingo</p>
         )}
       </div>
       <button onClick={handleDias} className="add-gerir-dias-button">Gerenciar dias</button>
