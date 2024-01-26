@@ -91,9 +91,13 @@ input {
   margin-top: 20px;
 }
 
+.input-login:hover {
+  border-color: #007c47;
+}
+
 .botao-login {
   padding: 12px;
-  background-color: #007bff;
+  background-color: #006e90;
   border: none;
   border-radius: 4px;
   color: #fff;

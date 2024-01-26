@@ -177,9 +177,8 @@ const RestauranteInfos = () => {
           </form>
           <div className="links-infos">
             <p className="registro-infos">
-              Já têm conta?
               <Link to="/Login/" class="Voltar">
-                <a href="#2">Login</a>
+                <a href="#2">Voltar</a>
               </Link>
             </p>
           </div>

@@ -8,12 +8,14 @@ import { FaMap } from "react-icons/fa";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { MdFastfood } from "react-icons/md";
 import { SiCodechef } from "react-icons/si";
+import { GiMagnifyingGlass } from "react-icons/gi";
 
 function MainPage() {
   const [restaurantes, setRestaurantes] = useState([]);
   const [restaurantesLisboa, setRestaurantesLisboa] = useState([]);
   const [restaurantesPorto, setRestaurantesPorto] = useState([]);
   const [restaurantesFaro, setRestaurantesFaro] = useState([]);
+  const [pesquisa, setPesquisa] = useState();
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
 
@@ -78,8 +80,12 @@ function MainPage() {
   };
 
   const handleRestaurante = async (idrestaurante) => {  
-    console.log("teste", idrestaurante);
     Cookies.set("id_detalhes", idrestaurante);
+  };
+
+  const handleSearch = async () => {  
+    Cookies.set("pesquisa", pesquisa);
+    navigate("/Search/");
   };
 
   useEffect(() => {
@@ -87,19 +93,24 @@ function MainPage() {
     carregarRestaurantesLisboa();
     carregarRestaurantesPorto();
     carregarRestaurantesFaro();
-    if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("id") == undefined || Cookies.get("nome") == undefined)
+    if(Cookies.get("token") == undefined)
     {
       Cookies.remove("token");
-        Cookies.remove("Razao");
-        Cookies.remove("id");
-        Cookies.remove("nome");
-      navigate("/LoginEmpresas/")
+      navigate("/Home/")
     }
   }, []);
+
+  const changePesquisar = (e) => {
+    setPesquisa(e.target.value);
+  };
 
   return (
     <div className="home-page-main">
       <HeaderMain/>
+      <div className="search-container">
+      <input type="text" className="search-bar" placeholder={"Pesquisar"} onChange={changePesquisar} value={pesquisa}/>
+      <button className="search-button" onClick={handleSearch}><GiMagnifyingGlass/> Pesquisar</button>
+    </div>
     <div className="app-container">
       <h1 className="app-heading">Restaurantes</h1>
       {restaurantes.map((restaurante, index) => restaurante.autorizado == "true" &&(
@@ -128,7 +139,6 @@ function MainPage() {
           <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restauranteLisboa.precoMedio.toFixed(2)}€</p>
         </button>
       ))}
-
       <h1 className="app-heading">Restaurantes no Porto</h1>
       {restaurantesPorto.map((restaurantePorto, index) => restaurantePorto.autorizado == "true" &&(
         <button key={index} className="restaurante-card" onClick={() => handleRestaurante(restaurantePorto.id_restaurante)}>

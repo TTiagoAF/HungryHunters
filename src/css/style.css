@@ -4,27 +4,20 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-  background-color: #f3f6f4;
-  margin: 0;
-}
-
-/* Estilos para a introdução da app */
-
-.texto-introducao {
+.texto-introducao-home {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
   text-align: center;
 }
 
-.introducao-titulo {
+.introducao-titulo-home {
   font-size: 36px;
   margin-bottom: 20px;
-  color: #007c47; /* Verde */
+  color: #007c47;
 }
 
-.introducao-descricao {
+.introducao-descricao-home {
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 30px;
@@ -32,19 +25,19 @@ body {
   color: #000000;
 }
 
-.tem-restaurante {
+.tem-restaurante-home {
   background-color: #f2f2f2;
   padding: 40px;
 }
 
-.titulo-restaurante {
+.titulo-restaurante-home {
   font-size: 24px;
   margin-bottom: 20px;
   color: #000000;
   margin-left: 230px;
 }
 
-.caixa {
+.caixa-home {
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -56,38 +49,38 @@ body {
   margin: 0 auto;
 }
 
-.texto {
+.texto-home {
   flex: 1;
   padding-right: 20px;
   padding-left: 60px;
   text-align: left;
 }
 
-.div-imagem {
+.div-imagem-home {
   flex: 1;
   text-align: right;
 }
 
-.titulo-cadastrar-2 {
+.titulo-cadastrar-2-home {
   font-size: 20px;
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-.titulo-cadastrar {
+.titulo-cadastrar-home {
   font-size: 20px;
   margin-bottom: 10px;
 }
 
-.texto-cadastrar {
+.texto-cadastrar-home {
   font-size: 16px;
   margin-bottom: 20px;
   opacity: 0.8;
 }
 
-.botao-cadastrar {
+.botao-cadastrar-home {
   padding: 10px 20px;
-  background-color: #007c47; /* Verde */
+  background-color: #007c47;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -96,15 +89,15 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.botao-cadastrar:hover {
-  background-color: #00562f; /* Verde mais escuro */
+.botao-cadastrar-home:hover {
+  background-color: #00562f;
 }
 
-.imagem {
+.imagem-home {
   width: 330px;
 }
 
-.imagem-inicial {
+.imagem-inicial-home {
   width: 110%;
   display: flex;
   position: relative;
@@ -113,41 +106,44 @@ body {
   z-index: -1;
 }
 
-.imagem-main {
+.imagem-main-home {
   width: 100%;
   persepective: 100px;
 }
 
-.home-page {
+.home-page-home {
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+  width: 1550px;
 }
 
-.pos-parallax {
+.pos-parallax-home {
   display: block;
   position: relative;
   background-color: white;
   z-index: 1;
 }
 @media (max-width: 1417px) {
-  .titulo-restaurante {
+  .titulo-restaurante-home {
     margin-left: 15px;
   }
 
-  .caixa {
+  .caixa-home {
     flex-direction: column;
   }
 
-  .texto {
+  .texto-home {
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
   }
 
-  .div-imagem {
+  .div-imagem-home {
     text-align: center;
     margin-top: 20px;
   }
@@ -155,21 +151,21 @@ body {
 
 /* Responsividade para larguras menores que 1055px */
 @media (max-width: 1055px) {
-  .titulo-restaurante {
+  .titulo-restaurante-home {
     margin-left: 10px !important;
   }
 
-  .caixa {
+  .caixa-home {
     max-width: 100%;
   }
 
-  .texto {
+  .texto-home {
     padding-left: 15px !important;
     padding-right: 15px !important;
     text-align: center;
   }
 
-  .div-imagem {
+  .div-imagem-home {
     text-align: center;
     margin-top: 15px !important;
   }

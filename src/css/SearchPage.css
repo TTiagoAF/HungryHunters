@@ -1,4 +1,4 @@
-.home-page-main {
+.resultados-page-main {
   perspective: 1px;
   transform-style: preserve-3d;
   height: auto;
@@ -6,46 +6,14 @@
   background-color: #006e90;
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.search-bar {
-  flex: 1;
-  padding: 15px;
-  border: 2px solid #ced4da;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.search-bar:hover {
-  border-color: #007c47;
-}
-
-.search-button {
-  padding: 17px;
-  background-color: #007c47;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.search-button:hover {
-  background-color: #84bd00;
-  color: #000000;
-}
-
-.app-container {
+.app-container-search {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 20px;
 }
 
-.app-heading {
+.app-heading-search {
   width: 100%;
   text-align: center;
   color: #ffffff;
@@ -53,7 +21,7 @@
   margin-bottom: 30px;
 }
 
-.restaurante-card {
+.restaurante-card-search {
   flex: 0 0 calc(30% - 20px);
   margin: 20px;
   padding: 20px;
@@ -65,35 +33,35 @@
   overflow: hidden;
 }
 
-.restaurante-card:hover {
+.restaurante-card-search:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
   border-color: #f18f01;
 }
 
-.restaurante-nome {
+.restaurante-nome-search {
   font-size: 1.8em;
   margin-bottom: 15px;
   text-align: left;
   color: #343a40;
 }
 
-.restaurante-info {
+.restaurante-info-search {
   margin-bottom: 15px;
   font-size: 1.3em;
   color: #343140;
   text-align: left;
 }
 
-.restaurante-info svg {
+.restaurante-info-search svg {
   vertical-align: middle;
   margin-right: 8px;
 }
 
-.restaurante-info p {
+.restaurante-info-search p {
   transition: color 0.3s ease-in-out;
 }
 
-.restaurante-info:hover p {
+.restaurante-info-search:hover p {
   color: #007bff;
 }

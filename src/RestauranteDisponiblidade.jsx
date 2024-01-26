@@ -89,7 +89,7 @@ function RestauranteDisponiblidade() {
           closeOnClick: true,
           draggable: true,
           });
-        navigate('/GerirRestaurante/');
+        navigate('/GerirHorarios/');
         setHorarios("");
       } else {
         const dataerro = await response.json();

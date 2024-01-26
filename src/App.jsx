@@ -27,6 +27,7 @@ import GerirImagens from "./GerirImagens";
 import GerirPlanta from "./GerirPlanta";
 import GerirMesas from "./GerirMesas";
 import MainPage from "./MainPage";
+import ResultadosPesquisa from "./PaginaPesquisa";
 
 //É o que renderiza a página principal e a página de detalhes através do BrowserRouter 7
 const queryClient = new QueryClient({
@@ -47,7 +48,7 @@ const App = () => {
                         <Route path="/CreateAcount/" element={<CreateAcount />} />
                         <Route path="/Login/" element={<PaginaLogin />} />
                         <Route path="/Forgot/" element={<ForgotPassword />}/>
-                        <Route path="/Home/:id" element={<HomePage />}/>
+                        <Route path="/Home/" element={<HomePage />}/>
                         <Route path="/CriarRestaurante/" element={<CriarRestaurante />} />
                         <Route path="/RestauranteLoc/" element={<RestauranteLoc />} />
                         <Route path="/RestauranteDisponiblidade/" element={<RestauranteDisponiblidade />} />
@@ -70,6 +71,7 @@ const App = () => {
                         <Route path="/GerirPlanta/" element={<GerirPlanta />} />
                         <Route path="/GerirMesas/" element={<GerirMesas />} />
                         <Route path="/MainPage/" element={<MainPage />} />
+                        <Route path="/Search/" element={<ResultadosPesquisa />} />
                     </Routes>
                 </div>                   
             </header>

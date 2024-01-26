@@ -104,7 +104,7 @@ const RestauranteLoc = () => {
             {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
             <div className="icon" onMouseOver={() => setMostrarTooltip(true)} onFocus={() => setMostrarTooltip(true)}>
               &#9432;
-              {mostrarTooltip && <div className="tooltip">Preencher com as coordenadas do GPS</div>}
+              {mostrarTooltip && <div className="tooltip">Vá ao google maps, vá em partilhar, incorpore um mapa e copie o html</div>}
             </div>
             <input
               type="text"
@@ -114,13 +114,12 @@ const RestauranteLoc = () => {
               className="input-loc"
             />
             {errorMessage3 && <div style={{ color: 'red' }}>{errorMessage3}</div>}
-            <input className="botao-loc" type="submit" value={"Criar"} onClick={handleCreateAcount}/>
+            <input className="botao-loc" type="submit" value={"Seguinte"} onClick={handleCreateAcount}/>
           </form>
           <div className="links-loc">
             <p className="registro-loc">
-              Já têm conta?
-              <Link to="/Login/" class="Voltar">
-                <a href="#2">Login</a>
+              <Link to="/GerirEmpresas/" class="Voltar">
+                <a href="#2">Voltar</a>
               </Link>
             </p>
           </div>

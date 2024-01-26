@@ -33,7 +33,7 @@ const HeaderMain = () => {
                   </Link>
                 </li>
               <li className="nav-item">
-            <Link to="/Login/" className="nav-link">
+            <Link to="/Home/" className="nav-link">
               <a href="#4" className="nav-link" onClick={handleLogout}><FaDoorOpen/> Logout</a>
               </Link>     
             </li>

@@ -41,6 +41,7 @@
     "react-icons": "^4.8.0",
     "react-multi-date-picker": "^4.4.1",
     "react-router-dom": "^6.18.0",
-    "react-toastify": "^10.0.3"
+    "react-toastify": "^10.0.3",
+    "sanitize-html": "^2.11.0"
   }
 }

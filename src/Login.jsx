@@ -56,12 +56,12 @@ const PaginaLogin = () => {
         if (data.token) {
           if(data.id != null)
           {
-            Cookies.set("id", data.id, {expires: 0.001})
+            Cookies.set("id_conta", data.id, {expires: 1})
             console.log('Id:', data.id);
-            navigate('/Home/' + data.id);
+            navigate('/MainPage/');
           }
           console.log('Token:', data.token);
-          Cookies.set("token", data.token, {expires: 0.001})
+          Cookies.set("token", data.token, {expires: 1})
           toast.success("Bem vindo", {
             closeOnClick: true,
             draggable: true,
@@ -84,11 +84,11 @@ const PaginaLogin = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Lógica para fazer login com o Google aqui
+    
   };
 
   const handleFacebookLogin = () => {
-    // Lógica para fazer login com o Facebook aqui
+    
   };
 
   return (
