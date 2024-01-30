@@ -18,18 +18,12 @@ function ResultadosPesquisa() {
 
     const changePesquisar = (e) => {
         setPesquisa(e.target.value);
-        if(pesquisa == "")
-        {
-            carregarRestaurantesTodos();
-        }
-        else if (pesquisa != ""){
-            carregarRestaurantes();
-        }
+        
       };
 
       const carregarRestaurantesTodos = async () => {  
         try {
-          const response = await fetch(`${apiUrl}/api/Restaurantes/ListadeRestaurantesComCategorias`, {
+          const response = await fetch(`${apiUrl}/api/Restaurantes/TodaListadeRestaurantesComCategorias`, {
             headers: {
               'Authorization': 'Bearer ' + Cookies.get("token"),
             }
@@ -59,6 +53,7 @@ function ResultadosPesquisa() {
 
     const handleRestaurante = async (idrestaurante) => {  
         Cookies.set("id_detalhes", idrestaurante);
+        navigate("/Details/");
       };
 
     useEffect(() => {
@@ -69,6 +64,17 @@ function ResultadosPesquisa() {
         navigate("/Home/")
         }
       }, []);
+
+
+      useEffect(() => {
+        if(pesquisa == "")
+        {
+            carregarRestaurantesTodos();
+        }
+        else if (pesquisa != ""){
+            carregarRestaurantes();
+        }
+      }, [pesquisa]);
 
     return (
       <div className="resultados-page-main">

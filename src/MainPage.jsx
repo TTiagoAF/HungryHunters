@@ -81,9 +81,10 @@ function MainPage() {
 
   const handleRestaurante = async (idrestaurante) => {  
     Cookies.set("id_detalhes", idrestaurante);
+    navigate("/Details/")
   };
 
-  const handleSearch = async () => {  
+  const handleSearch = async () => {     
     Cookies.set("pesquisa", pesquisa);
     navigate("/Search/");
   };

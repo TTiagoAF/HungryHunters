@@ -1,7 +1,6 @@
 .footer {
   background-color: #ffffff;
   color: #333;
-  padding: 40px 0;
   text-align: center;
 }
 
@@ -14,35 +13,36 @@
 }
 
 .footer-informacao {
-  flex-basis: 50%;
   text-align: left;
-  padding: 0 20px;
+  padding: 0 0;
 }
 
 .footer-titulo {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   color: #007c47;
+  margin-top: 2px;
 }
 
 .footer-titulo-direita {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   color: #007c47;
   text-align: left;
   margin-left: 200px;
+  margin-top: 2px;
 }
 
 .footer-descricao {
+  margin-top: 3px;
   font-size: 14px;
-  line-height: 1.5;
   opacity: 0.8;
 }
 
 .footer-links {
   flex-basis: 50%;
   text-align: left;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .footer-menu {
@@ -50,6 +50,8 @@
   padding: 0;
   text-align: left;
   margin-left: 200px;
+  display: flex;
+  margin-top: 3px;
 }
 
 .footer-link {
@@ -58,6 +60,7 @@
   text-decoration: none;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  margin-right: 10px;
 }
 
 .footer-link:hover {
@@ -65,9 +68,9 @@
 }
 
 .footer-botao {
-  margin-top: 30px;
+  margin-top: 5px;
   border-top: 1px solid #ddd;
-  padding-top: 15px;
+  padding-top: 5px;
 }
 
 .footer-copia,
@@ -87,7 +90,7 @@
   width: 100px;
   height: 1px;
   background-color: #333;
-  margin: 0 auto 15px;
+  margin: 0 auto 0;
   opacity: 0.4;
 }
 
@@ -95,7 +98,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .footer-social-icon {

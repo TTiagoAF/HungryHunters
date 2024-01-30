@@ -15,7 +15,6 @@ const RestauranteInfos = () => {
     criteriaMode: "all"
   });
   const navigate = useNavigate();
-  const [mesas, setMesas] = useState(0);
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState('');
   const [pessoas, setPessoas] = useState(0);
@@ -31,11 +30,6 @@ const RestauranteInfos = () => {
       Cookies.remove("distrito");
     }
   }, []);
-
-  const handleMesas = (e) => {
-    const mesasinput = e.target.value;
-    setMesas(mesasinput);
-  };
 
   const handlePreco = (e) => {
     setPreco(e.target.value);
@@ -58,7 +52,6 @@ const RestauranteInfos = () => {
       NipcEmpresa: Cookies.get("nipc"),
       Nome: Cookies.get("nome"),
       PrecoMedio: preco,
-      NumeroMesas: mesas,
       Distrito: Cookies.get("distrito"),
       Coordenadas: Cookies.get("gps"),
       Descricao: descricao,
@@ -67,7 +60,6 @@ const RestauranteInfos = () => {
   };
   await adicionarConta([novoRestaurante]);
   
-    setMesas("");
     setPreco("");
     setDescricao("");
     setPessoas("");
@@ -135,13 +127,6 @@ const RestauranteInfos = () => {
         <div className="infos-direita">
           <h1 className="titulo-infos">Bem-vindo à HungryHunters</h1>
           <form className="formulario-infos" onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="number"
-              placeholder="Quantas mesas têm"
-              value={mesas}
-              onChange={handleMesas}
-              className="input-infos"
-            />
             <input
               type="number"
               placeholder="Preço médio"

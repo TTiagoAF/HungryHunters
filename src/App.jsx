@@ -28,6 +28,8 @@ import GerirPlanta from "./GerirPlanta";
 import GerirMesas from "./GerirMesas";
 import MainPage from "./MainPage";
 import ResultadosPesquisa from "./PaginaPesquisa";
+import RestaurantDetails from "./PaginaDetalhes";
+import RestauranteMesa from "./AdicionarMesas";
 
 //É o que renderiza a página principal e a página de detalhes através do BrowserRouter 7
 const queryClient = new QueryClient({
@@ -72,6 +74,8 @@ const App = () => {
                         <Route path="/GerirMesas/" element={<GerirMesas />} />
                         <Route path="/MainPage/" element={<MainPage />} />
                         <Route path="/Search/" element={<ResultadosPesquisa />} />
+                        <Route path="/Details/" element={<RestaurantDetails />} />
+                        <Route path="/Mesas/" element={<RestauranteMesa />} />
                     </Routes>
                 </div>                   
             </header>

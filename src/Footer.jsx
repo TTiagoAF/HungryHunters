@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import "./css/footer.css"
 
 const Footer = () => {
@@ -24,12 +23,6 @@ const Footer = () => {
       <div className="footer-botao">
         <p className="footer-copia">© 2023 HungryHunters. Todos os direitos reservados.</p>
         <p className="footer-termos">Termos de Uso | Política de Privacidade</p>
-        <div className="footer-social">
-          <a href="#1" className="footer-social-icon"><FaFacebook /></a>
-          <a href="#2" className="footer-social-icon"><FaTwitter /></a>
-          <a href="#3" className="footer-social-icon"><FaLinkedin /></a>
-          <a href="#4" className="footer-social-icon"><FaEnvelope /></a>
-        </div>
       </div>
     </footer>
   );

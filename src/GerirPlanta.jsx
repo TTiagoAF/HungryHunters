@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 const GerirPlanta = () => {
 
   const navigate = useNavigate();
-  const apiUrl = 'https://localhost:7286';
+  const apiUrl = 'https://localhost:7286';;
   const [planta, setPlanta] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const GerirPlanta = () => {
         });
         const data = await response.json();
         console.log(data);
-        setPlanta(data);
+        setPlanta(data.caminhosImagens[0]);
       } catch (erro) {
         console.error('Erro ao obter o cardápio da API:', erro);
       }
