@@ -140,12 +140,12 @@ const RestaurantDetails = () => {
     }
   }, []);
 
-  const handleMesa = async (nome) => {  
+  const handleMesa = async (nome, id_mesa) => {  
     toast.success(("A mesa escolhida foi a " + nome), {
       closeOnClick: true,
       draggable: true,
       });
-    setMesaEscolhida(nome);
+    setMesaEscolhida(id_mesa);
   };
   const handleHorario = async (horarioRestaurante) => {  
     toast.success(("O horário escolhido foi as " + horarioRestaurante + "h"), {
@@ -162,10 +162,48 @@ const RestaurantDetails = () => {
     setPessoasEscolhida(index + 1);
   };
   const handleReserva = async () => {  
-    toast.success(("Os dados da tua reserva são os seguintes Id_conta " + idconta + " RestauranteId " + idrestaurante + " Data " + dataDaReserva + " horario " + horarioEscolhido + " Mesa " + mesaEscolhida + " Grupo " + pessoas), {
-      closeOnClick: true,
-      draggable: true,
+
+    const newReserva = {
+      RestauranteId: idrestaurante,
+      ContaId: idconta,
+      MesaId: mesaEscolhida,
+      Data_reserva: dataDaReserva,
+      Horario: horarioEscolhido,
+      Quantidade_pessoa: pessoas,
+      Estado: "Pendente",
+  };
+    
+    await adicionarReserva([newReserva]);
+  };
+
+  const adicionarReserva = async (newReserva) => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Reservas/AdicionarReserva`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newReserva)
       });
+  
+      if (response.ok) {
+        console.log('Nova conta adicionada na API');
+        toast.success(("Reserva feita com sucesso"), {
+          closeOnClick: true,
+          draggable: true,
+          });
+      } else {
+        const dataerro = await response.json();
+        toast.error((dataerro.mensagem), {
+          closeOnClick: true,
+          draggable: true,
+          });
+        throw new Error('Erro ao adicionar nova conta na API');
+      }
+    } catch (error) {
+        console.error('Erro ao adicionar nova conta na API:', error);
+        throw error;
+    }
   };
 
   return (
@@ -231,8 +269,8 @@ const RestaurantDetails = () => {
       <h3 id='mesas'>Escolha a sua mesa</h3>
       <div className="detalhes-buttons">
       {Object.values(mesas).map((mesa, index) => (
-        <div key={index} className="mesas-button-container">
-        <button className="mesas-button" onClick={() => handleMesa(mesa.nome)}> <MdOutlineTableBar/> {mesa.nome}</button>
+        <div key={index} className="mesas-button-container-detalhes">
+        <button className="mesas-button-detalhes" onClick={() => handleMesa(mesa.nome, mesa.id_mesa)}> <MdOutlineTableBar/> {mesa.nome}</button>
       </div>
       ))}
         </div>

@@ -1,0 +1,225 @@
+body {
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-reservas-restaurantes {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.gerir-reservas-restaurantes-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #006e90;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.reservas-restaurantes-item {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  width: 1350px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background: #fefcad;
+}
+
+.reservas-restaurantes-item:hover {
+  transform: scale(1.05);
+}
+
+.nome-restaurantes {
+  color: #000000;
+  font-size: 18px;
+  margin-left: 10px;
+}
+.desc-restaurantes {
+  color: #000000;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.reservas-restaurantes-button-container {
+  margin: 15px;
+  align-items: center;
+}
+.reservas-restaurantes-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.remove-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #f52121;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.remove-reservas-restaurantes-button:hover {
+  background-color: #b81212;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pending-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #41bbd9;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pending-reservas-restaurantes-button:hover {
+  background-color: #2297b4;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.alimentar-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #fefcad;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alimentar-reservas-restaurantes-button:hover {
+  background-color: #fffb5a;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pago-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pago-reservas-restaurantes-button:hover {
+  background-color: #45a049;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.naopago-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #ff792c;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.naopago-reservas-restaurantes-button:hover {
+  background-color: #e25300;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cancelled-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #f52121;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cancelled-reservas-restaurantes-button:hover {
+  background-color: #b81212;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.noshow-reservas-restaurantes-button {
+  margin: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #cccccc;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.noshow-reservas-restaurantes-button:hover {
+  background-color: #9f9d9d;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}

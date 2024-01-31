@@ -4,13 +4,14 @@ import logo from './../img/logo.png';
 import "./css/HeaderEmpresas.css"
 import Cookies from 'js-cookie';
 import { FaHome } from "react-icons/fa";
-import { BsFillGearFill } from "react-icons/bs";
+import { BsJournalBookmarkFill } from "react-icons/bs";
 import { FaDoorOpen } from "react-icons/fa";
 
 const HeaderMain = () => {
 
   const handleLogout = () => {
         Cookies.remove("token");
+        Cookies.remove("id_conta");
     }
 
   return (
@@ -28,8 +29,8 @@ const HeaderMain = () => {
               </Link>
             </li>
             <li className="nav-item">
-                  <Link to="/MainPage/" className="nav-link">
-              <a href="#3" className="nav-link"><BsFillGearFill/> Configurações</a>
+                  <Link to="/MinhasReservas/" className="nav-link">
+              <a href="#3" className="nav-link"><BsJournalBookmarkFill/> Minhas reservas</a>
                   </Link>
                 </li>
               <li className="nav-item">

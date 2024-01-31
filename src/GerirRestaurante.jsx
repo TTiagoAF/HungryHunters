@@ -10,7 +10,8 @@ import { BiDish } from "react-icons/bi";
 import { CiPizza } from "react-icons/ci";
 import { MdOutlineTableBar } from "react-icons/md";
 import { CiImageOn } from "react-icons/ci";
-
+import { MdGroups } from "react-icons/md";
+import { BsJournalBookmarkFill } from "react-icons/bs";
 
 const GerirRestuarante = () => {
   const navigate = useNavigate();
@@ -100,6 +101,16 @@ const GerirRestuarante = () => {
     navigate("/GerirMesas/");
   }
 
+  const handleEscolherMaximo = () => {
+    Cookies.set("id", id, {expires: 1});
+    navigate("/GerirGrupo/");
+  }
+
+  const handleMinhasReservas = () => {
+    Cookies.set("id", id, {expires: 1});
+    navigate("/MinhasReservasRestaurante/");
+  }
+
   return (
     <div className="home-restaurante">
       <HeaderEmpresas />
@@ -134,6 +145,12 @@ const GerirRestuarante = () => {
               </button>
               <button className="restaurante-button" onClick={handleEscolherMesas}>
                <MdOutlineTableBar/> Mesas
+              </button>
+              <button className="restaurante-button" onClick={handleEscolherMaximo}>
+               <MdGroups/> Máximo por grupo
+              </button>
+              <button className="restaurante-button" onClick={handleMinhasReservas}>
+               <BsJournalBookmarkFill/> Minhas Reservas
               </button>
             </div>
           </div>
