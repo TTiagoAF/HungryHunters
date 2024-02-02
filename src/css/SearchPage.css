@@ -2,7 +2,6 @@
   perspective: 1px;
   transform-style: preserve-3d;
   height: auto;
-  overflow-x: hidden;
   background-color: #006e90;
 }
 

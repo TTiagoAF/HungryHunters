@@ -95,6 +95,7 @@ const GerirMenus = () => {
  };
 
   return (
+    <body className='pagina-solo'>
     <div className="home-menu">
       <HeaderRestaurantes/>
       <div className="gerir-menu-page">
@@ -123,7 +124,8 @@ const GerirMenus = () => {
       <ToastContainer/>
       </div>
       <Footer/>
-    </div>
+    </div>       
+    </body>
   );
 };
 

@@ -41,7 +41,7 @@ const GerirPlanta = () => {
   return (
     <div className="home-page">
       <HeaderRestaurantes/>
-      <img alt="imagem" src={planta}/>
+      <img alt="imagem" src={planta} crossOrigin='anonymous'/>
       <Footer/>
     </div>
   );

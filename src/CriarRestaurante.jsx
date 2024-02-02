@@ -114,12 +114,6 @@ const adicionarEmpresa = async (newEmpresa) => {
   }
 };
 
-  const handleGoogleLogin = () => {
-  };
-
-  const handleFacebookLogin = () => {
-  };
-
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -198,14 +192,6 @@ const adicionarEmpresa = async (newEmpresa) => {
                 <a href="#2">Login</a>
               </Link>
             </p>
-          </div>
-          <div className="login-social">
-            <button className="google-login" onClick={handleGoogleLogin}>
-              Criar conta com Google
-            </button>
-            <button className="facebook-login" onClick={handleFacebookLogin}>
-              Criar conta com Facebook
-            </button>
           </div>
         </div>
       </div>

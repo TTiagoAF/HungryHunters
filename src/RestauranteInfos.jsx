@@ -20,6 +20,7 @@ const RestauranteInfos = () => {
   const [pessoas, setPessoas] = useState(0);
   const [mostrarTooltip, setMostrarTooltip] = useState(false);
   const apiUrl = 'https://localhost:7286';
+  const [tel, setTel] = useState('');
   
   useEffect(() => {
     if(Cookies.get("nipc") == undefined || Cookies.get("nome") == undefined || Cookies.get("gps") == undefined || Cookies.get("distrito") == undefined )
@@ -42,6 +43,10 @@ const RestauranteInfos = () => {
     setPessoas(e.target.value);
   };
 
+  const handleTel = (e) => {
+    setTel(e.target.value);
+  };
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -54,6 +59,7 @@ const RestauranteInfos = () => {
       PrecoMedio: preco,
       Distrito: Cookies.get("distrito"),
       Coordenadas: Cookies.get("gps"),
+      Telemovel: tel,
       Descricao: descricao,
       CapacidadeGrupo: pessoas,
       Autorizado: "false",
@@ -134,6 +140,13 @@ const RestauranteInfos = () => {
               onChange={handlePreco}
               className="input-infos"
             />
+            <input
+                type="tel"
+                placeholder="Telemóvel"
+                value={tel}
+                onChange={handleTel}
+                className="input-loc"
+              />
             <textarea
                 type="text"
                 placeholder="Descrição"

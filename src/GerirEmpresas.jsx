@@ -168,6 +168,7 @@ const GerirEmpresa = () => {
  };
 
   return (
+    <body className='pagina-solo'>
     <div className="home-page">
     <HeaderEmpresas/>
     <div className="restaurant-page">
@@ -197,6 +198,7 @@ const GerirEmpresa = () => {
     </div>
       <Footer/>
     </div>
+    </body>
   );
 };
 

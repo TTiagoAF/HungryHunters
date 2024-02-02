@@ -77,6 +77,7 @@ function ResultadosPesquisa() {
       }, [pesquisa]);
 
     return (
+      <body className="pagina-solo">
       <div className="resultados-page-main">
         <HeaderMain />
         <div className="search-container">
@@ -99,6 +100,7 @@ function ResultadosPesquisa() {
         </div>
         <Footer />
       </div>
+      </body>
     );
   }
   export default ResultadosPesquisa;

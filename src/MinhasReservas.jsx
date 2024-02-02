@@ -4,7 +4,7 @@ import Footer from './Footer';
 import "./css/MinhasReservas.css"
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { FaRegTrashAlt } from 'react-icons/fa';
+import { MdOutlineFreeCancellation } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import { MdFoodBank } from "react-icons/md";
 import { BsCalendarDayFill } from "react-icons/bs";
@@ -55,29 +55,30 @@ const MinhasReservasClientes = () => {
     }
   };
 
-   const handleRemove = async (id) => {  
+  const handleChangeEstado = async (id_reserva, state) => {
     try {
-      const response = await fetch(`${apiUrl}/api/Reservas/EliminarReservas/${id}`, {
+      const response = await fetch(`${apiUrl}/api/Reservas/MudarEstado/${id_reserva}/${state}`, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
       });
       if (response.ok) {
-        toast.success("Reserva eliminada", {
+        toast.success("Estado atualizado", {
           closeOnClick: true,
           draggable: true,
           });
-        window.location.reload();
+          window.location.reload();
       } else {
         console.error('Erro');
       }
     } catch (erro) {
       console.error('Erro:', erro);
     }
- };
-
+  };
+  
   return (
+    <body className="pagina-solo">
     <div className="home-reservas">
       <HeaderMainPage/>
       <div className="gerir-reservas-page">
@@ -86,7 +87,7 @@ const MinhasReservasClientes = () => {
           {reserva.map((reservas, index) => (
             <div key={index} className="reservas-button-container">
           <MinhasReservas key={index} nomeRestaurante={reservas.nomeRestaurante} dia={reservas.data_reserva.slice(0, -9)} hora={reservas.horario} mesa={reservas.nomeMesa} pessoas={reservas.quantidade_pessoa} estado={reservas.estado}/>
-          <button onClick={() => handleRemove(reservas.id_reserva)} className="remove-reservas-button"> <FaRegTrashAlt/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado")} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
           </div>
           ))}        
         </div>
@@ -94,6 +95,7 @@ const MinhasReservasClientes = () => {
       </div>
       <Footer/>
     </div>
+    </body>
   );
 };
 

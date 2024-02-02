@@ -2,8 +2,6 @@
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .gerir-mesas-page {
@@ -51,6 +49,26 @@
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
+}
+
+.mesa-info-container {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  z-index: 1;
+  margin-top: 20%;
+}
+
+.mesas-button-container:hover .mesa-info-container {
+  display: block;
+}
+
+.info-texto {
+  margin: 11px;
 }
 
 .add-mesas-button,

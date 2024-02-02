@@ -86,6 +86,7 @@ const GerirHorarios = () => {
  };
 
   return (
+    <body className='pagina-solo'>
     <div className="home-page-gerir-horario">
       <HeaderRestaurantes/>
       <div className="gerir-horario-page">
@@ -105,6 +106,7 @@ const GerirHorarios = () => {
     </div>
       <Footer/>
     </div>
+    </body>
   );
 };
 

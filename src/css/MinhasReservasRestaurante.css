@@ -1,4 +1,4 @@
-body {
+.pagina-solo {
   background-color: #f8f8f8;
   margin: 0;
   padding: 0;
@@ -11,8 +11,6 @@ body {
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .gerir-reservas-restaurantes-page {
@@ -54,13 +52,18 @@ body {
   margin-bottom: 10px;
 }
 
+.titulo-reservas-restaurantes {
+  color: #ffffff;
+}
+
 .reservas-restaurantes-button-container {
   margin: 15px;
+  display: flex;
   align-items: center;
 }
 .reservas-restaurantes-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .remove-reservas-restaurantes-button {

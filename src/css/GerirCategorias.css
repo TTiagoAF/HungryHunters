@@ -1,9 +1,16 @@
+.pagina-solo {
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
 .home-page-gerir-categoria {
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .gerir-categoria-page {

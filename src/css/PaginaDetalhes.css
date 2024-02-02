@@ -15,12 +15,10 @@ scroll-container::-webkit-scrollbar-thumb {
   background-color: #f18f01;
 }
 
-.restaurante-detalhes {
+.restaurante-detalhes-original {
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
   background-color: #ffffff;
 }
 
@@ -42,11 +40,10 @@ scroll-container::-webkit-scrollbar-thumb {
 }
 
 scroll-container {
-  display: block;
   margin: 0 auto;
   width: 1500px;
-  height: 460px;
-  overflow-y: scroll;
+  // height: 460px;
+  // overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
@@ -63,7 +60,7 @@ scroll-page {
 
 .mesas-button-container-detalhes {
   flex: 0 0 calc(25% - 40px);
-  margin: 15px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
 }
@@ -124,11 +121,19 @@ scroll-page {
   margin: 20px;
 }
 
+.input-data-detalhes {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 98%;
+}
+
 .menu-item-detalhes {
   background-color: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 8px;
-  width: 1350px;
+  width: 1420px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -148,7 +153,7 @@ scroll-page {
 .preco-detalhes {
   color: #000000;
   font-size: 15px;
-  margin-left: 1300px;
+  margin-left: 1370px;
   margin-bottom: 10px;
 }
 .desc-detalhes {
@@ -204,6 +209,26 @@ scroll-page {
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mesa-info-container {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  z-index: 1;
+  margin-top: 20%;
+}
+
+.mesas-button-container-detalhes:hover .mesa-info-container {
+  display: block;
+}
+
+.info-texto {
+  margin: 11px;
 }
 
 .detalhes-reserva-button:hover {

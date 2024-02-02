@@ -68,6 +68,7 @@ const GerirCategorias = () => {
  };
 
   return (
+    <body className='pagina-solo'>
     <div className="home-page-gerir-categoria">
       <HeaderRestaurantes/>
       <div className="gerir-categoria-page">
@@ -87,6 +88,7 @@ const GerirCategorias = () => {
     </div>
       <Footer/>
     </div>
+    </body>
   );
 };
 

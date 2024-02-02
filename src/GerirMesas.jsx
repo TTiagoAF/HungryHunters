@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineTableBar } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
+import ToolTip from './ToolTip';
 
 const GerirMesas = () => {
 
@@ -82,17 +83,24 @@ const GerirMesas = () => {
   }
 
   return (
+    <body className='pagina-solo'>
     <div className="home-page-gerir-mesas">
       <HeaderRestaurantes/>
       <div className="gerir-mesas-page">
       <h1>Administrar horários</h1>
       <div className="gerir-mesas-buttons">
-        {Object.values(mesas).map((mesa, index) => (escolher == true &&(
+      {Object.values(mesas).map((mesa, index) => (escolher && (
         <div key={index} className="mesas-button-container">
-        <button className="mesas-button" onClick={handleEscolher}> <MdOutlineTableBar/> {mesa.nome}</button>
-        <button onClick={() => handleRemoverMesa(mesa.id_mesa)} className="remove-mesas-button"> <FaRegTrashAlt/></button>
-      </div>
-      )))}
+            <button className="mesas-button" onClick={handleEscolher}>
+              <MdOutlineTableBar /> {mesa.nome}
+            </button>
+            <ToolTip nome={mesa.nome} maximo={mesa.maximo_pessoas} desc={mesa.notas}/>
+            <button onClick={() => handleRemoverMesa(mesa.id_mesa)} className="remove-mesas-button">
+              <FaRegTrashAlt />
+            </button>
+        </div>
+        )
+      ))}
       </div>
       <button onClick={handleEscolher2} className="add-mesas-button"> Esconder as minhas mesas</button>
       <button onClick={handleEscolher} className="add-mesas-button"> Ver as minhas mesas</button>
@@ -101,6 +109,7 @@ const GerirMesas = () => {
     </div>
       <Footer/>
     </div>
+    </body>
   );
 };
 

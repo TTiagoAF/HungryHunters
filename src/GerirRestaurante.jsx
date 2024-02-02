@@ -12,6 +12,7 @@ import { MdOutlineTableBar } from "react-icons/md";
 import { CiImageOn } from "react-icons/ci";
 import { MdGroups } from "react-icons/md";
 import { BsJournalBookmarkFill } from "react-icons/bs";
+import { MdAddBusiness } from "react-icons/md";
 
 const GerirRestuarante = () => {
   const navigate = useNavigate();
@@ -111,6 +112,11 @@ const GerirRestuarante = () => {
     navigate("/MinhasReservasRestaurante/");
   }
 
+  const handleAdicionarReserva = () => {
+    Cookies.set("id", id, {expires: 1});
+    navigate("/AdicionarReserva/");
+  }
+
   return (
     <div className="home-restaurante">
       <HeaderEmpresas />
@@ -151,6 +157,9 @@ const GerirRestuarante = () => {
               </button>
               <button className="restaurante-button" onClick={handleMinhasReservas}>
                <BsJournalBookmarkFill/> Minhas Reservas
+              </button>
+              <button className="restaurante-button" onClick={handleAdicionarReserva}>
+               <MdAddBusiness/> Adicionar reserva
               </button>
             </div>
           </div>

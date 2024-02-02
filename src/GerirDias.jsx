@@ -144,6 +144,7 @@ const GerirDias = () => {
  };
 
   return (
+    <body className='pagina-solo'>
     <div className="home-page-gerir-dias">
       <HeaderRestaurantes />
       <div className="gerir-dias-page">
@@ -220,6 +221,7 @@ const GerirDias = () => {
       <ToastContainer/>
       <Footer />
     </div>
+    </body>
   );
 };
 
