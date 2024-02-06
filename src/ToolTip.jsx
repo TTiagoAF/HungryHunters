@@ -4,7 +4,7 @@ function ToolTip({ nome, maximo, desc }) {
         <p className='info-texto'><strong>Sobre a Mesa:</strong></p>
         <p className='info-texto'>{nome}</p>
         <p className='info-texto'>Máximo de pessoas: {maximo}</p>
-        <p className='info-texto'>Detalhes da mesa: {desc}</p>
+        <p className='info-texto'>{desc}</p>
       </div>
     );
   }

@@ -13,6 +13,7 @@ import { CiImageOn } from "react-icons/ci";
 import { MdGroups } from "react-icons/md";
 import { BsJournalBookmarkFill } from "react-icons/bs";
 import { MdAddBusiness } from "react-icons/md";
+import { TbStarsFilled } from "react-icons/tb";
 
 const GerirRestuarante = () => {
   const navigate = useNavigate();
@@ -117,6 +118,11 @@ const GerirRestuarante = () => {
     navigate("/AdicionarReserva/");
   }
 
+  const handleVerAvaliacoes = () => {
+    Cookies.set("id", id, {expires: 1});
+    navigate("/MinhasAvaliacoes/");
+  }
+
   return (
     <div className="home-restaurante">
       <HeaderEmpresas />
@@ -160,6 +166,9 @@ const GerirRestuarante = () => {
               </button>
               <button className="restaurante-button" onClick={handleAdicionarReserva}>
                <MdAddBusiness/> Adicionar reserva
+              </button>
+              <button className="restaurante-button" onClick={handleVerAvaliacoes}>
+               <TbStarsFilled/> Minhas Avaliações
               </button>
             </div>
           </div>

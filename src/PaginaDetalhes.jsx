@@ -26,6 +26,8 @@ import { CiClock2 } from "react-icons/ci";
 import { ToastContainer, toast } from 'react-toastify';
 import { BsFillTelephoneFill } from "react-icons/bs";
 import ToolTip from './ToolTip';
+import { Avatar, Rate } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const MenuItem = ({ nome, preco, desc }) => (
   <div className="menu-item-detalhes">
@@ -34,11 +36,23 @@ const MenuItem = ({ nome, preco, desc }) => (
     <p className='desc-detalhes'>{desc}</p>
   </div>
 );
+const TodasAvaliacoes = ({ nome, comida, conforto, beleza, atendimento, velocidade, comentario }) => (
+  <div className="mostrar-avaliacoes-item-detalhes">
+    <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} /><p className='mostrar-avaliacoes-nome-detalhes'><b>{nome}</b></p>
+    <p className='mostrar-avaliacoes-desc-detalhes'>Comentário: {comentario}</p>
+    <p className='mostrar-avaliacoes-avaliacao'>Qualidade da comida: </p><Rate allowHalf disabled value={comida}/>
+    <p className='mostrar-avaliacoes-avaliacao'>Conforto: </p><Rate allowHalf disabled value={conforto}/>
+    <p className='mostrar-avaliacoes-avaliacao'>Beleza do restaurante: </p><Rate allowHalf disabled value={beleza}/>
+    <p className='mostrar-avaliacoes-avaliacao'>Atendimento: </p><Rate allowHalf disabled value={atendimento}/>
+    <p className='mostrar-avaliacoes-avaliacao'>Velocidade de serviço: </p><Rate allowHalf disabled value={velocidade}/>
+  </div>
+);
 
 const RestaurantDetails = () => {
   const [idrestaurante, ] = useState(Cookies.get("id_detalhes"));
   const [restaurantes, setRestaurante] = useState([]);
   const [menu, setMenu] = useState([]);
+  const [avaliacoes, setAvaliacoes] = useState([]);
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
   const [categoriaAtiva, setCategoriaAtiva] = useState(null);
@@ -49,7 +63,97 @@ const RestaurantDetails = () => {
   const [horarioEscolhido, setHorarioEscolhido] = useState("");
   const [mesaEscolhida, setMesaEscolhida] = useState();
   const [pessoas, setPessoasEscolhida] = useState();
-  const [idconta, ] = useState(Cookies.get("id_conta")) 
+  const [idconta, ] = useState(Cookies.get("id_conta"))
+  const [comida, setComida] = useState(0);
+  const [conforto, setConforto] = useState(0);
+  const [beleza, setBeleza] = useState(0);
+  const [atendimento, setAtendimento] = useState(0);
+  const [velocidade, setVelocidade] = useState(0);
+  const [comentario, setComentario] = useState("");
+
+  const handleComidaChange = (value) => {
+    setComida(value);
+  }
+
+  const handleComentario = (e) => {
+    setComentario(e.target.value);
+  };
+
+  const handleConfortoChange = (value) => {
+    setConforto(value);
+  }
+
+  const handleBelezaChange = (value) => {
+    setBeleza(value);
+  }
+
+  const handleAtendimentoChange = (value) => {
+    setAtendimento(value);
+  }
+
+  const handleVelocidadeChange = (value) => {
+    setVelocidade(value);
+  }
+
+  const handleAvaliacao = async () => {  
+
+    const newAvaliacao = {
+      RestauranteId: idrestaurante,
+      ContaId: idconta,
+      Comida: comida,
+      Conforto: conforto,
+      Beleza: beleza,
+      Atendimento: atendimento,
+      Velocidade: velocidade,
+      Comentario: comentario,
+  };
+    
+    await adicionarAvaliacao([newAvaliacao]);
+  };
+
+  const adicionarAvaliacao = async (newAvaliacao) => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Avaliacoes/AdicionarAvaliacao`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newAvaliacao)
+      });
+  
+      if (response.ok) {
+        toast.success(("Avaliação feita com sucesso"), {
+          closeOnClick: true,
+          draggable: true,
+          });
+          window.location.reload();
+      } else {
+        const dataerro = await response.json();
+        toast.error((dataerro.mensagem), {
+          closeOnClick: true,
+          draggable: true,
+          });
+        throw new Error('Erro ao adicionar');
+      }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+  };
+
+  const fetchAvaliacoes = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoescom${idrestaurante}`, {
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
+      });
+      const data = await response.json();
+      setAvaliacoes(data);
+    } catch (erro) {
+      console.error('Erro ao obter o cardápio da API:', erro);
+    }
+  };
 
   const filtrarPorCategoria = (categoria) => {
     setCategoriaAtiva(categoria);
@@ -67,7 +171,6 @@ const RestaurantDetails = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setRestaurante(data);
       const grupo = Object.values(data).map(grupo => grupo.capacidadeGrupo);
       setGrupo(parseInt(grupo));
@@ -84,7 +187,6 @@ const RestaurantDetails = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setMenu(data);
     } catch (erro) {
       console.error('Erro ao obter o cardápio da API:', erro);
@@ -100,7 +202,6 @@ const RestaurantDetails = () => {
       });
       const data = await response.json();
       if (data) {
-        console.log('Entrou no if2', data);
         const horario = Object.values(data).map(horario => horario.horaReserva);
         setHorario(horario);
       } else {
@@ -120,7 +221,6 @@ const RestaurantDetails = () => {
       });
       const data = await response.json();
       if (data) {
-        console.log('Entrou no if2', data);
         setMesas(data);
       } else {
         console.log('Não entrou no if');
@@ -135,6 +235,7 @@ const RestaurantDetails = () => {
     carregarRestaurante();
     fetchMenu();
     fetchHorarios();
+    fetchAvaliacoes();
     if(Cookies.get("token") == undefined)
     {
       Cookies.remove("token");
@@ -189,7 +290,6 @@ const RestaurantDetails = () => {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
         toast.success(("Reserva feita com sucesso"), {
           closeOnClick: true,
           draggable: true,
@@ -251,6 +351,50 @@ const RestaurantDetails = () => {
         <button onClick={() => filtrarPorCategoria('Café')}><FiCoffee/> Café</button>
         <button onClick={() => filtrarPorCategoria(null)}><MdOutlineCleaningServices/> Limpar Filtros</button>
       </div>
+      <div className='mostrar-form-avaliacao'>
+      <div className="avaliacao-form">
+      <h2>Formulário de Avaliação</h2>
+      <div className="campo-avaliacao">
+        <h2 className='tipo-titulo-avaliacao'>Qualidade da comida:</h2>
+        <div className="estrelas">
+        <Rate allowHalf onChange={handleComidaChange}/>
+        </div>
+        <h2 className='tipo-titulo-avaliacao'>Conforto:</h2>
+        <div className="estrelas">
+        <Rate allowHalf onChange={handleConfortoChange}/>
+        </div>
+        <h2 className='tipo-titulo-avaliacao'>Beleza do restaurante:</h2>
+        <div className="estrelas">
+        <Rate allowHalf onChange={handleBelezaChange}/>
+        </div>
+        <h2 className='tipo-titulo-avaliacao'>Atendimento:</h2>
+        <div className="estrelas">
+        <Rate allowHalf onChange={handleAtendimentoChange}/>
+        </div>
+        <h2 className='tipo-titulo-avaliacao'>Velocidade do serviço:</h2>
+        <div className="estrelas">
+        <Rate allowHalf onChange={handleVelocidadeChange}/>
+        </div>
+      </div>
+      <div className="campo-avaliacao-desc">
+        <h2>Comentários Adicionais:</h2>
+        <textarea
+        type="text"
+        placeholder="Faça aqui o seu comentário adicional"
+        value={comentario}
+        onChange={handleComentario}
+        className="textarea-input-avaliacoes"
+        maxLength={2000}
+      />
+      </div>
+      <button className="detalhes-reserva-button" onClick={handleAvaliacao}>Submeter avaliação</button>
+    </div>
+    {avaliacoes.map((avaliacao, index) => (
+          <div key={index} className="mostrar-avaliacoes-container-detalhes">
+            <TodasAvaliacoes key={index} nome={avaliacao.nomeCliente} comida={avaliacao.comida} conforto={avaliacao.conforto} beleza={avaliacao.beleza} atendimento={avaliacao.atendimento} velocidade={avaliacao.velocidade} comentario={avaliacao.comentario}/>
+          </div>
+        ))}
+    </div>
       </div>
       <div className="detalhes-page">
       <h2>Faça a sua reserva</h2>

@@ -97,7 +97,11 @@ const MinhasReservasRestaurante = () => {
         });
         window.location.reload();
     } else {
-      console.error('Erro');
+      const dataerro = await response.json();
+        toast.error(dataerro.mensagem, {
+          closeOnClick: true,
+          draggable: true,
+        });
     }
   } catch (erro) {
     console.error('Erro:', erro);

@@ -8,6 +8,7 @@ import { MdOutlineTableBar } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import { CiClock2 } from "react-icons/ci";
 import { ToastContainer, toast } from 'react-toastify';
+import ToolTip from './ToolTip';
 
 const AdicionarReserva = () => {
   const [idrestaurante, ] = useState(Cookies.get("id"));
@@ -181,6 +182,7 @@ const AdicionarReserva = () => {
       {Object.values(mesas).map((mesa, index) => (
         <div key={index} className="mesas-button-container-detalhes">
         <button className="mesas-button-detalhes" onClick={() => handleMesa(mesa.nome, mesa.id_mesa)}> <MdOutlineTableBar/> {mesa.nome}</button>
+        <ToolTip nome={mesa.nome} maximo={mesa.maximo_pessoas} desc={mesa.notas}/>
       </div>
       ))}
         </div>
