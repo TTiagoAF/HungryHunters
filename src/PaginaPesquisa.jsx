@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import "./css/SearchPage.css"
-import HeaderMain from "./HeaderMainPage";
+import HeaderPaginaPrincipal from "./HeaderPaginaPrincipal";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FaMap } from "react-icons/fa";
@@ -79,7 +79,7 @@ function ResultadosPesquisa() {
     return (
       <body className="pagina-solo">
       <div className="resultados-page-main">
-        <HeaderMain />
+        <HeaderPaginaPrincipal />
         <div className="search-container">
             <input type="text" className="search-bar" placeholder={"Pesquisar"} onChange={changePesquisar} value={pesquisa}/>
         </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/MainPage.css';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import HeaderMain from './HeaderMainPage';
+import HeaderPaginaPrincipal from './HeaderPaginaPrincipal';
 import Footer from './Footer';
 import { FaMap } from "react-icons/fa";
 import { FaMoneyBillAlt } from "react-icons/fa";
@@ -15,7 +15,7 @@ function MainPage() {
   const [restaurantesLisboa, setRestaurantesLisboa] = useState([]);
   const [restaurantesPorto, setRestaurantesPorto] = useState([]);
   const [restaurantesFaro, setRestaurantesFaro] = useState([]);
-  const [pesquisa, setPesquisa] = useState();
+  const [pesquisa, setPesquisa] = useState("");
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
 
@@ -84,7 +84,7 @@ function MainPage() {
     navigate("/Details/")
   };
 
-  const handleSearch = async () => {     
+  const handleSearch = async () => {
     Cookies.set("pesquisa", pesquisa);
     navigate("/Search/");
   };
@@ -105,65 +105,71 @@ function MainPage() {
     setPesquisa(e.target.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="home-page-main">
-      <HeaderMain/>
+      <HeaderPaginaPrincipal/>
       <div className="search-container">
-      <input type="text" className="search-bar" placeholder={"Pesquisar"} onChange={changePesquisar} value={pesquisa}/>
+      <input type="text" className="search-bar" placeholder={"Pesquisar"} onChange={changePesquisar} value={pesquisa} onKeyPress={handleKeyPress}/>
       <button className="search-button" onClick={handleSearch}><GiMagnifyingGlass/> Pesquisar</button>
     </div>
     <div className="app-container">
       <h1 className="app-heading">Restaurantes</h1>
       {restaurantes.map((restaurante, index) => restaurante.autorizado == "true" &&(
         <button key={index} className="restaurante-card" onClick={() => handleRestaurante(restaurante.id_restaurante)}>
+          <h3 className="restaurante-nome"><SiCodechef/> {restaurante.nome}</h3>
+          <p className="restaurante-info"><FaMap/> Distrito: {restaurante.distrito}</p>
+          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restaurante.precoMedio.toFixed(2)}€</p>
           {restaurante.categorias.map((categoria, index) => (
             <div key={index}>
           <p className="restaurante-info"><MdFastfood/> {categoria.categoria_Um} {categoria.categoria_Dois} {categoria.categoria_Tres}</p>
           </div>
           ))}
-          <h3 className="restaurante-nome"><SiCodechef/> {restaurante.nome}</h3>
-          <p className="restaurante-info"><FaMap/> Distrito: {restaurante.distrito}</p>
-          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restaurante.precoMedio.toFixed(2)}€</p>
         </button>
       ))}
 
       <h1 className="app-heading">Restaurantes em Lisboa</h1>
       {restaurantesLisboa.map((restauranteLisboa, index) => restauranteLisboa.autorizado == "true" &&(
         <button key={index} className="restaurante-card" onClick={() => handleRestaurante(restauranteLisboa.id_restaurante)}>
+          <h3 className="restaurante-nome"><SiCodechef/> {restauranteLisboa.nome}</h3>
+          <p className="restaurante-info"><FaMap/> Distrito: {restauranteLisboa.distrito}</p>
+          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restauranteLisboa.precoMedio.toFixed(2)}€</p>
           {restauranteLisboa.categorias.map((categoria, index) => (
             <div key={index}>
           <p className="restaurante-info"><MdFastfood/> {categoria.categoria_Um} {categoria.categoria_Dois} {categoria.categoria_Tres}</p>
           </div>
           ))}
-          <h3 className="restaurante-nome"><SiCodechef/> {restauranteLisboa.nome}</h3>
-          <p className="restaurante-info"><FaMap/> Distrito: {restauranteLisboa.distrito}</p>
-          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restauranteLisboa.precoMedio.toFixed(2)}€</p>
         </button>
       ))}
       <h1 className="app-heading">Restaurantes no Porto</h1>
       {restaurantesPorto.map((restaurantePorto, index) => restaurantePorto.autorizado == "true" &&(
         <button key={index} className="restaurante-card" onClick={() => handleRestaurante(restaurantePorto.id_restaurante)}>
+          <h3 className="restaurante-nome"><SiCodechef/> {restaurantePorto.nome}</h3>
+          <p className="restaurante-info"><FaMap/> Distrito: {restaurantePorto.distrito}</p>
+          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restaurantePorto.precoMedio.toFixed(2)}€</p>
           {restaurantePorto.categorias.map((categoria, index) => (
             <div key={index}>
           <p className="restaurante-info"><MdFastfood/> {categoria.categoria_Um} {categoria.categoria_Dois} {categoria.categoria_Tres}</p>
           </div>
           ))}
-          <h3 className="restaurante-nome"><SiCodechef/> {restaurantePorto.nome}</h3>
-          <p className="restaurante-info"><FaMap/> Distrito: {restaurantePorto.distrito}</p>
-          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restaurantePorto.precoMedio.toFixed(2)}€</p>
         </button>
       ))}
       <h1 className="app-heading">Restaurantes em Faro</h1>
       {restaurantesFaro.map((restauranteFaro, index) => restauranteFaro.autorizado == "true" &&(
         <button key={index} className="restaurante-card" onClick={() => handleRestaurante(restauranteFaro.id_restaurante)}>
+          <h3 className="restaurante-nome"><SiCodechef/> {restauranteFaro.nome}</h3>
+          <p className="restaurante-info"><FaMap/> Distrito: {restauranteFaro.distrito}</p>
+          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restauranteFaro.precoMedio.toFixed(2)}€</p>
           {restauranteFaro.categorias.map((categoria, index) => (
             <div key={index}>
           <p className="restaurante-info"><MdFastfood/> {categoria.categoria_Um} {categoria.categoria_Dois} {categoria.categoria_Tres}</p>
           </div>
           ))}
-          <h3 className="restaurante-nome"><SiCodechef/> {restauranteFaro.nome}</h3>
-          <p className="restaurante-info"><FaMap/> Distrito: {restauranteFaro.distrito}</p>
-          <p className="restaurante-info"><FaMoneyBillAlt/> Preço médio: {restauranteFaro.precoMedio.toFixed(2)}€</p>
         </button>
       ))}
       </div>

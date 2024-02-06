@@ -39,7 +39,7 @@ const MenuItem = ({ nome, preco, desc }) => (
 const TodasAvaliacoes = ({ nome, comida, conforto, beleza, atendimento, velocidade, comentario }) => (
   <div className="mostrar-avaliacoes-item-detalhes">
     <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} /><p className='mostrar-avaliacoes-nome-detalhes'><b>{nome}</b></p>
-    <p className='mostrar-avaliacoes-desc-detalhes'>Comentário: {comentario}</p>
+    <p className='mostrar-avaliacoes-desc-detalhes' style={{ whiteSpace: 'pre-line' }}>{comentario}</p>
     <p className='mostrar-avaliacoes-avaliacao'>Qualidade da comida: </p><Rate allowHalf disabled value={comida}/>
     <p className='mostrar-avaliacoes-avaliacao'>Conforto: </p><Rate allowHalf disabled value={conforto}/>
     <p className='mostrar-avaliacoes-avaliacao'>Beleza do restaurante: </p><Rate allowHalf disabled value={beleza}/>
@@ -126,7 +126,6 @@ const RestaurantDetails = () => {
           closeOnClick: true,
           draggable: true,
           });
-          window.location.reload();
       } else {
         const dataerro = await response.json();
         toast.error((dataerro.mensagem), {
@@ -231,14 +230,17 @@ const RestaurantDetails = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0,0);
     handleBuscarMesas();
     carregarRestaurante();
     fetchMenu();
     fetchHorarios();
     fetchAvaliacoes();
-    if(Cookies.get("token") == undefined)
+    if(Cookies.get("token") == undefined || Cookies.get("id_conta") == undefined || Cookies.get("id_detalhes") == undefined)
     {
       Cookies.remove("token");
+      Cookies.remove("id_conta");
+      Cookies.remove("id_detalhes");
       navigate("/Home/")
     }
   }, []);

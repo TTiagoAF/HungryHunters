@@ -20,7 +20,7 @@ const TodasAvaliacoes = ({ nome, comida, conforto, beleza, atendimento, velocida
 );
 
 const MinhasAvaliacoes = () => {
-  const [idrestaurante, ] = useState(Cookies.get("id_detalhes"));
+  const [idrestaurante, ] = useState(Cookies.get("id"));
   const apiUrl = 'https://localhost:7286';
   const navigate = useNavigate();
   const [avaliacoes, setAvaliacoes] = useState([]);

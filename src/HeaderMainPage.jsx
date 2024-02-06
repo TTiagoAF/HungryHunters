@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './../img/logo.png';
-import "./css/HeaderEmpresas.css"
+import "./css/HeaderMainPage.css"
 import Cookies from 'js-cookie';
 import { FaHome } from "react-icons/fa";
 import { BsJournalBookmarkFill } from "react-icons/bs";
@@ -15,27 +15,27 @@ const HeaderMain = () => {
     }
 
   return (
-    <header className="header">
+    <header className="header-main">
         <Link to="/GerirEmpresas/" class="Voltar">
-        <a href="#5" className="logo">
-            <img src={logo} alt="HungryHunters" className="logo-image" />
+        <a href="#5" className="logo-main">
+            <img src={logo} alt="HungryHunters" className="logo-image-main" />
         </a>
           </Link>
-        <nav className="nav">
-          <ul className="nav-list">
-            <li className="nav-item">
-              <Link to="/MainPage/" className="nav-link">
-                <a href="#1" className="nav-link"><FaHome/> Home</a>
+        <nav className="nav-main">
+          <ul className="nav-list-main">
+            <li className="nav-item-main">
+              <Link to="/MainPage/" className="nav-link-main">
+                <a href="#1" className="nav-link-main"><FaHome/> Home</a>
               </Link>
             </li>
-            <li className="nav-item">
-                  <Link to="/MinhasReservas/" className="nav-link">
-              <a href="#3" className="nav-link"><BsJournalBookmarkFill/> Minhas reservas</a>
+            <li className="nav-item-main">
+                  <Link to="/MinhasReservas/" className="nav-link-main">
+              <a href="#3" className="nav-link-main"><BsJournalBookmarkFill/> Minhas reservas</a>
                   </Link>
                 </li>
-              <li className="nav-item">
-            <Link to="/Home/" className="nav-link">
-              <a href="#4" className="nav-link" onClick={handleLogout}><FaDoorOpen/> Logout</a>
+              <li className="nav-item-main">
+            <Link to="/Home/" className="nav-link-main">
+              <a href="#4" className="nav-link-main" onClick={handleLogout}><FaDoorOpen/> Logout</a>
               </Link>     
             </li>
           </ul>
