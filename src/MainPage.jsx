@@ -175,6 +175,7 @@ function MainPage() {
   };
 
   useEffect(() => {
+    window.scrollTo(0,0);
     carregarRestaurantes();
     carregarRestaurantesLisboa();
     carregarRestaurantesPorto();

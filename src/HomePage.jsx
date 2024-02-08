@@ -2,25 +2,53 @@ import Header from './Header';
 import Footer from './Footer';
 import imagem from './../img/chef-cozinha.jpg';
 import img from './../img/restaurante-main.jpg'
+import imagemcarrousel1 from './../img/imagemcarrousel1.jpeg'
+import imagemcarrousel2 from './../img/restaurantecarrousel2.jpg'
+import imagemcarrousel3 from './../img/carrousel3.jpg'
 import "./css/style.css"
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Carousel } from 'antd';
+
+const contentStyle = {
+  margin: 0,
+  height: '100vh',
+  lineHeight: '260px',
+  textAlign: 'center',
+  width: "100%",
+};
 
 const HomePage = () => {
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
 
   return (
     <div className="home-page-home">
       <Header/>
-      <div className='imagem-inicial-home'>
-        <img src={img} alt="Imagem" className="imagem-main-home"/>
+      <Carousel autoplay>
+        <div>
+        <img src={img} alt="Imagem" style={contentStyle}/>
         </div>
+        <div>
+        <img src={imagemcarrousel1} alt="Imagem" style={contentStyle}/>
+        </div>
+        <div>
+        <img src={imagemcarrousel2} alt="Imagem" style={contentStyle}/>
+        </div>
+        <div>
+        <img src={imagemcarrousel3} alt="Imagem" style={contentStyle}/>
+        </div>
+      </Carousel>
       <div className='pos-parallax-home'>
       <div className='tem-restaurante-home'>
-        <h1 className='titulo-restaurante-home'>Têm um restaurante?</h1>
         <div className='caixa-home'>
           <div className='texto-home'>
+          <h1 className='titulo-restaurante-home'>Registe aqui o seu restaurante</h1>
             <h2 className='titulo-cadastrar-home'>Informações</h2>
             <p className='texto-cadastrar-home'>Aqui pode ver algumas informações para registrar o seu restaurante.</p>
-            <button className='botao-cadastrar-home'>Ver mais informações</button>
+            <button className='botao-cadastrar-home'>Saiba mais</button>
             <h2 className='titulo-cadastrar-2-home'>Registrar restaurante</h2>
             <Link to="/CriarRestaurante/">
             <button className='botao-cadastrar-home'>Registrar</button>
@@ -34,13 +62,13 @@ const HomePage = () => {
       <div className="texto-introducao-home">
         <h2 className="introducao-titulo-home">Bem-vindo à HungryHunters</h2>
         <p className="introducao-descricao-home">
-          Encontre os melhores restaurantes perto de si e faça reservas com facilidade. HungryHunters é a sua plataforma de reserva de restaurantes que oferece uma ampla variedade de opções gastronômicas para todos os gostos.
+          Encontre os melhores restaurantes perto de si e faça reservas com facilidade. HungryHunters é a sua plataforma de reserva de restaurantes que oferece uma ampla variedade de opções gastronómicas para todos os gostos.
         </p>
         <p className="introducao-descricao-home">
-          Nossa missão é proporcionar a você uma experiência gastronômica incrível, permitindo que descubra novos restaurantes, explore os seus menus e faça reservas com apenas alguns cliques. Mesmo que esteja a planear um encontro, um jantar com amigos ou uma refeição de negócios, estamos aqui para tornar o processo simples e fácil.
+        A nossa missão é proporcinar-lhe uma experiência gastronómica inesquecivel, que permita descobrir novos restaurantes, explorar deliciosos menus e fazer reservas rápidas com apenas alguns cliques. Se o seu objetivo é planear um jantar romântico, uma almoçarada com amigos ou uma evento de negócios, a HungryHunters ajuda-o com reservas simples e rápidas.
         </p>
         <p className="introducao-descricao-home">
-          Explore a variedade de restaurantes, veja fotos dos pratos que os restaurantes oferecem e reserve sua mesa com antecedência para evitar de ter de ficar á espera. Junte-se à comunidade de amantes da comida que confiam na HungryHunters para encontrar as melhores opções de acordo com os seus gostos.
+        Explore a variedade de restaurantes e reserve a sua mesa com antecedência para evitar filas de espera. Junte-se à comunidade de <i>food hunters</i> que confiam na HungryHunters para encontrar as melhores opções de acordo com os seus gostos.
         </p>
       </div>
       </div>

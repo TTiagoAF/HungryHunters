@@ -175,7 +175,7 @@ const RestauranteInfos = () => {
           </form>
           <div className="links-infos">
             <p className="registro-infos">
-              <Link to="/Login/" class="Voltar">
+              <Link to="/GerirEmpresas/" class="Voltar">
                 <a href="#2">Voltar</a>
               </Link>
             </p>

@@ -57,6 +57,7 @@ function ResultadosPesquisa() {
       };
 
     useEffect(() => {
+      window.scrollTo(0,0);
         carregarRestaurantes();
         if(Cookies.get("token") == undefined)
         {

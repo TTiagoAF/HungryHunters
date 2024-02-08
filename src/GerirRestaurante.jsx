@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Space, Tour } from 'antd';
 import HeaderEmpresas from './HeaderEmpresas';
 import Footer from './Footer';
 import "./css/GerirRestaurante.css"
@@ -14,6 +15,8 @@ import { MdGroups } from "react-icons/md";
 import { BsJournalBookmarkFill } from "react-icons/bs";
 import { MdAddBusiness } from "react-icons/md";
 import { TbStarsFilled } from "react-icons/tb";
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { FloatButton } from 'antd';
 
 const GerirRestuarante = () => {
   const navigate = useNavigate();
@@ -23,7 +26,64 @@ const GerirRestuarante = () => {
   const [, setNipc] = useState();
   const [api, setApi] = useState([]);
   const apiUrl = 'https://localhost:7286';
-  
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const ref5 = useRef(null);
+  const ref6 = useRef(null);
+  const ref7 = useRef(null);
+  const ref8 = useRef(null);
+  const ref9 = useRef(null);
+  const [open, setOpen] = useState(false);
+  const steps = [
+    {
+      title: 'Menu',
+      description: 'Adicione e elimine os pratos do seu restaurante',
+      target: () => ref1.current,
+    },
+    {
+      title: 'Dias de funcionamento',
+      description: 'Adicione as suas férias, os dias de folga semanal e os dias que estaram abertos',
+      target: () => ref2.current,
+    },
+    {
+      title: 'Horários',
+      description: 'Adicione os seus horários de funcionamento',
+      target: () => ref3.current,
+    },
+    {
+      title: 'Categorias',
+      description: 'Insira as categorias com que o seu restaurante se indentifica',
+      target: () => ref4.current,
+    },
+    {
+      title: 'Mesas',
+      description: 'Insira as mesas do seu restaurante as descrevendo',
+      target: () => ref5.current,
+    },
+    {
+      title: 'Máximo por grupo',
+      description: 'Modifique o máximo de pessoas que aceita numa mesa',
+      target: () => ref6.current,
+    },
+    {
+      title: 'Minhas reservas',
+      description: 'Veja e gerencie as reservas dos seus clientes',
+      target: () => ref7.current,
+    },
+    {
+      title: 'Adicionar reserva',
+      description: 'Insira a reserva dos clientes que vão ao seu estabelecimento',
+      target: () => ref8.current,
+    },
+    {
+      title: 'Minhas Avaliações',
+      description: 'Veja o que os clientes estão a achar do seu restaurante',
+      target: () => ref9.current,
+    },
+  ];
+
   useEffect(() => {
     if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("nome") == undefined)
     {
@@ -124,6 +184,16 @@ const GerirRestuarante = () => {
   }
 
   return (
+    <body>
+      <FloatButton
+        icon={<QuestionCircleOutlined />}
+        type="primary"
+        style={{
+          right: 24,
+        }}
+        onClick={() => setOpen(true)}
+        tooltip={<div>Informações</div>}
+      />
     <div className="home-restaurante">
       <HeaderEmpresas />
       <div className="restaurante-page">
@@ -133,49 +203,57 @@ const GerirRestuarante = () => {
         )}
         {autorizado == "true" && (
           <div>
+            <Space>
             <div className="restaurante-buttons">
               <button className="restaurante-button" onClick={handleEscolherImagemMenus}>
               <CiImageOn/> Imagem do Menu
               </button>
-              <button className="restaurante-button" onClick={handleEscolherMenus}>
+              <button className="restaurante-button" onClick={handleEscolherMenus} ref={ref1}>
                <BiDish/> Pratos do Restaurante
               </button>
               <button className="restaurante-button" onClick={handleEscolherImagens}>
               <CiImageOn/> Imagens do Restaurante
               </button>
-              <button className="restaurante-button" onClick={handleEscolherDias}>
+              <button className="restaurante-button" onClick={handleEscolherDias} ref={ref2}>
                 <BsCalendar2Date/> Dias de Funcionamento
               </button>
-              <button className="restaurante-button" onClick={handleEscolherHorarios}>
+              <button className="restaurante-button" onClick={handleEscolherHorarios} ref={ref3}>
                <FaRegHourglass/> Horários
               </button>
-              <button className="restaurante-button" onClick={handleEscolherCategorias}>
+              <button className="restaurante-button" onClick={handleEscolherCategorias} ref={ref4}>
                <CiPizza/> Categorias do Restaurante
               </button>
               <button className="restaurante-button" onClick={handleEscolherPlanta}>
                <CiImageOn/> Planta do Restaurante
               </button>
-              <button className="restaurante-button" onClick={handleEscolherMesas}>
+              <button className="restaurante-button" onClick={handleEscolherMesas} ref={ref5}>
                <MdOutlineTableBar/> Mesas
               </button>
-              <button className="restaurante-button" onClick={handleEscolherMaximo}>
+              <button className="restaurante-button" onClick={handleEscolherMaximo} ref={ref6}>
                <MdGroups/> Máximo por grupo
               </button>
-              <button className="restaurante-button" onClick={handleMinhasReservas}>
+              <button className="restaurante-button" onClick={handleMinhasReservas} ref={ref7}>
                <BsJournalBookmarkFill/> Minhas Reservas
               </button>
-              <button className="restaurante-button" onClick={handleAdicionarReserva}>
+              <button className="restaurante-button" onClick={handleAdicionarReserva} ref={ref8}>
                <MdAddBusiness/> Adicionar reserva
               </button>
-              <button className="restaurante-button" onClick={handleVerAvaliacoes}>
+              <button className="restaurante-button" onClick={handleVerAvaliacoes} ref={ref9}>
                <TbStarsFilled/> Minhas Avaliações
               </button>
             </div>
+            </Space>
+            <Tour open={open} onClose={() => setOpen(false)} steps={steps} indicatorsRender={(current, total) => (
+          <span>
+            {current + 1} / {total}
+          </span>
+        )}/>
           </div>
         )}
       </div>
       <Footer />
     </div>
+    </body>
   );
 }
 

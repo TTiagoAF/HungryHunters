@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./css/PaginaDetalhes.css"
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import HeaderMain from './HeaderMainPage';
+import HeaderRestaurantes from './HeaderRestaurantes';
 import Footer from './Footer';
 import { Avatar, Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -49,9 +49,9 @@ const MinhasAvaliacoes = () => {
   }, []);
 
   return (
-    <body className='pagina-solo'>
+    <body className='pagina-solo-avaliacoes'>
     <div className="restaurante-detalhes-original">
-      <HeaderMain/>
+      <HeaderRestaurantes/>
       <div className="detalhes-page">
       <div className='mostrar-form-avaliacao'> 
     {avaliacoes.map((avaliacao, index) => (

@@ -31,6 +31,7 @@ const MinhasReservasClientes = () => {
 
 
   useEffect(() => {
+    window.scrollTo(0,0);
     if(Cookies.get("token") == undefined)
     {
       Cookies.remove("token");

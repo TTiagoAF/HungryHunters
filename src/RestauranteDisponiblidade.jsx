@@ -109,6 +109,7 @@ function RestauranteDisponiblidade() {
    };
 
   return (
+    <body className='pagina-adicionar'>
     <div>
       <h1 className='titulo-principal'>Registro de Restaurante</h1>
       <div className="horarios-container">
@@ -142,6 +143,7 @@ function RestauranteDisponiblidade() {
       </form>
       </div>
     </div>
+    </body>
   );
 }
 

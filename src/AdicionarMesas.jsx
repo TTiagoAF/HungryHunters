@@ -79,6 +79,7 @@ function RestauranteMesa() {
     };
 
   return (
+    <body className='pagina-adicionar'>
     <div>
       <div className='titulo'>
         <h1 className='titulo-principal'>Registro de Restaurante</h1>
@@ -132,7 +133,8 @@ function RestauranteMesa() {
             <ToastContainer/>
         </form>
       </div>
-    </div>
+    </div>       
+    </body>
   );
 }
 

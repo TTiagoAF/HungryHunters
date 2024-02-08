@@ -79,6 +79,7 @@ function RestauranteMenu() {
     };
 
   return (
+    <body className='pagina-adicionar'>
     <div>
       <div className='titulo'>
         <h1 className='titulo-principal'>Registro de Restaurante</h1>
@@ -152,6 +153,7 @@ function RestauranteMenu() {
         </form>
       </div>
     </div>
+    </body>
   );
 }
 

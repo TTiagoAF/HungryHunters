@@ -23,8 +23,6 @@ const GerirPlanta = () => {
     const carregarImagem = async () => {  
       try {
         const response = await fetch(`${apiUrl}/api/PlantaRestaurantes/ObterPlanta/${Cookies.get("id")}`, {
-          headers: {
-          }
         });
         const data = await response.json();
         console.log(data);
@@ -41,7 +39,7 @@ const GerirPlanta = () => {
   return (
     <div className="home-page">
       <HeaderRestaurantes/>
-      <img alt="imagem" src={planta} crossOrigin='anonymous'/>
+      <img alt="imagem" src={"https://localhost:7286/ImagensPlanta/" + planta} crossOrigin='anonymous'/>
       <Footer/>
     </div>
   );

@@ -74,6 +74,7 @@ const CategoriasRestaurante = () => {
     };
 
   return (
+    <body className='pagina-adicionar'>
     <div className='pagina-categoria'>
       <h1 className='titulo-principal'>Escolha até 3 Categorias para o seu restaurante</h1>
       <div className='container-categoria'>
@@ -96,7 +97,8 @@ const CategoriasRestaurante = () => {
       <ToastContainer/>
       <br />
       <br />
-    </div>
+    </div>         
+    </body>
   );
 };
 

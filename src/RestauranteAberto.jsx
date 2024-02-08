@@ -157,6 +157,7 @@ function RestauranteAberto() {
     }}
 
   return (
+    <body className='pagina-adicionar'>
     <div className="app-aberto">
       <h1 className="titulo-aberto">Selecionar os dias de folga do restaurante</h1>
       <div className="checkbox-container-aberto">
@@ -223,6 +224,7 @@ function RestauranteAberto() {
         <ToastContainer />
       </div>
     </div>
+    </body>
   );
 }
 

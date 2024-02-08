@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="footer-informacao">
           <h3 className="footer-titulo">Sobre nós</h3>
           <p className="footer-descricao">
-          Somos uma plataforma inovadora que conecta os amantes da gastronomia aos melhores restaurantes do pais. Nossa missão é tornar a experiência gastronômica mais incrível e eficiente.          </p>
+          Somos uma plataforma inovadora que conecta os <i>food hunters</i> aos melhores restaurantes do país. A nossa missão é proporcinar-lhe uma experiência gastronómica inesquecivel.</p>
         </div>
         <div className="footer-links">
           <h3 className="footer-titulo-direita">Links Úteis</h3>
