@@ -11,8 +11,6 @@ import RestauranteDisponiblidade from "./RestauranteDisponiblidade";
 import RestauranteAberto from "./RestauranteAberto";
 import RestauranteInfos from "./RestauranteInfos";
 import RestauranteMenu from "./RestauranteMenu";
-import ImagemMenu from "./ImagemMenu";
-import ImagemPlanta from "./PlantaRestaurante";
 import CategoriasRestaurante from "./CategoriasRestaurantes";
 import ImagemRestaurante from "./ImagemRestaurante";
 import LoginEmpresas from "./LoginRestaurante";
@@ -22,9 +20,7 @@ import GerirMenus from "./GerirMenu";
 import GerirCategorias from "./GerirCategorias";
 import GerirDias from "./GerirDias";
 import GerirHorarios from "./GerirHorarios";
-import GerirImagemMenu from "./GerirImagemMenu";
 import GerirImagens from "./GerirImagens";
-import GerirPlanta from "./GerirPlanta";
 import GerirMesas from "./GerirMesas";
 import MainPage from "./MainPage";
 import ResultadosPesquisa from "./PaginaPesquisa";
@@ -61,8 +57,6 @@ const App = () => {
                         <Route path="/RestauranteAberto/" element={<RestauranteAberto />} />
                         <Route path="/RestauranteInfos/" element={<RestauranteInfos />} />
                         <Route path="/RestauranteMenu/" element={<RestauranteMenu />} />
-                        <Route path="/ImagemMenu/" element={<ImagemMenu />} />
-                        <Route path="/ImagemPlanta/" element={<ImagemPlanta />} />
                         <Route path="/CategoriasRestaurante/" element={<CategoriasRestaurante />} />
                         <Route path="/ImagemRestaurante/" element={<ImagemRestaurante />} />
                         <Route path="/LoginEmpresas/" element={<LoginEmpresas />} />
@@ -72,9 +66,7 @@ const App = () => {
                         <Route path="/GerirCategorias/" element={<GerirCategorias />} />
                         <Route path="/GerirDias/" element={<GerirDias />} />
                         <Route path="/GerirHorarios/" element={<GerirHorarios />} />
-                        <Route path="/GerirImagemMenu/" element={<GerirImagemMenu />} />
                         <Route path="/GerirImagens/" element={<GerirImagens />} />
-                        <Route path="/GerirPlanta/" element={<GerirPlanta />} />
                         <Route path="/GerirMesas/" element={<GerirMesas />} />
                         <Route path="/MainPage/" element={<MainPage />} />
                         <Route path="/Search/" element={<ResultadosPesquisa />} />

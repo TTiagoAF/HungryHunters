@@ -26,7 +26,6 @@ const GerirRestuarante = () => {
   const [, setNipc] = useState();
   const [api, setApi] = useState([]);
   const apiUrl = 'https://localhost:7286';
-  const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
   const ref4 = useRef(null);
@@ -35,52 +34,59 @@ const GerirRestuarante = () => {
   const ref7 = useRef(null);
   const ref8 = useRef(null);
   const ref9 = useRef(null);
+  const ref10 = useRef(null);
+  const ref11 = useRef(null);
   const [open, setOpen] = useState(false);
   const steps = [
     {
       title: 'Menu',
       description: 'Adicione e elimine os pratos do seu restaurante',
-      target: () => ref1.current,
+      target: () => ref2.current,
+    },
+    {
+      title: 'Imagens do restaurante',
+      description: 'Mostre aos seus clientes como é o seu restaurante',
+      target: () => ref3.current,
     },
     {
       title: 'Dias de funcionamento',
       description: 'Adicione as suas férias, os dias de folga semanal e os dias que estaram abertos',
-      target: () => ref2.current,
+      target: () => ref4.current,
     },
     {
       title: 'Horários',
       description: 'Adicione os seus horários de funcionamento',
-      target: () => ref3.current,
+      target: () => ref5.current,
     },
     {
       title: 'Categorias',
       description: 'Insira as categorias com que o seu restaurante se indentifica',
-      target: () => ref4.current,
+      target: () => ref6.current,
     },
     {
       title: 'Mesas',
       description: 'Insira as mesas do seu restaurante as descrevendo',
-      target: () => ref5.current,
+      target: () => ref7.current,
     },
     {
       title: 'Máximo por grupo',
       description: 'Modifique o máximo de pessoas que aceita numa mesa',
-      target: () => ref6.current,
+      target: () => ref8.current,
     },
     {
       title: 'Minhas reservas',
       description: 'Veja e gerencie as reservas dos seus clientes',
-      target: () => ref7.current,
+      target: () => ref9.current,
     },
     {
       title: 'Adicionar reserva',
       description: 'Insira a reserva dos clientes que vão ao seu estabelecimento',
-      target: () => ref8.current,
+      target: () => ref10.current,
     },
     {
       title: 'Minhas Avaliações',
       description: 'Veja o que os clientes estão a achar do seu restaurante',
-      target: () => ref9.current,
+      target: () => ref11.current,
     },
   ];
 
@@ -123,11 +129,6 @@ const GerirRestuarante = () => {
     fetchContas();
   }, []);
 
-  const handleEscolherImagemMenus = () => {
-    Cookies.set("id", id, {expires: 1});
-    navigate("/GerirImagemMenu/");
-  }
-
   const handleEscolherMenus = () => {
     Cookies.set("id", id, {expires: 1});
     navigate("/GerirMenus/");
@@ -151,11 +152,6 @@ const GerirRestuarante = () => {
   const handleEscolherCategorias = () => {
     Cookies.set("id", id, {expires: 1});
     navigate("/GerirCategorias/");
-  }
-
-  const handleEscolherPlanta = () => {
-    Cookies.set("id", id, {expires: 1});
-    navigate("/GerirPlanta/");
   }
 
   const handleEscolherMesas = () => {
@@ -205,40 +201,34 @@ const GerirRestuarante = () => {
           <div>
             <Space>
             <div className="restaurante-buttons">
-              <button className="restaurante-button" onClick={handleEscolherImagemMenus}>
-              <CiImageOn/> Imagem do Menu
-              </button>
-              <button className="restaurante-button" onClick={handleEscolherMenus} ref={ref1}>
+              <button className="restaurante-button" onClick={handleEscolherMenus} ref={ref2}>
                <BiDish/> Pratos do Restaurante
               </button>
-              <button className="restaurante-button" onClick={handleEscolherImagens}>
+              <button className="restaurante-button" onClick={handleEscolherImagens} ref={ref3}>
               <CiImageOn/> Imagens do Restaurante
               </button>
-              <button className="restaurante-button" onClick={handleEscolherDias} ref={ref2}>
+              <button className="restaurante-button" onClick={handleEscolherDias} ref={ref4}>
                 <BsCalendar2Date/> Dias de Funcionamento
               </button>
-              <button className="restaurante-button" onClick={handleEscolherHorarios} ref={ref3}>
+              <button className="restaurante-button" onClick={handleEscolherHorarios} ref={ref5}>
                <FaRegHourglass/> Horários
               </button>
-              <button className="restaurante-button" onClick={handleEscolherCategorias} ref={ref4}>
+              <button className="restaurante-button" onClick={handleEscolherCategorias} ref={ref6}>
                <CiPizza/> Categorias do Restaurante
               </button>
-              <button className="restaurante-button" onClick={handleEscolherPlanta}>
-               <CiImageOn/> Planta do Restaurante
-              </button>
-              <button className="restaurante-button" onClick={handleEscolherMesas} ref={ref5}>
+              <button className="restaurante-button" onClick={handleEscolherMesas} ref={ref7}>
                <MdOutlineTableBar/> Mesas
               </button>
-              <button className="restaurante-button" onClick={handleEscolherMaximo} ref={ref6}>
+              <button className="restaurante-button" onClick={handleEscolherMaximo} ref={ref8}>
                <MdGroups/> Máximo por grupo
               </button>
-              <button className="restaurante-button" onClick={handleMinhasReservas} ref={ref7}>
+              <button className="restaurante-button" onClick={handleMinhasReservas} ref={ref9}>
                <BsJournalBookmarkFill/> Minhas Reservas
               </button>
-              <button className="restaurante-button" onClick={handleAdicionarReserva} ref={ref8}>
+              <button className="restaurante-button" onClick={handleAdicionarReserva} ref={ref10}>
                <MdAddBusiness/> Adicionar reserva
               </button>
-              <button className="restaurante-button" onClick={handleVerAvaliacoes} ref={ref9}>
+              <button className="restaurante-button" onClick={handleVerAvaliacoes} ref={ref11}>
                <TbStarsFilled/> Minhas Avaliações
               </button>
             </div>

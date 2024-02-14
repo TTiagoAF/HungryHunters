@@ -28,6 +28,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import ToolTip from './ToolTip';
 import { Avatar, Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { Carousel } from 'antd';
 
 const MenuItem = ({ nome, preco, desc }) => (
   <div className="menu-item-detalhes">
@@ -70,6 +71,15 @@ const RestaurantDetails = () => {
   const [atendimento, setAtendimento] = useState(0);
   const [velocidade, setVelocidade] = useState(0);
   const [comentario, setComentario] = useState("");
+  const [imagens, setImagens] = useState([]);
+
+  const contentStyle = {
+    margin: 0,
+    lineHeight: '260px',
+    textAlign: 'center',
+    width: "1500px",
+    height: "600px",
+  };
 
   const handleComidaChange = (value) => {
     setComida(value);
@@ -154,6 +164,18 @@ const RestaurantDetails = () => {
     }
   };
 
+  const carregarImagem = async () => {  
+    try {
+      const response = await fetch(`${apiUrl}/api/FotosRestaurantes/ObterImagensRestaurante/${idrestaurante}`, {
+      });
+      const data = await response.json();
+      console.log(data);
+      setImagens(data.caminhosImagens);
+    } catch (erro) {
+      console.error('Erro ao obter o cardápio da API:', erro);
+    }
+  };
+
   const filtrarPorCategoria = (categoria) => {
     setCategoriaAtiva(categoria);
   };
@@ -231,6 +253,7 @@ const RestaurantDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0,0);
+    carregarImagem();
     handleBuscarMesas();
     carregarRestaurante();
     fetchMenu();
@@ -317,6 +340,13 @@ const RestaurantDetails = () => {
       <scroll-container>
         <scroll-page>
       <div className="detalhes-page">
+      <Carousel autoplay>
+      {imagens.map((imagem, index) => (
+            <div key={index}>
+            <img src={"https://localhost:7286/Imagens/" + imagem} crossOrigin='anonymous' alt={`Imagem ${index + 1}`} style={contentStyle}/>
+          </div>
+          ))}
+      </Carousel>
       {restaurantes.map((restaurante, index) => (
         <div key={index} className="informacoes-detalhes">
         <h1 className="restaurante-nome-detalhes"><SiCodechef/> {restaurante.nome}</h1>

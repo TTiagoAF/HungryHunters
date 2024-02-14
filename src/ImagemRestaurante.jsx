@@ -67,9 +67,14 @@ const ImagemRestaurante = () => {
     }
   }
 
+  const handleVerImagens = () => {
+    navigate("/GerirImagens/");
+  }
+
   return (
     <div>
-      <h1 className='titulo-principal'>Insira algumas fotos do seu restaurante</h1>
+      <h1 className='titulo-principal'>Insira algumas imagens do seu restaurante ou dos seus menus</h1>
+      <h3 className='titulo-principal'>Tamanho recomendado 1500x600</h3>
       <input
         type="file"
         id="file-input"
@@ -94,6 +99,7 @@ const ImagemRestaurante = () => {
         ))}
       </div>
       <button className='submeter-button' onClick={handleSubmit}>Submeter imagem</button>
+      <button className='submeter-button' onClick={handleVerImagens}>Gerir Imagens</button>
     </div>
   );
 };
