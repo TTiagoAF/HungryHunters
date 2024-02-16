@@ -119,12 +119,6 @@ const CriarConta = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-  };
-
-  const handleFacebookLogin = () => {
-  };
-
   return (
     <div className="pagina-login">
       <img src={imagem} alt="Imagem" className="imagem-login" />
@@ -194,14 +188,6 @@ const CriarConta = () => {
                 <a href="#2">Login</a>
               </Link>
             </p>
-          </div>
-          <div className="login-social">
-            <button className="google-login" onClick={handleGoogleLogin}>
-              Criar conta com Google
-            </button>
-            <button className="facebook-login" onClick={handleFacebookLogin}>
-              Criar conta com Facebook
-            </button>
           </div>
         </div>
       </div>

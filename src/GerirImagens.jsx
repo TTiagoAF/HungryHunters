@@ -23,6 +23,9 @@ const GerirImagens = () => {
     const carregarImagem = async () => {  
       try {
         const response = await fetch(`${apiUrl}/api/FotosRestaurantes/ObterImagensRestaurante/${Cookies.get("id")}`, {
+          headers: {
+            'Authorization': 'Bearer ' + Cookies.get("token"),
+          }
         });
         const data = await response.json();
         console.log(data);

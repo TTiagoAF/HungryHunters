@@ -12,6 +12,7 @@ import { IoHourglassOutline } from "react-icons/io5";
 import { MdOutlineTableRestaurant } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import { FaWalking } from "react-icons/fa";
+import { Tooltip } from 'antd';
 
 const MinhasReservas = ({ nomeRestaurante, dia, hora, mesa, pessoas, estado }) => (
   <div className="reservas-item">
@@ -92,7 +93,9 @@ const MinhasReservasClientes = () => {
           {reserva.map((reservas, index) => (
             <div key={index} className="reservas-button-container">
           <MinhasReservas key={index} nomeRestaurante={reservas.nomeRestaurante} dia={reservas.data_reserva.slice(0, -9)} hora={reservas.horario} mesa={reservas.nomeMesa} pessoas={reservas.quantidade_pessoa} estado={reservas.estado}/>
+          <Tooltip placement="left" title="Cancelar">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado")} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
+          </Tooltip>
           </div>
           ))}        
         </div>

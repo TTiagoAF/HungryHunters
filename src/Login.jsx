@@ -83,14 +83,6 @@ const PaginaLogin = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    
-  };
-
-  const handleFacebookLogin = () => {
-    
-  };
-
   return (
     <div className="pagina-login">
       <img src={image} alt="Imagem" className="imagem-login" />
@@ -130,10 +122,6 @@ const PaginaLogin = () => {
                 <a href="#2">Registre-se</a>
               </Link>
             </p>
-          </div>
-          <div className="login-social">
-            <button className="google-login" onClick={handleGoogleLogin}>Login com Google</button>
-            <button className="facebook-login" onClick={handleFacebookLogin}>Login com Facebook</button>
           </div>
         </div>
       </div>

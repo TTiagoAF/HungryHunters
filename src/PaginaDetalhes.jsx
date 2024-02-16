@@ -126,6 +126,7 @@ const RestaurantDetails = () => {
       const response = await fetch(`${apiUrl}/api/Avaliacoes/AdicionarAvaliacao`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(newAvaliacao)
@@ -136,6 +137,7 @@ const RestaurantDetails = () => {
           closeOnClick: true,
           draggable: true,
           });
+          window.location.reload();
       } else {
         const dataerro = await response.json();
         toast.error((dataerro.mensagem), {
@@ -152,7 +154,7 @@ const RestaurantDetails = () => {
 
   const fetchAvaliacoes = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoescom${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoesLimitadacom${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -333,6 +335,10 @@ const RestaurantDetails = () => {
     }
   };
 
+  const handleTodasAvaliacoes = () => {
+    navigate("/TodasAvaliacoes/");
+  }
+
   return (
     <body className='pagina-solo'>
     <div className="restaurante-detalhes-original">
@@ -426,6 +432,7 @@ const RestaurantDetails = () => {
             <TodasAvaliacoes key={index} nome={avaliacao.nomeCliente} comida={avaliacao.comida} conforto={avaliacao.conforto} beleza={avaliacao.beleza} atendimento={avaliacao.atendimento} velocidade={avaliacao.velocidade} comentario={avaliacao.comentario}/>
           </div>
         ))}
+        <button className="detalhes-reserva-button" onClick={handleTodasAvaliacoes}>Ver todas as avaliações</button>
     </div>
       </div>
       <div className="detalhes-page">

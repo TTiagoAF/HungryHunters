@@ -87,7 +87,7 @@ const GerirMesas = () => {
     <div className="home-page-gerir-mesas">
       <HeaderRestaurantes/>
       <div className="gerir-mesas-page">
-      <h1>Administrar horários</h1>
+      <h1>Administrar Mesas do restaurante</h1>
       <div className="gerir-mesas-buttons">
       {Object.values(mesas).map((mesa, index) => (escolher && (
         <div key={index} className="mesas-button-container">

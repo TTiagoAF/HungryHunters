@@ -84,14 +84,6 @@ const LoginEmpresas = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    // Lógica para fazer login com o Google aqui
-  };
-
-  const handleFacebookLogin = () => {
-    // Lógica para fazer login com o Facebook aqui
-  };
-
   return (
     <div className="pagina-login">
       <img src={image} alt="Imagem" className="imagem-login" />
@@ -131,10 +123,6 @@ const LoginEmpresas = () => {
                 <a href="#2">Registre-se</a>
               </Link>
             </p>
-          </div>
-          <div className="login-social">
-            <button className="google-login" onClick={handleGoogleLogin}>Login com Google</button>
-            <button className="facebook-login" onClick={handleFacebookLogin}>Login com Facebook</button>
           </div>
         </div>
       </div>

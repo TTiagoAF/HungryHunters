@@ -31,6 +31,7 @@ import GerirGrupo from "./GerirMaximo";
 import MinhasReservasRestaurante from "./MinhasReservasRestaurante";
 import AdicionarReserva from "./AdicionarReserva";
 import MinhasAvaliacoes from "./MinhasAvaliacoes";
+import TodasAvaliacoes from "./TodasAvaliacoes";
 
 const queryClient = new QueryClient({
     defaultOptions : {
@@ -77,6 +78,7 @@ const App = () => {
                         <Route path="/MinhasReservasRestaurante/" element={<MinhasReservasRestaurante />} />
                         <Route path="/AdicionarReserva/" element={<AdicionarReserva />} />
                         <Route path="/MinhasAvaliacoes/" element={<MinhasAvaliacoes />} />
+                        <Route path="/TodasAvaliacoes/" element={<TodasAvaliacoes />} />
                     </Routes>
                 </div>                   
             </header>

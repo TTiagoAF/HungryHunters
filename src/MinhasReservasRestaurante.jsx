@@ -18,6 +18,7 @@ import { MdOutlineCreditCardOff } from "react-icons/md";
 import { MdOutlineFreeCancellation } from "react-icons/md";
 import { MdOutlinePersonOff } from "react-icons/md";
 import { MdOutlineEmojiPeople } from "react-icons/md";
+import { Tooltip } from 'antd';
 
 const MinhasReservas = ({ nomeRestaurante, dia, hora, mesa, pessoas, estado }) => (
   <div className="reservas-restaurantes-item">
@@ -118,16 +119,30 @@ const MinhasReservasRestaurante = () => {
           {reserva.map((reservas, index) => (
             <div key={index} className="reservas-restaurantes-button-container">
               <div className='reservas-restaurantes-buttons'>
+              <Tooltip placement="left" title="Pendente">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Pendente")} className="pending-reservas-restaurantes-button"> <MdOutlinePendingActions/></button>
+          </Tooltip>
+          <Tooltip placement="left" title="A comer">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "A comer")} className="alimentar-reservas-restaurantes-button"> <MdOutlineDinnerDining/></button>
+          </Tooltip>
+          <Tooltip placement="left" title="Pago">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Pago")} className="pago-reservas-restaurantes-button"> <RiHandCoinLine/></button>
+          </Tooltip>
+          <Tooltip placement="left" title="Não pagou">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não pagou")} className="naopago-reservas-restaurantes-button"> <MdOutlineCreditCardOff/></button>
+          </Tooltip>
           </div>
           <MinhasReservas key={index} nomeRestaurante={reservas.nomeCliente} dia={reservas.data_reserva.slice(0, -9)} hora={reservas.horario} mesa={reservas.nomeMesa} pessoas={reservas.quantidade_pessoa} estado={reservas.estado}/>
           <div className='reservas-restaurantes-buttons'>
+          <Tooltip placement="left" title="Cancelar">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado")} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
+          </Tooltip>
+          <Tooltip placement="left" title="Não compareceu">
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não conpareceu")} className="noshow-reservas-restaurantes-button"> <MdOutlinePersonOff/></button>
+          </Tooltip>
+          <Tooltip placement="left" title="Eliminar reserva">
           <button onClick={() => handleRemove(reservas.id_reserva)} className="remove-reservas-restaurantes-button"> <FaRegTrashAlt/></button>
+          </Tooltip>
           </div>
           </div>
           ))}        

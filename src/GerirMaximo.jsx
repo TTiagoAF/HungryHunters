@@ -107,7 +107,7 @@ const GerirGrupo = () => {
     <div className="home-page-gerir-mesas">
       <HeaderRestaurantes/>
       <div className="gerir-mesas-page">
-      <h1>Administrar horários</h1>
+      <h1>Administrar Máximo de pessoas por grupo</h1>
       <div className="gerir-mesas-buttons">
         {[...Array(grupo)].map((_, index) => (escolher == true &&(
           <div key={index} className="mesas-button-container">
