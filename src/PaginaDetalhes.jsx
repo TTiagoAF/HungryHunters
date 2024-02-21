@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./css/PaginaDetalhes.css"
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { TbBread } from "react-icons/tb";
 import { MdOutlineCookie } from "react-icons/md";
@@ -12,7 +12,6 @@ import { BiDrink } from "react-icons/bi";
 import { FiCoffee } from "react-icons/fi";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import { TbSoup } from "react-icons/tb";
-import { FaMap } from "react-icons/fa";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { MdFastfood } from "react-icons/md";
 import { SiCodechef } from "react-icons/si";
@@ -29,6 +28,8 @@ import ToolTip from './ToolTip';
 import { Avatar, Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Carousel } from 'antd';
+import { FloatButton, message } from 'antd';
+import { FaRegCopy } from "react-icons/fa";
 
 const MenuItem = ({ nome, preco, desc }) => (
   <div className="menu-item-detalhes">
@@ -50,7 +51,7 @@ const TodasAvaliacoes = ({ nome, comida, conforto, beleza, atendimento, velocida
 );
 
 const RestaurantDetails = () => {
-  const [idrestaurante, ] = useState(Cookies.get("id_detalhes"));
+  const params = useParams();
   const [restaurantes, setRestaurante] = useState([]);
   const [menu, setMenu] = useState([]);
   const [avaliacoes, setAvaliacoes] = useState([]);
@@ -72,6 +73,7 @@ const RestaurantDetails = () => {
   const [velocidade, setVelocidade] = useState(0);
   const [comentario, setComentario] = useState("");
   const [imagens, setImagens] = useState([]);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const contentStyle = {
     margin: 0,
@@ -108,7 +110,7 @@ const RestaurantDetails = () => {
   const handleAvaliacao = async () => {  
 
     const newAvaliacao = {
-      RestauranteId: idrestaurante,
+      RestauranteId: params.id,
       ContaId: idconta,
       Comida: comida,
       Conforto: conforto,
@@ -154,7 +156,7 @@ const RestaurantDetails = () => {
 
   const fetchAvaliacoes = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoesLimitadacom${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoesLimitadacom${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -168,7 +170,10 @@ const RestaurantDetails = () => {
 
   const carregarImagem = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/FotosRestaurantes/ObterImagensRestaurante/${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/FotosRestaurantes/ObterImagensRestaurante/${params.id}`, {
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        }
       });
       const data = await response.json();
       console.log(data);
@@ -188,7 +193,7 @@ const RestaurantDetails = () => {
 
   const carregarRestaurante = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -204,7 +209,7 @@ const RestaurantDetails = () => {
 
   const fetchMenu = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/RestauranteMenus/ListadeMenuspor${Cookies.get("id_detalhes")}`, {
+      const response = await fetch(`${apiUrl}/api/RestauranteMenus/ListadeMenuspor${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -218,7 +223,7 @@ const RestaurantDetails = () => {
 
   const fetchHorarios = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -237,7 +242,7 @@ const RestaurantDetails = () => {
 
   const handleBuscarMesas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -294,7 +299,7 @@ const RestaurantDetails = () => {
   const handleReserva = async () => {  
 
     const newReserva = {
-      RestauranteId: idrestaurante,
+      RestauranteId: params.id,
       ContaId: idconta,
       MesaId: mesaEscolhida,
       Data_reserva: dataDaReserva,
@@ -311,6 +316,7 @@ const RestaurantDetails = () => {
       const response = await fetch(`${apiUrl}/api/Reservas/AdicionarReserva`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(newReserva)
@@ -339,8 +345,42 @@ const RestaurantDetails = () => {
     navigate("/TodasAvaliacoes/");
   }
 
+  const handleCopy = () => {
+    // Obtém a URL atual, que inclui o link do restaurante
+    const currentUrl = window.location.href;
+
+    // Cria um elemento de texto temporário
+    const textArea = document.createElement('textarea');
+    textArea.value = currentUrl;
+
+    // Adiciona o elemento ao DOM
+    document.body.appendChild(textArea);
+
+    // Seleciona e copia o conteúdo do elemento
+    textArea.select();
+    document.execCommand('copy');
+
+    // Remove o elemento temporário do DOM
+    document.body.removeChild(textArea);
+
+    messageApi.open({
+      type: 'success',
+      content: 'URL Copiado',
+    });
+  }
+
   return (
     <body className='pagina-solo'>
+      {contextHolder}
+      <FloatButton
+        icon={<FaRegCopy />}
+        type="primary"
+        style={{
+          right: 24,
+        }}
+        onClick={handleCopy}
+        tooltip={<div>Copiar Link</div>}
+      />
     <div className="restaurante-detalhes-original">
       <HeaderMain/>
       <scroll-container>
@@ -355,6 +395,7 @@ const RestaurantDetails = () => {
       </Carousel>
       {restaurantes.map((restaurante, index) => (
         <div key={index} className="informacoes-detalhes">
+          <div className='infos-exceto-mapa'>
         <h1 className="restaurante-nome-detalhes"><SiCodechef/> {restaurante.nome}</h1>
         {restaurante.categorias.map((categoria, index) => (
             <div key={index}>
@@ -365,8 +406,8 @@ const RestaurantDetails = () => {
         <p className="preco-medio-detalhes"> <FaMoneyBillAlt/> <strong>Preço médio:</strong> {restaurante.precoMedio.toFixed(2)}€</p>
         <p className="descricao-detalhes"><BsFillTelephoneFill/><strong>Telemóvel:</strong> {restaurante.telemovel}</p>
         <p className="descricao-detalhes"><MdDescription/><strong>Descrição:</strong> {restaurante.descricao}</p>
-        <h3><FaMap/> Localização:</h3>
-        <div dangerouslySetInnerHTML={{ __html: (restaurante.coordenadas)}}/>
+        </div>
+        <div className='mapa' dangerouslySetInnerHTML={{ __html: (restaurante.coordenadas)}}/>
         </div>
       ))}
       <h2 className="menu-header-detalhes">Menu</h2>
@@ -376,7 +417,7 @@ const RestaurantDetails = () => {
             <MenuItem key={index} nome={prato.nome} preco={prato.preco} desc={prato.desc_prato} />
           </div>
         ))}        
-      </div>
+      </div> 
       <div className="categorias-detalhes">
         <button onClick={() => filtrarPorCategoria('Pequeno almoço')}><MdOutlineFreeBreakfast/> Pequeno almoço</button>
         <button onClick={() => filtrarPorCategoria('Entradas')}><TbBread/> Entradas</button>
@@ -472,7 +513,7 @@ const RestaurantDetails = () => {
         ))}
         </div>
         <button className="detalhes-reserva-button" onClick={handleReserva}>Fazer reserva</button>
-      </div>
+        </div>
       <ToastContainer/>
       </scroll-page>
       </scroll-container>

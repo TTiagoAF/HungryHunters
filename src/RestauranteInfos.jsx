@@ -62,7 +62,7 @@ const RestauranteInfos = () => {
       Telemovel: tel,
       Descricao: descricao,
       CapacidadeGrupo: pessoas,
-      Autorizado: "false",
+      Autorizado: "true",
   };
   await adicionarConta([novoRestaurante]);
   

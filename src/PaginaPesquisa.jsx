@@ -53,7 +53,7 @@ function ResultadosPesquisa() {
 
     const handleRestaurante = async (idrestaurante) => {  
         Cookies.set("id_detalhes", idrestaurante);
-        navigate("/Details/");
+        navigate("/Details/" + idrestaurante);
       };
 
     useEffect(() => {

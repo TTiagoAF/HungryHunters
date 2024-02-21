@@ -131,6 +131,7 @@ const AdicionarReserva = () => {
       const response = await fetch(`${apiUrl}/api/Reservas/AdicionarReservaDosRestaurantes`, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(newReserva)

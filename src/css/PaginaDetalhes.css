@@ -28,8 +28,19 @@ scroll-container::-webkit-scrollbar-thumb {
   background-color: #ffffff;
 }
 
+.informacoes-detalhes {
+  display: flex;
+}
+
 .restaurante-nome-detalhes {
-  text-align: center;
+}
+
+.infos-exceto-mapa {
+  padding-right: 614px;
+}
+
+.mapa {
+  padding-top: 20px;
 }
 
 .detalhes-page {

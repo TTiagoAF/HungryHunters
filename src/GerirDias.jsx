@@ -151,7 +151,7 @@ const GerirDias = () => {
         <h2>Gerenciar Férias <TbBeach/></h2>
         {ferias.map((feria) => (
           <div key={feria.id_ferias} className="dias-button-container">
-            <p>Inicio das ferias: {feria.inicioFerias} -- Fim das férias: {feria.fimFerias}</p>
+            <p>Inicio das ferias: {feria.inicioFerias.slice(0, -9)} -- Fim das férias: {feria.fimFerias.slice(0, -9)}</p>
             <button onClick={() => eliminarFeria(feria.id_ferias)} className="remove-dias-button"><FaRegTrashAlt/></button>
           </div>
         ))}
@@ -160,7 +160,7 @@ const GerirDias = () => {
         <h2>Gerenciar Dias de trabalho obrigatório <MdWorkOutline/></h2>
         {diasFestivos.map((diaFestivo) => (
           <div key={diaFestivo.id_festivo} className="dias-button-container">
-            <p>Data: {diaFestivo.diaFestivo}</p>
+            <p>Data: {diaFestivo.diaFestivo.slice(0, -9)}</p>
             <button onClick={() => eliminarDiaFestivo(diaFestivo.id_festivo)} className="remove-dias-button"><FaRegTrashAlt/></button>
           </div>
         ))}
