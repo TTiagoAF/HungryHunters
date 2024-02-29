@@ -27,9 +27,10 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import ToolTip from './ToolTip';
 import { Avatar, Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { Carousel } from 'antd';
+import { Carousel, Image } from 'antd';
 import { FloatButton, message } from 'antd';
 import { FaRegCopy } from "react-icons/fa";
+import moment from 'moment';
 
 const MenuItem = ({ nome, preco, desc }) => (
   <div className="menu-item-detalhes">
@@ -60,11 +61,12 @@ const RestaurantDetails = () => {
   const [categoriaAtiva, setCategoriaAtiva] = useState(null);
   const [mesas, setMesas] = useState({});
   const [grupo, setGrupo] = useState({});
-  const [dataDaReserva, setDataDaReserva] = useState();
+  const [dataDaReserva, setDataDaReserva] = useState("");
   const [horario, setHorario] = useState({});
   const [horarioEscolhido, setHorarioEscolhido] = useState("");
-  const [mesaEscolhida, setMesaEscolhida] = useState();
-  const [pessoas, setPessoasEscolhida] = useState();
+  const [mesaEscolhida, setMesaEscolhida] = useState(0);
+  const [nomeMesaEscolhida, setNomeMesaEscolhida] = useState("");
+  const [pessoas, setPessoasEscolhida] = useState(0);
   const [idconta, ] = useState(Cookies.get("id_conta"))
   const [comida, setComida] = useState(0);
   const [conforto, setConforto] = useState(0);
@@ -74,6 +76,7 @@ const RestaurantDetails = () => {
   const [comentario, setComentario] = useState("");
   const [imagens, setImagens] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
+  const date = moment().format('MMMM Do YYYY, h:mm:ss');
 
   const contentStyle = {
     margin: 0,
@@ -156,10 +159,10 @@ const RestaurantDetails = () => {
 
   const fetchAvaliacoes = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoesLimitadacom${params.id}`, {
+      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoesLimitadacom?RestauranteId=${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
-        }
+        },
       });
       const data = await response.json();
       setAvaliacoes(data);
@@ -280,6 +283,7 @@ const RestaurantDetails = () => {
       closeOnClick: true,
       draggable: true,
       });
+      setNomeMesaEscolhida(nome);
     setMesaEscolhida(id_mesa);
   };
   const handleHorario = async (horarioRestaurante) => {  
@@ -297,6 +301,28 @@ const RestaurantDetails = () => {
     setPessoasEscolhida(index + 1);
   };
   const handleReserva = async () => {  
+
+    if(dataDaReserva == "")
+    {
+      return toast.error(("Escolha uma data"), {
+        closeOnClick: true,
+        draggable: true,
+        });
+    }
+    if(mesaEscolhida == 0)
+    {
+      return toast.error(("Escolha uma mesa"), {
+        closeOnClick: true,
+        draggable: true,
+        });
+    }
+    if(pessoas == 0)
+    {
+      return toast.error(("Escolha a quantidade de pessoas"), {
+        closeOnClick: true,
+        draggable: true,
+        });
+    }
 
     const newReserva = {
       RestauranteId: params.id,
@@ -327,6 +353,29 @@ const RestaurantDetails = () => {
           closeOnClick: true,
           draggable: true,
           });
+
+          const newLogs = [
+            {
+              RestauranteId: params.id,
+              ContaId: idconta,
+              Descricao: "Foi feita uma reserva para o dia " + dataDaReserva.toString() + " para as " + horarioEscolhido + " na mesa " + nomeMesaEscolhida,
+              Log_Data: date,
+            }
+          ];
+
+            const response1 = await fetch(`${apiUrl}/api/Logs/AdicionarLogs`, {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + Cookies.get("token"),
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newLogs)
+            });
+        
+            if (response1.ok) {
+              console.log("Ok");
+            }
+
       } else {
         const dataerro = await response.json();
         toast.error((dataerro.mensagem), {
@@ -346,21 +395,12 @@ const RestaurantDetails = () => {
   }
 
   const handleCopy = () => {
-    // Obtém a URL atual, que inclui o link do restaurante
     const currentUrl = window.location.href;
-
-    // Cria um elemento de texto temporário
     const textArea = document.createElement('textarea');
     textArea.value = currentUrl;
-
-    // Adiciona o elemento ao DOM
     document.body.appendChild(textArea);
-
-    // Seleciona e copia o conteúdo do elemento
     textArea.select();
     document.execCommand('copy');
-
-    // Remove o elemento temporário do DOM
     document.body.removeChild(textArea);
 
     messageApi.open({
@@ -389,7 +429,13 @@ const RestaurantDetails = () => {
       <Carousel autoplay>
       {imagens.map((imagem, index) => (
             <div key={index}>
-            <img src={"https://localhost:7286/Imagens/" + imagem} crossOrigin='anonymous' alt={`Imagem ${index + 1}`} style={contentStyle}/>
+              <Image.PreviewGroup
+                preview={{
+                  onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                }}
+              >
+                <Image src={"https://localhost:7286/Imagens/" + imagem} style={contentStyle} alt={`Imagem ${index + 1}`}/>
+              </Image.PreviewGroup>
           </div>
           ))}
       </Carousel>

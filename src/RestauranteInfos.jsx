@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import "./css/Restauranteinfo.css";
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
+import { Steps } from 'antd';
+import { MdLocationOn } from "react-icons/md";
+import { FaInfoCircle } from "react-icons/fa";
 
 const RestauranteInfos = () => {
   const {
@@ -132,6 +135,20 @@ const RestauranteInfos = () => {
         </div>
         <div className="infos-direita">
           <h1 className="titulo-infos">Bem-vindo à HungryHunters</h1>
+          <Steps
+            items={[
+              {
+                title: '1',
+                status: 'finish',
+                icon: <MdLocationOn />,
+              },
+              {
+                title: '2',
+                status: 'process',
+                icon: <FaInfoCircle />,
+              },
+            ]}
+          />
           <form className="formulario-infos" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="number"

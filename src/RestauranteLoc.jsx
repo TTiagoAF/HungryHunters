@@ -6,6 +6,9 @@ import imagem from './../img/restaurantcriar.jpg';
 import { useForm } from "react-hook-form";
 import "./css/RestauranteLoc.css";
 import Cookies from 'js-cookie';
+import { Steps } from 'antd';
+import { MdLocationOn } from "react-icons/md";
+import { FaInfoCircle } from "react-icons/fa";
 
 const RestauranteLoc = () => {
   const {
@@ -81,6 +84,20 @@ const RestauranteLoc = () => {
         </div>
         <div className="loc-direita">
           <h1 className="titulo-loc">Bem-vindo à HungryHunters</h1>
+          <Steps
+            items={[
+              {
+                title: '1',
+                status: 'process',
+                icon: <MdLocationOn />,
+              },
+              {
+                title: '2',
+                status: 'wait',
+                icon: <FaInfoCircle />,
+              },
+            ]}
+          />
           <form className="formulario-loc" onSubmit={handleSubmit(onSubmit)}>
           <input
               type="text"

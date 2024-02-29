@@ -4,6 +4,7 @@ import "./css/GerirMenus.css"
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import { Image } from 'antd';
 
 const GerirImagens = () => {
 
@@ -65,10 +66,16 @@ const GerirImagens = () => {
       <div className="ver-imagem">
       {imagens.map((imagem, index) => (
             <div key={index} className="imagem-container">
-            <img src={"https://localhost:7286/Imagens/" + imagem} crossOrigin='anonymous' alt={`Imagem ${index + 1}`} />
-            <div className="imagem-buttons">
+              <Image.PreviewGroup
+                preview={{
+                  onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                }}
+              >
+                <Image src={"https://localhost:7286/Imagens/" + imagem} />
+                <div className="imagem-buttons">
               <button onClick={() => handleRemoverImagem(imagem)} className='eliminar-button'>Eliminar</button>
             </div>
+              </Image.PreviewGroup>
           </div>
           ))}
           </div>

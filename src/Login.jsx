@@ -119,7 +119,12 @@ const PaginaLogin = () => {
             <p className="registro-login">
               Ainda não tem uma conta? 
               <Link to="/CreateAcount/" class="Voltar">
-                <a href="#2">Registre-se</a>
+                <a href="#2"> Registre-se</a>
+              </Link>
+            </p>
+            <p className="registro-login">
+              <Link to="/Home/" class="Voltar">
+                <a href="#2">Ir para a página inicial</a>
               </Link>
             </p>
           </div>

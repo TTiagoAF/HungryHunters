@@ -185,7 +185,12 @@ const CriarConta = () => {
             <p className="registro-login">
               Já têm conta?
               <Link to="/Login/" class="Voltar">
-                <a href="#2">Login</a>
+                <a href="#2"> Login</a>
+              </Link>
+            </p>
+            <p className="registro-login">
+              <Link to="/Home/" class="Voltar">
+                <a href="#2">Ir para a página inicial</a>
               </Link>
             </p>
           </div>

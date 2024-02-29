@@ -19,6 +19,7 @@ import { MdOutlineFreeCancellation } from "react-icons/md";
 import { MdOutlinePersonOff } from "react-icons/md";
 import { MdOutlineEmojiPeople } from "react-icons/md";
 import { Tooltip } from 'antd';
+import moment from 'moment';
 
 const MinhasReservas = ({ nomeRestaurante, dia, hora, mesa, pessoas, estado }) => (
   <div className="reservas-restaurantes-item">
@@ -35,6 +36,7 @@ const MinhasReservasRestaurante = () => {
   const navigate = useNavigate();
   const [reserva, setReserva] = useState([]);
   const apiUrl = 'https://localhost:7286';
+  const date = moment().format('MMMM Do YYYY, h:mm:ss');
 
   useEffect(() => {
     if(Cookies.get("token") == undefined)
@@ -83,7 +85,7 @@ const MinhasReservasRestaurante = () => {
     }
  };
 
- const handleChangeEstado = async (id_reserva, state) => {
+ const handleChangeEstado = async (id_reserva, state, RestauranteId, horario, mesa, data_reserva, contaId) => {
   try {
     const response = await fetch(`${apiUrl}/api/Reservas/MudarEstado/${id_reserva}/${state}`, {
       method: 'POST',
@@ -96,6 +98,29 @@ const MinhasReservasRestaurante = () => {
         closeOnClick: true,
         draggable: true,
         });
+        
+        const newLogs = [
+          {
+            RestauranteId: RestauranteId,
+            ContaId: contaId,
+            Descricao: "O estado da reserva para o dia " + data_reserva + " para as " + horario + " na mesa " + mesa + " foi alterada para " + state,
+            Log_Data: date,
+          }
+        ];
+
+          const response1 = await fetch(`${apiUrl}/api/Logs/AdicionarLogs`, {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + Cookies.get("token"),
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newLogs)
+          });
+      
+          if (response1.ok) {
+            console.log("Ok");
+          }
+
         window.location.reload();
     } else {
       const dataerro = await response.json();
@@ -120,25 +145,25 @@ const MinhasReservasRestaurante = () => {
             <div key={index} className="reservas-restaurantes-button-container">
               <div className='reservas-restaurantes-buttons'>
               <Tooltip placement="left" title="Pendente">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Pendente")} className="pending-reservas-restaurantes-button"> <MdOutlinePendingActions/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Pendente", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="pending-reservas-restaurantes-button"> <MdOutlinePendingActions/></button>
           </Tooltip>
           <Tooltip placement="left" title="A comer">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "A comer")} className="alimentar-reservas-restaurantes-button"> <MdOutlineDinnerDining/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "A comer", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="alimentar-reservas-restaurantes-button"> <MdOutlineDinnerDining/></button>
           </Tooltip>
           <Tooltip placement="left" title="Pago">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Pago")} className="pago-reservas-restaurantes-button"> <RiHandCoinLine/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Pago", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="pago-reservas-restaurantes-button"> <RiHandCoinLine/></button>
           </Tooltip>
           <Tooltip placement="left" title="Não pagou">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não pagou")} className="naopago-reservas-restaurantes-button"> <MdOutlineCreditCardOff/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não pagou", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="naopago-reservas-restaurantes-button"> <MdOutlineCreditCardOff/></button>
           </Tooltip>
           </div>
           <MinhasReservas key={index} nomeRestaurante={reservas.nomeCliente} dia={reservas.data_reserva.slice(0, -9)} hora={reservas.horario} mesa={reservas.nomeMesa} pessoas={reservas.quantidade_pessoa} estado={reservas.estado}/>
           <div className='reservas-restaurantes-buttons'>
           <Tooltip placement="left" title="Cancelar">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado")} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
           </Tooltip>
           <Tooltip placement="left" title="Não compareceu">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não conpareceu")} className="noshow-reservas-restaurantes-button"> <MdOutlinePersonOff/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não conpareceu", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="noshow-reservas-restaurantes-button"> <MdOutlinePersonOff/></button>
           </Tooltip>
           <Tooltip placement="left" title="Eliminar reserva">
           <button onClick={() => handleRemove(reservas.id_reserva)} className="remove-reservas-restaurantes-button"> <FaRegTrashAlt/></button>

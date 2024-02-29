@@ -18,7 +18,6 @@ const CriarRestaurante = () => {
   const [confirm, setConfirm] = useState('');
   const [nipc, setNipc] = useState('');
   const [razaoSocial, setRazaoSocial] = useState('');
-  const [numRestaurante, setNumRestaurante] = useState(0);
   const [tel, setTel] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [errorMessage7, setErrorMessage7] = useState('');
@@ -49,11 +48,6 @@ const CriarRestaurante = () => {
     setErrorMessage('');
   };
 
-  const handleNumRestaurante = (e) => {
-    setNumRestaurante(e.target.value);
-    setErrorMessage('');
-  };
-
   const handleTel = (e) => {
     setTel(e.target.value);
     setErrorMessage('');
@@ -71,7 +65,7 @@ const CriarRestaurante = () => {
       Nipc: nipc,
       Razao_social: razaoSocial,
       Email: email,
-      Num_Restaurante: numRestaurante,
+      Num_Restaurante: 1,
       Telemovel: tel,
       Password: password
   };
@@ -82,7 +76,6 @@ const CriarRestaurante = () => {
     setRazaoSocial("");
     setPassword("");
     setConfirm("");
-    setNumRestaurante("");
     setTel("");
     setNipc("");
     
@@ -150,13 +143,6 @@ const adicionarEmpresa = async (newEmpresa) => {
               className="input-login"
             />
             <input
-              type="number"
-              placeholder="Número de restaurante"
-              value={numRestaurante}
-              onChange={handleNumRestaurante}
-              className="input-login"
-            />
-            <input
                 type="tel"
                 placeholder="Telemóvel"
                 value={tel}
@@ -189,7 +175,12 @@ const adicionarEmpresa = async (newEmpresa) => {
             <p className="registro-login">
               Já têm conta?
               <Link to="/LoginEmpresas/" class="Voltar">
-                <a href="#2">Login</a>
+                <a href="#2"> Login</a>
+              </Link>
+            </p>
+            <p className="registro-login">
+              <Link to="/Home/" class="Voltar">
+                <a href="#2">Ir para a página inicial</a>
               </Link>
             </p>
           </div>

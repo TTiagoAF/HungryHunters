@@ -13,6 +13,7 @@ import { MdOutlineTableRestaurant } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import { FaWalking } from "react-icons/fa";
 import { Tooltip } from 'antd';
+import moment from 'moment';
 
 const MinhasReservas = ({ nomeRestaurante, dia, hora, mesa, pessoas, estado }) => (
   <div className="reservas-item">
@@ -29,6 +30,7 @@ const MinhasReservasClientes = () => {
   const navigate = useNavigate();
   const [reserva, setReserva] = useState([]);
   const apiUrl = 'https://localhost:7286';
+  const date = moment().format('MMMM Do YYYY, h:mm:ss');
 
 
   useEffect(() => {
@@ -57,7 +59,7 @@ const MinhasReservasClientes = () => {
     }
   };
 
-  const handleChangeEstado = async (id_reserva, state) => {
+  const handleChangeEstado = async (id_reserva, state, RestauranteId, horario, mesa, data_reserva) => {
     try {
       const response = await fetch(`${apiUrl}/api/Reservas/MudarEstado/${id_reserva}/${state}`, {
         method: 'POST',
@@ -70,6 +72,29 @@ const MinhasReservasClientes = () => {
           closeOnClick: true,
           draggable: true,
           });
+
+          const newLogs = [
+            {
+              RestauranteId: RestauranteId,
+              ContaId: Cookies.get("id_conta"),
+              Descricao: "A reserva para o dia " + data_reserva + " para as " + horario + " na mesa " + mesa + " foi cancelada",
+              Log_Data: date,
+            }
+          ];
+
+            const response1 = await fetch(`${apiUrl}/api/Logs/AdicionarLogs`, {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + Cookies.get("token"),
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newLogs)
+            });
+        
+            if (response1.ok) {
+              console.log("Ok");
+            }
+
           window.location.reload();
       } else {
         const dataerro = await response.json();
@@ -94,7 +119,7 @@ const MinhasReservasClientes = () => {
             <div key={index} className="reservas-button-container">
           <MinhasReservas key={index} nomeRestaurante={reservas.nomeRestaurante} dia={reservas.data_reserva.slice(0, -9)} hora={reservas.horario} mesa={reservas.nomeMesa} pessoas={reservas.quantidade_pessoa} estado={reservas.estado}/>
           <Tooltip placement="left" title="Cancelar">
-          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado")} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
+          <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Cancelado", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9))} className="cancelled-reservas-restaurantes-button"> <MdOutlineFreeCancellation/></button>
           </Tooltip>
           </div>
           ))}        

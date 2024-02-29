@@ -9,6 +9,7 @@ import { MdGroups } from "react-icons/md";
 import { CiClock2 } from "react-icons/ci";
 import { ToastContainer, toast } from 'react-toastify';
 import ToolTip from './ToolTip';
+import moment from 'moment';
 
 const AdicionarReserva = () => {
   const [idrestaurante, ] = useState(Cookies.get("id"));
@@ -21,7 +22,9 @@ const AdicionarReserva = () => {
   const [horario, setHorario] = useState({});
   const [horarioEscolhido, setHorarioEscolhido] = useState("");
   const [mesaEscolhida, setMesaEscolhida] = useState();
+  const [nomeMesaEscolhida, setNomeMesaEscolhida] = useState("");
   const [pessoas, setPessoasEscolhida] = useState();
+  const date = moment().format('MMMM Do YYYY, h:mm:ss');
 
   const carregarRestaurante = async () => {  
     try {
@@ -96,6 +99,7 @@ const AdicionarReserva = () => {
       draggable: true,
       });
     setMesaEscolhida(id_mesa);
+    setNomeMesaEscolhida(nome);
   };
   const handleHorario = async (horarioRestaurante) => {  
     toast.success(("O horário escolhido foi as " + horarioRestaurante + "h"), {
@@ -143,6 +147,29 @@ const AdicionarReserva = () => {
           closeOnClick: true,
           draggable: true,
           });
+
+          const newLogs = [
+            {
+              RestauranteId: idrestaurante,
+              ContaId: 0,
+              Descricao: "Foi feita uma reserva para o dia " + dataDaReserva + " para as " + horarioEscolhido + " na mesa " + nomeMesaEscolhida,
+              Log_Data: date,
+            }
+          ];
+
+            const response1 = await fetch(`${apiUrl}/api/Logs/AdicionarLogs`, {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + Cookies.get("token"),
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newLogs)
+            });
+        
+            if (response1.ok) {
+              console.log("Ok");
+            }
+
       } else {
         const dataerro = await response.json();
         toast.error((dataerro.mensagem), {

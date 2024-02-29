@@ -17,6 +17,7 @@ import { MdAddBusiness } from "react-icons/md";
 import { TbStarsFilled } from "react-icons/tb";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
+import { BsClockHistory } from "react-icons/bs";
 
 const GerirRestuarante = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const GerirRestuarante = () => {
   const ref9 = useRef(null);
   const ref10 = useRef(null);
   const ref11 = useRef(null);
+  const ref12 = useRef(null);
   const [open, setOpen] = useState(false);
   const steps = [
     {
@@ -87,6 +89,11 @@ const GerirRestuarante = () => {
       title: 'Minhas Avaliações',
       description: 'Veja o que os clientes estão a achar do seu restaurante',
       target: () => ref11.current,
+    },
+    {
+      title: 'Histórico de reservas',
+      description: 'Aqui pode ver se o estado das suas reservas foram alterados ou se alguma reserva foi adicionada',
+      target: () => ref12.current,
     },
   ];
 
@@ -179,6 +186,11 @@ const GerirRestuarante = () => {
     navigate("/MinhasAvaliacoes/");
   }
 
+  const handleVerLogs = () => {
+    Cookies.set("id", id, {expires: 1});
+    navigate("/Historico/");
+  }
+
   return (
     <body>
       <FloatButton
@@ -230,6 +242,9 @@ const GerirRestuarante = () => {
               </button>
               <button className="restaurante-button" onClick={handleVerAvaliacoes} ref={ref11}>
                <TbStarsFilled/> Minhas Avaliações
+              </button>
+              <button className="restaurante-button" onClick={handleVerLogs} ref={ref12}>
+               <BsClockHistory/> Histórico
               </button>
             </div>
             </Space>

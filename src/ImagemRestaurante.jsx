@@ -48,6 +48,7 @@ const ImagemRestaurante = () => {
     const response = await fetch(`${apiUrl}/api/FotosRestaurantes/AdicionarFotos`, {
       method: 'POST',
       headers: {
+        'Authorization': 'Bearer ' + Cookies.get("token"),
       },
       body: formdata,
     });
