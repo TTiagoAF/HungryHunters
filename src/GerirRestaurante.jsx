@@ -16,7 +16,7 @@ import { BsJournalBookmarkFill } from "react-icons/bs";
 import { MdAddBusiness } from "react-icons/md";
 import { TbStarsFilled } from "react-icons/tb";
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { FloatButton } from 'antd';
+import { FloatButton, notification } from 'antd';
 import { BsClockHistory } from "react-icons/bs";
 
 const GerirRestuarante = () => {
@@ -24,6 +24,7 @@ const GerirRestuarante = () => {
   const [nome,] = useState(Cookies.get("nome"));
   const [autorizado, setAutorizado] = useState("false");
   const [id, setId] = useState("false");
+  const [count, setCount] = useState(0);
   const [, setNipc] = useState();
   const [api, setApi] = useState([]);
   const apiUrl = 'https://localhost:7286';
@@ -96,6 +97,23 @@ const GerirRestuarante = () => {
       target: () => ref12.current,
     },
   ];
+  
+  const [logs, setLogs] = useState([]);
+
+  const fetchAvaliacoes = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/Logs/ListadeLogscom?RestauranteId=${Cookies.get("id")}`, {
+        headers: {
+          'Authorization': 'Bearer ' + Cookies.get("token"),
+        },
+      });
+      const data = await response.json();
+      setLogs(data);
+      setCount((counts) => counts + 1);
+    } catch (erro) {
+      console.error('Erro ao obter o cardápio da API:', erro);
+    }
+  };
 
   useEffect(() => {
     if(Cookies.get("token") == undefined || Cookies.get("Razao") == undefined || Cookies.get("nome") == undefined)
@@ -134,7 +152,33 @@ const GerirRestuarante = () => {
       }
     };
     fetchContas();
+
+    notification.open({
+      type: 'info',
+      message: 'Histórico',
+      description: 'Veja o seu histórico pode ter novas informações',
+    });
+
   }, []);
+
+  useEffect(() => {
+    fetchAvaliacoes();
+    const intervalo = setInterval(() => {
+      fetchAvaliacoes();
+    }, 60000);
+
+    return () => clearInterval(intervalo);
+  }, []);
+
+  useEffect(() => {
+    if (count >= 2) {
+      notification.open({
+        type: 'info',
+        message: 'Histórico atualizado',
+        description: 'Vá ver o seu histórico foi atualizado',
+      });
+    }
+  }, [logs.length]);
 
   const handleEscolherMenus = () => {
     Cookies.set("id", id, {expires: 1});

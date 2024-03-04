@@ -63,7 +63,7 @@ const MinhasReservasRestaurante = () => {
     }
   };
 
-   const handleRemove = async (id) => {  
+   const handleRemove = async (id, RestauranteId, horario, mesa, data_reserva, contaId) => {  
     try {
       const response = await fetch(`${apiUrl}/api/Reservas/EliminarReservas/${id}`, {
         method: 'POST',
@@ -76,6 +76,27 @@ const MinhasReservasRestaurante = () => {
           closeOnClick: true,
           draggable: true,
           });
+
+          const newLogs = [
+            {
+              RestauranteId: RestauranteId,
+              ContaId: contaId,
+              Descricao: "A reserva para o dia " + data_reserva + " para as " + horario + " na mesa " + mesa + " foi eliminada ",
+              Log_Data: date,
+            }
+          ];
+  
+            const response1 = await fetch(`${apiUrl}/api/Logs/AdicionarLogs`, {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + Cookies.get("token"),
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newLogs)
+            });
+            if (response1.ok) {
+              console.log("Ok");
+            }
         window.location.reload();
       } else {
         console.error('Erro');
@@ -166,7 +187,7 @@ const MinhasReservasRestaurante = () => {
           <button onClick={() => handleChangeEstado(reservas.id_reserva, reservas.estado = "Não conpareceu", reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="noshow-reservas-restaurantes-button"> <MdOutlinePersonOff/></button>
           </Tooltip>
           <Tooltip placement="left" title="Eliminar reserva">
-          <button onClick={() => handleRemove(reservas.id_reserva)} className="remove-reservas-restaurantes-button"> <FaRegTrashAlt/></button>
+          <button onClick={() => handleRemove(reservas.id_reserva, reservas.restauranteId, reservas.horario, reservas.nomeMesa, reservas.data_reserva.slice(0, -9), reservas.contaId)} className="remove-reservas-restaurantes-button"> <FaRegTrashAlt/></button>
           </Tooltip>
           </div>
           </div>

@@ -14,10 +14,10 @@ const Historico = () => {
 
   const fetchAvaliacoes = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Logs/ListadeLogscom${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Logs/ListadeLogscom?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
-        }
+        },
       });
       const data = await response.json();
       setLogs(data);

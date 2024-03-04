@@ -13,7 +13,6 @@ const GerirEmpresa = () => {
   const navigate = useNavigate();
   const [razaosocial,] = useState(Cookies.get("Razao"));
   const [numRestaurantes, setNumRestaurantes] = useState(0);
-  const [nome, setNome] = useState({});
   const [nipc, setNipc] = useState();
   const [escolher, setEscolher] = useState(false);
   const [api, setApi] = useState([]);
@@ -148,8 +147,6 @@ const GerirEmpresa = () => {
       if (data) {
         console.log('Entrou no if2', data);
         console.log(' no if2', api2);
-        const nome = Object.values(data).map(nome => nome.nome);
-        setNome(nome);
       } else {
         console.log('Não entrou no if');
       }
@@ -162,8 +159,9 @@ const GerirEmpresa = () => {
     setEscolher(false);
   }
 
-  const handleRestaurante = (nomeRestaurante) => {   
+  const handleRestaurante = (nomeRestaurante, id_restaurante) => {   
     Cookies.set('nome', nomeRestaurante, {expires: 1});
+    Cookies.set('id', id_restaurante, {expires: 1});
     navigate("/GerirRestaurante/");
  };
 
@@ -185,10 +183,10 @@ const GerirEmpresa = () => {
       </div>
       <button onClick={handleAddRestaurant} className="add-restaurant-button"> Adicionar Restaurante</button>
       <div className="restaurant-buttons">
-        {Object.values(nome).map((nomeRestaurante, index) => (escolher == true &&(
+        {api2.map((apis2, index) => (escolher == true &&(
         <div key={index} className="restaurant-button-container">
-        <button className="restaurant-button" onClick={() => handleRestaurante(nomeRestaurante)}> <IoIosRestaurant/>  {nomeRestaurante}</button>
-        <button onClick={() => handleRemove(nomeRestaurante)} className="remove-restaurant-button"> <FaRegTrashAlt/></button>
+        <button className="restaurant-button" onClick={() => handleRestaurante(apis2.nome, apis2.id_restaurante)}> <IoIosRestaurant/>  {apis2.nome}</button>
+        <button onClick={() => handleRemove(apis2.nome)} className="remove-restaurant-button"> <FaRegTrashAlt/></button>
       </div>
       )))}
       </div>
