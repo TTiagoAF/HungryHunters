@@ -33,7 +33,6 @@ const CategoriasRestaurante = () => {
   };
 
   const handleSubmit = () => {
-    console.log("Categorias", categoriaSelecionada);
     fetchCategoria();
   }
 
@@ -62,10 +61,10 @@ const CategoriasRestaurante = () => {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro a adicionar categorias');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro a adicionar categorias:', error);
         throw error;
     }}
 

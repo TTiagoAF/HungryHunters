@@ -43,10 +43,10 @@ const GerirMesas = () => {
           draggable: true,
           });
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar mesa');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar mesa:', erro);
     }
   };
 
@@ -58,14 +58,9 @@ const GerirMesas = () => {
         }
       });
       const data = await response.json();
-      if (data) {
-        console.log('Entrou no if2', data);
         setMesas(data);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro ao obter as mesas:', erro);
     }
   };
 

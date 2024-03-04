@@ -54,17 +54,14 @@ const ImagemRestaurante = () => {
     });
     
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
         navigate("/GerirImagens/")
       } else {
         const dataerro = response.json();
-      console.error('Erro na operação:', dataerro);
-      console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
       setErrorMessage(dataerro.mensagem);
-      throw new Error('Erro ao adicionar nova conta na API');
+      throw new Error('Erro ao adicionar imagens');
       }
     } catch (error) {
-      console.error('Erro ao fazer upload:', error);
+      console.error('Erro ao adicionar imagens:', error);
     }
   }
 
@@ -74,7 +71,7 @@ const ImagemRestaurante = () => {
 
   return (
     <div>
-      <h1 className='titulo-principal'>Insira algumas imagens do seu restaurante ou dos seus menus</h1>
+      <h1 className='titulo-principal'>Insira algumas imagens do seu restaurante ou dos seus pratos</h1>
       <h3 className='titulo-principal'>Tamanho recomendado 1500x600</h3>
       <input
         type="file"

@@ -40,7 +40,6 @@ function RestauranteMesa() {
     event.preventDefault();
     
     fetchMesa();
-    console.log('Mesas:', mesas);
   };
   
   const fetchMesa = async () => {
@@ -67,10 +66,10 @@ function RestauranteMesa() {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro a adicionar mesas');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro a adicionar mesas:', error);
         throw error;
     }}
 
@@ -82,7 +81,7 @@ function RestauranteMesa() {
     <body className='pagina-adicionar'>
     <div>
       <div className='titulo'>
-        <h1 className='titulo-principal'>Registro de Restaurante</h1>
+        <h1 className='titulo-principal'>Registo de Mesas</h1>
       </div>
       <div className="menu-container">
         <form className='formulario-menu'>
@@ -126,7 +125,7 @@ function RestauranteMesa() {
           <button type="button" onClick={handleAdicionarMesa} className='button-novo-menu'>
             Adicionar Mesa
           </button>
-          <input type="submit" value="Registrar Mesas" onClick={handleSetMesa} className='submeter-menu'/>
+          <input type="submit" value="Registar Mesas" onClick={handleSetMesa} className='submeter-menu'/>
           <button type="button" onClick={handleMesa} className='button-novo-menu'>
             Gerir Mesa
           </button>

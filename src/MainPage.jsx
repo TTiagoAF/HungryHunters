@@ -45,10 +45,9 @@ function MainPage() {
         }
       });
       const data = await response.json();
-      console.log(data);
       setRestaurantes(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
 
@@ -60,10 +59,9 @@ function MainPage() {
         }
       });
       const data = await response.json();
-      console.log(data);
       setRestaurantesLisboa(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
 
@@ -75,10 +73,9 @@ function MainPage() {
         }
       });
       const data = await response.json();
-      console.log(data);
       setRestaurantesPorto(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
 
@@ -90,10 +87,9 @@ function MainPage() {
         }
       });
       const data = await response.json();
-      console.log(data);
       setRestaurantesFaro(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
 
@@ -107,7 +103,7 @@ function MainPage() {
       const data = await response.json();
       setRestaurantesMelhorComida(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
 
@@ -121,7 +117,7 @@ function MainPage() {
       const data = await response.json();
       setRestaurantesMelhorConforto(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
   const carregarRestaurantesMaisBonito = async () => {  
@@ -134,7 +130,7 @@ function MainPage() {
       const data = await response.json();
       setRestaurantesMaisBonito(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
   const carregarRestaurantesMelhorAtendimento = async () => {  
@@ -147,7 +143,7 @@ function MainPage() {
       const data = await response.json();
       setRestaurantesMelhorAtendimento(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
   const carregarRestaurantesMaisRapido = async () => {  
@@ -160,7 +156,7 @@ function MainPage() {
       const data = await response.json();
       setRestaurantesMaisRapido(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter restaurantes:', erro);
     }
   };
 

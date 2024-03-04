@@ -50,10 +50,9 @@ const GerirMenus = () => {
           }
         });
         const data = await response.json();
-        console.log(data);
         setMenu(data);
       } catch (erro) {
-        console.error('Erro ao obter o cardápio da API:', erro);
+        console.error('Erro ao obter o menu:', erro);
       }
     };
 
@@ -87,10 +86,10 @@ const GerirMenus = () => {
           });
         window.location.reload();
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar o prato');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar o prato:', erro);
     }
  };
 

@@ -50,8 +50,6 @@ function RestauranteAberto() {
     navigate("/GerirDias/");
   };
   const handleDias = () => {
-    console.log('Dias selecionados:', checkedDays);
-    console.log('Dias selecionados:', checkedDias);
     fetchDias();
   };
 
@@ -78,17 +76,15 @@ function RestauranteAberto() {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro ao adicionar dias de folga');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro ao adicionar dias de folga:', error);
         throw error;
     }}
 
   const handleFeriasSubmit = (e) => {
     e.preventDefault();
-    console.log('Início de férias:', inicioFerias);
-    console.log('Fim de férias:', fimFerias);
     fetchFerias();
   };
 
@@ -114,16 +110,15 @@ function RestauranteAberto() {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro ao adicionar férias');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro ao adicionar férias:', error);
         throw error;
     }}
 
   const handleFestivoSubmit = (e) => {
     e.preventDefault();
-    console.log('Dia festivo:', diafestivo);
     fetchFestivo();
   };
 
@@ -149,10 +144,10 @@ function RestauranteAberto() {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro ao adicionar dia de trabalho obrigatório');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro ao adicionar dia de trabalho obrigatório:', error);
         throw error;
     }}
 

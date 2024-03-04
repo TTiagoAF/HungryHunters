@@ -26,7 +26,6 @@ const GerirRestuarante = () => {
   const [id, setId] = useState("false");
   const [count, setCount] = useState(0);
   const [, setNipc] = useState();
-  const [api, setApi] = useState([]);
   const apiUrl = 'https://localhost:7286';
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -100,7 +99,7 @@ const GerirRestuarante = () => {
   
   const [logs, setLogs] = useState([]);
 
-  const fetchAvaliacoes = async () => {
+  const fetchLogs = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/Logs/ListadeLogscom?RestauranteId=${Cookies.get("id")}`, {
         headers: {
@@ -111,7 +110,7 @@ const GerirRestuarante = () => {
       setLogs(data);
       setCount((counts) => counts + 1);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter as logs:', erro);
     }
   };
 
@@ -125,7 +124,7 @@ const GerirRestuarante = () => {
       navigate("/LoginEmpresas/")
     }
 
-    const fetchContas = async () => {
+    const fetchRestaurante = async () => {
       try {
         const response = await fetch(`${apiUrl}/api/Restaurantes/Restaurantespor${nome}`, {
           headers: {
@@ -133,10 +132,6 @@ const GerirRestuarante = () => {
           }
         });
         const data = await response.json();
-        setApi(data);
-        if (data) {
-          console.log('Entrou no if', data);
-          console.log(' no if', api);
           const num = Object.values(data).map(autorizado => autorizado.autorizado);
           setAutorizado(num);
           const nipc = Object.values(data).map(Nipc => Nipc.nipc);
@@ -144,14 +139,11 @@ const GerirRestuarante = () => {
           const idRestaurante = Object.values(data).map(id => id.id_restaurante);
           setId(parseInt(idRestaurante));
           Cookies.set("id", idRestaurante);
-        } else {
-          console.log('Não entrou no if');
-        }
       } catch (erro) {
-        console.error('Erro ao obter as contas da API:', erro);
+        console.error('Erro ao obter os restaurantes:', erro);
       }
     };
-    fetchContas();
+    fetchRestaurante();
 
     notification.open({
       type: 'info',
@@ -162,9 +154,9 @@ const GerirRestuarante = () => {
   }, []);
 
   useEffect(() => {
-    fetchAvaliacoes();
+    fetchLogs();
     const intervalo = setInterval(() => {
-      fetchAvaliacoes();
+      fetchLogs();
     }, 60000);
 
     return () => clearInterval(intervalo);

@@ -31,10 +31,9 @@ const GerirDias = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setFerias(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter ferias:', erro);
     }
   };
 
@@ -46,10 +45,9 @@ const GerirDias = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setDiasFestivos(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro a obter dias de trabalho obrigatório:', erro);
     }
   };
 
@@ -61,7 +59,6 @@ const GerirDias = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       const segundas = Object.values(data).map(dia => dia.segunda);
       setSegunda(segundas);
       const tercas = Object.values(data).map(dia => dia.terca);
@@ -77,7 +74,7 @@ const GerirDias = () => {
       const domingos = Object.values(data).map(dia => dia.domingo);
       setDomingo(domingos);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro a obter dias de folga:', erro);
     }
   };
 
@@ -96,10 +93,10 @@ const GerirDias = () => {
           });
         window.location.reload();
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar férias');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar férias:', erro);
     }
   };
 
@@ -112,16 +109,16 @@ const GerirDias = () => {
         }
       });
       if (response.ok) {
-        toast.success("Dia festivo eliminado", {
+        toast.success("Dia de trabalho obrigatório eliminado", {
           closeOnClick: true,
           draggable: true,
           });
         window.location.reload();
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar dia de trabalho obrigatório');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar dia de trabalho obrigatório:', erro);
     }
   };
 
@@ -151,13 +148,13 @@ const GerirDias = () => {
         <h2>Gerenciar Férias <TbBeach/></h2>
         {ferias.map((feria) => (
           <div key={feria.id_ferias} className="dias-button-container">
-            <p>Inicio das ferias: {feria.inicioFerias.slice(0, -9)} -- Fim das férias: {feria.fimFerias.slice(0, -9)}</p>
+            <p>Inicio das férias: {feria.inicioFerias.slice(0, -9)} -- Fim das férias: {feria.fimFerias.slice(0, -9)}</p>
             <button onClick={() => eliminarFeria(feria.id_ferias)} className="remove-dias-button"><FaRegTrashAlt/></button>
           </div>
         ))}
       </div>
       <div className="gerir-dias-page">
-        <h2>Gerenciar Dias de trabalho obrigatório <MdWorkOutline/></h2>
+        <h2>Gerenciar dias de trabalho obrigatório <MdWorkOutline/></h2>
         {diasFestivos.map((diaFestivo) => (
           <div key={diaFestivo.id_festivo} className="dias-button-container">
             <p>Data: {diaFestivo.diaFestivo.slice(0, -9)}</p>

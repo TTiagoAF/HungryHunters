@@ -35,7 +35,7 @@ const MinhasAvaliacoes = () => {
       const data = await response.json();
       setAvaliacoes(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter as avaliações:', erro);
     }
   };
 

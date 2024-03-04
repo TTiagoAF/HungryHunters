@@ -52,10 +52,9 @@ const MinhasReservasClientes = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setReserva(data);
     } catch (erro) {
-      console.error('Erro ao obter as reservas da API:', erro);
+      console.error('Erro ao obter as reservas:', erro);
     }
   };
 
@@ -104,7 +103,7 @@ const MinhasReservasClientes = () => {
           });
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a mudar estado da reserva:', erro);
     }
   };
   

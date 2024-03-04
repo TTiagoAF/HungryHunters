@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./css/PaginaDetalhes.css"
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import HeaderRestaurantes from './HeaderRestaurantes';
 import Footer from './Footer';
-import { List, Timeline, Avatar } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table } from 'antd';
+import Highlighter from 'react-highlight-words';
 
 const Historico = () => {
   const [idrestaurante, ] = useState(Cookies.get("id"));
@@ -12,7 +14,7 @@ const Historico = () => {
   const navigate = useNavigate();
   const [logs, setLogs] = useState([]);
 
-  const fetchAvaliacoes = async () => {
+  const fetchLogs = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/Logs/ListadeLogscom?RestauranteId=${idrestaurante}`, {
         headers: {
@@ -22,12 +24,12 @@ const Historico = () => {
       const data = await response.json();
       setLogs(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter as logs:', erro);
     }
   };
 
   useEffect(() => {
-    fetchAvaliacoes();
+    fetchLogs();
     if(Cookies.get("token") == undefined)
     {
       Cookies.remove("token");
@@ -35,28 +37,121 @@ const Historico = () => {
     }
   }, []);
 
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div style={{padding: 8}}>
+        <Input
+          ref={searchInput}
+          placeholder={`Search`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 100,
+            }}
+          >
+            Pesquisar
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Resetar
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            Fechar
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+  const columns = [
+    {
+      title: 'Nome',
+      dataIndex: 'nomeCliente',
+      width: '20%',
+      ...getColumnSearchProps('nomeCliente'),
+    },
+    {
+      title: 'Descrição',
+      dataIndex: 'descricao',
+      width: '50%',
+      ...getColumnSearchProps('descricao'),
+    },
+    {
+      title: 'Data',
+      dataIndex: 'log_Data',
+      ...getColumnSearchProps('log_Data'),
+    },
+  ];
   return (
     <body className='pagina-solo-avaliacoes'>
     <div className="restaurante-detalhes-original">
       <HeaderRestaurantes />
       <div className="detalhes-page">
-            <List itemLayout="horizontal">
-              <Timeline mode="left">
-                {logs.map((item, index) => (
-                  <Timeline.Item key={index} label={item.log_Data}>
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`} />}
-                        title={item.nomeCliente}
-                        description={item.descricao}
-                      />
-                    </List.Item>
-                  </Timeline.Item>
-                ))}
-              </Timeline>
-            </List>
+      <Table columns={columns} dataSource={logs} />
       </div>
-      <Footer />
+      <Footer/>
     </div>
   </body>
   );

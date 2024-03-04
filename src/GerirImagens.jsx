@@ -29,10 +29,9 @@ const GerirImagens = () => {
           }
         });
         const data = await response.json();
-        console.log(data);
         setImagens(data.caminhosImagens);
       } catch (erro) {
-        console.error('Erro ao obter o cardápio da API:', erro);
+        console.error('Erro a obter imagens:', erro);
       }
     };
     carregarImagem();
@@ -49,10 +48,10 @@ const GerirImagens = () => {
       if (response.ok) {
         window.location.reload();
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar imagem');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar imagem:', erro);
     }
   };
 

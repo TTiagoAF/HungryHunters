@@ -67,7 +67,7 @@ const RestauranteInfos = () => {
       CapacidadeGrupo: pessoas,
       Autorizado: "true",
   };
-  await adicionarConta([novoRestaurante]);
+  await adicionarRestaurante([novoRestaurante]);
   
     setPreco("");
     setDescricao("");
@@ -96,7 +96,7 @@ const RestauranteInfos = () => {
     navigate('/GerirRestaurante/');
   };
 
-  const adicionarConta = async (novoRestaurante) => {
+  const adicionarRestaurante = async (novoRestaurante) => {
     try {
       const response = await fetch(`${apiUrl}/api/Restaurantes/AdicionarRestaurante`, {
         method: 'POST',
@@ -118,10 +118,10 @@ const RestauranteInfos = () => {
           closeOnClick: true,
           draggable: true,
           });
-      throw new Error('Erro ao adicionar nova conta na API');
+      throw new Error('Erro ao adicionar restaurante');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro ao adicionar restaurante:', error);
         throw error;
     }
     };

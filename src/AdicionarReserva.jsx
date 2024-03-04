@@ -34,12 +34,11 @@ const AdicionarReserva = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setRestaurante(data);
       const grupo = Object.values(data).map(grupo => grupo.capacidadeGrupo);
       setGrupo(parseInt(grupo));
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro a obter capacidade máxima por grupo do restaurante:', erro);
     }
   };
 
@@ -51,15 +50,10 @@ const AdicionarReserva = () => {
         }
       });
       const data = await response.json();
-      if (data) {
-        console.log('Entrou no if2', data);
         const horario = Object.values(data).map(horario => horario.horaReserva);
         setHorario(horario);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro a obter horários:', erro);
     }
   };
 
@@ -71,14 +65,9 @@ const AdicionarReserva = () => {
         }
       });
       const data = await response.json();
-      if (data) {
-        console.log('Entrou no if2', data);
         setMesas(data);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro a obter mesas:', erro);
     }
   };
 
@@ -142,7 +131,6 @@ const AdicionarReserva = () => {
       });
   
       if (response.ok) {
-        console.log('Nova conta adicionada na API');
         toast.success(("Reserva feita com sucesso"), {
           closeOnClick: true,
           draggable: true,
@@ -176,10 +164,10 @@ const AdicionarReserva = () => {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro a adicionar reserva');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro a adicionar reserva:', error);
         throw error;
     }
   };

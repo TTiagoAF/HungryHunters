@@ -64,9 +64,7 @@ function RestauranteDisponiblidade() {
     }
 
     fetchhorarios();
-    console.log('Horários de funcionamento:', horarios);
     setErrorMessage2('');
-    
   };
 
   const fetchhorarios = async () => {
@@ -97,10 +95,10 @@ function RestauranteDisponiblidade() {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro ao adicionar horário');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro ao adicionar horário:', error);
         throw error;
     }}
 
@@ -111,7 +109,7 @@ function RestauranteDisponiblidade() {
   return (
     <body className='pagina-adicionar'>
     <div>
-      <h1 className='titulo-principal'>Registro de Restaurante</h1>
+      <h1 className='titulo-principal'>Registo de horários</h1>
       <div className="horarios-container">
       <form className='formulario-horarios'>
         <h2 className='titulo-secundario'>Horários de funcionamento</h2>
@@ -135,7 +133,7 @@ function RestauranteDisponiblidade() {
           Adicionar Horário
         </button>
         <ToastContainer />
-        <input type="submit" value="Registrar Horários" onClick={handleSetHorarios} className='submeter-horario'/>
+        <input type="submit" value="Registar Horários" onClick={handleSetHorarios} className='submeter-horario'/>
         {errorMessage2 && <div style={{ color: 'red' }}>{errorMessage2}</div>}
         <button type="button" onClick={handleHorarios} className='button-novo-horario'>
           Voltar

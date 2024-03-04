@@ -4,7 +4,6 @@ import logo from './../img/logo.png';
 import "./css/HeaderEmpresas.css"
 import Cookies from 'js-cookie';
 import { FaHome } from "react-icons/fa";
-import { BsFillGearFill } from "react-icons/bs";
 import { FaDoorOpen } from "react-icons/fa";
 
 const HeaderEmpresas = () => {
@@ -30,11 +29,6 @@ const HeaderEmpresas = () => {
                 <a href="#1" className="nav-link"><FaHome/> Home</a>
               </Link>
             </li>
-            <li className="nav-item">
-                  <Link to="/GerirEmpresas/" className="nav-link">
-              <a href="#3" className="nav-link"><BsFillGearFill/> Configurações</a>
-                  </Link>
-                </li>
               <li className="nav-item">
             <Link to="/Home/" className="nav-link">
               <a href="#4" className="nav-link" onClick={handleLogout}><FaDoorOpen/> Logout</a>

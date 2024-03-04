@@ -18,7 +18,6 @@ function ResultadosPesquisa() {
 
     const changePesquisar = (e) => {
         setPesquisa(e.target.value);
-        
       };
 
       const carregarRestaurantesTodos = async () => {  
@@ -29,10 +28,9 @@ function ResultadosPesquisa() {
             }
           });
           const data = await response.json();
-          console.log(data);
           setRestaurantes(data);
         } catch (erro) {
-          console.error('Erro ao obter o cardápio da API:', erro);
+          console.error('Erro ao obter os restaurantes:', erro);
         }
       };
 
@@ -44,10 +42,9 @@ function ResultadosPesquisa() {
             }
         });
         const data = await response.json();
-        console.log(data);
         setRestaurantes(data);
         } catch (erro) {
-        console.error('Erro ao obter o cardápio da API:', erro);
+        console.error('Erro ao obter os restaurantes:', erro);
         }
     };
 

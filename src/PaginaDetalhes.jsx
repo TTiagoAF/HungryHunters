@@ -149,7 +149,7 @@ const RestaurantDetails = () => {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar');
+        throw new Error('Erro ao adicionar avaliação');
       }
     } catch (error) {
         console.error(error);
@@ -167,7 +167,7 @@ const RestaurantDetails = () => {
       const data = await response.json();
       setAvaliacoes(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter as avaliações:', erro);
     }
   };
 
@@ -179,10 +179,9 @@ const RestaurantDetails = () => {
         }
       });
       const data = await response.json();
-      console.log(data);
       setImagens(data.caminhosImagens);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter as imagens:', erro);
     }
   };
 
@@ -206,7 +205,7 @@ const RestaurantDetails = () => {
       const grupo = Object.values(data).map(grupo => grupo.capacidadeGrupo);
       setGrupo(parseInt(grupo));
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter as informações do restaurante:', erro);
     }
   };
 
@@ -220,7 +219,7 @@ const RestaurantDetails = () => {
       const data = await response.json();
       setMenu(data);
     } catch (erro) {
-      console.error('Erro ao obter o cardápio da API:', erro);
+      console.error('Erro ao obter o menu:', erro);
     }
   };
 
@@ -232,14 +231,10 @@ const RestaurantDetails = () => {
         }
       });
       const data = await response.json();
-      if (data) {
         const horario = Object.values(data).map(horario => horario.horaReserva);
         setHorario(horario);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro ao obter os horários:', erro);
     }
   };
 
@@ -251,13 +246,9 @@ const RestaurantDetails = () => {
         }
       });
       const data = await response.json();
-      if (data) {
         setMesas(data);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro ao obter as mesas:', erro);
     }
   };
 
@@ -382,10 +373,10 @@ const RestaurantDetails = () => {
           closeOnClick: true,
           draggable: true,
           });
-        throw new Error('Erro ao adicionar nova conta na API');
+        throw new Error('Erro ao adicionar reserva');
       }
     } catch (error) {
-        console.error('Erro ao adicionar nova conta na API:', error);
+        console.error('Erro ao adicionar reserva:', error);
         throw error;
     }
   };

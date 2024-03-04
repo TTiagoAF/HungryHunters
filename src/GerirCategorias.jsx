@@ -14,7 +14,6 @@ const GerirCategorias = () => {
   const [categoriasdois, setCategoriasdois] = useState();
   const [categoriastres, setCategoriastres] = useState();
   const [escolher, setEscolher] = useState(false);
-  const [api2, setApi2] = useState([]);
   const apiUrl = 'https://localhost:7286';
   
   useEffect(() => {
@@ -41,21 +40,14 @@ const GerirCategorias = () => {
         }
       });
       const data = await response.json();
-      setApi2(data);
-      if (data) {
-        console.log('Entrou no if2', data);
-        console.log(' no if2', api2);
         const categoriaum = Object.values(data).map(categoriaum => categoriaum.categoria_Um);
         setCategoriasum(categoriaum);
         const categoriadois = Object.values(data).map(categoriadois => categoriadois.categoria_Dois);
         setCategoriasdois(categoriadois);
         const categoriatres = Object.values(data).map(categoriatres => categoriatres.categoria_Tres);
         setCategoriastres(categoriatres);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro ao obter as categorias do restaurante:', erro);
     }
   };
 

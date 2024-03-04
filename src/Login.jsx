@@ -57,10 +57,8 @@ const PaginaLogin = () => {
           if(data.id != null)
           {
             Cookies.set("id_conta", data.id, {expires: 1})
-            console.log('Id:', data.id);
             navigate('/MainPage/');
           }
-          console.log('Token:', data.token);
           Cookies.set("token", data.token, {expires: 1})
           toast.success("Bem vindo", {
             closeOnClick: true,

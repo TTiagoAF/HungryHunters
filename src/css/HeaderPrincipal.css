@@ -1,27 +1,27 @@
-.header {
+.header-principal {
   display: flex;
   align-items: center;
   background-color: #ffffff;
 }
 
-.logo img {
+.logo-principal img {
   width: 100px;
   height: auto;
   padding-left: 10px;
 }
 
-.nav-list-principall {
-  margin-left: 926.2px;
+.nav-list-principal {
+  margin-left: 872px;
   list-style: none;
   display: flex;
   text-align: center;
 }
 
-.nav-item {
+.nav-item-principal {
   margin-right: 60px;
 }
 
-.nav-link {
+.nav-link-principal {
   text-decoration: none;
   color: #333;
   font-weight: bold;
@@ -29,7 +29,7 @@
   position: relative;
 }
 
-.nav-link::before {
+.nav-link-principal::before {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -41,17 +41,17 @@
   transition: transform 0.3s ease;
 }
 
-.nav-link:hover::before {
+.nav-link-principal:hover::before {
   transform: scaleX(1);
 }
 
 @media (max-width: 1417px) {
-  .nav-list {
+  .nav-list-principal {
     margin-left: 10px;
     margin-right: 10px;
   }
 
-  .nav-item {
+  .nav-item-principal {
     margin-right: 15px;
   }
 }

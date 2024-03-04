@@ -15,7 +15,6 @@ const GerirEmpresa = () => {
   const [numRestaurantes, setNumRestaurantes] = useState(0);
   const [nipc, setNipc] = useState();
   const [escolher, setEscolher] = useState(false);
-  const [api, setApi] = useState([]);
   const [api2, setApi2] = useState([]);
   const apiUrl = 'https://localhost:7286';
   
@@ -37,19 +36,10 @@ const GerirEmpresa = () => {
           }
         });
         const data = await response.json();
-        setApi(data);
-        if (data) {
-          console.log('Entrou no if', data);
-          console.log(' no if', api);
           const num = Object.values(data).map(num_Restaurante => num_Restaurante.num_Restaurante);
           setNumRestaurantes(parseInt(num));
-  
           const nipc = Object.values(data).map(Nipc => Nipc.nipc);
           setNipc(nipc);
-          console.log(typeof nipc);
-        } else {
-          console.log('Não entrou no if');
-        }
       } catch (erro) {
         console.error('Erro ao obter as contas da API:', erro);
       }
@@ -117,10 +107,10 @@ const GerirEmpresa = () => {
           });
         window.location.reload();
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar o teu restaurante');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar o teu restaurante:', erro);
     }
   };
 
@@ -144,12 +134,6 @@ const GerirEmpresa = () => {
       });
       const data = await response.json();
       setApi2(data);
-      if (data) {
-        console.log('Entrou no if2', data);
-        console.log(' no if2', api2);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
       console.error('Erro ao obter as contas da API:', erro);
     }

@@ -108,8 +108,6 @@ const CriarConta = () => {
         console.log('Nova conta adicionada na API');
       } else {
         const dataerro = await response.json();
-        console.error('Erro na operação:', dataerro);
-        console.error('Erro ao adicionar nova conta na API', dataerro.mensagem);
         setErrorMessage(dataerro.mensagem);
         throw new Error('Erro ao adicionar nova conta na API');
       }

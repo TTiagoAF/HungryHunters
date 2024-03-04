@@ -14,7 +14,6 @@ const GerirGrupo = () => {
   const [idrestaurante,] = useState(Cookies.get("id"));
   const [grupo, setGrupo] = useState({});
   const [escolher, setEscolher] = useState(false);
-  const [api2, setApi2] = useState([]);
   const apiUrl = 'https://localhost:7286';
   
   useEffect(() => {
@@ -28,7 +27,7 @@ const GerirGrupo = () => {
     }
   }, []);
 
-  const handleAddRestaurant = async () => {
+  const handleAddMaximo = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/Restaurantes/MaisPessoasporId/${idrestaurante}`, {
         method: 'POST',
@@ -43,10 +42,10 @@ const GerirGrupo = () => {
           });
         setGrupo(grupo + 1);
       } else {
-        console.error('Erro');
+        console.error('Não foi possível adicionar mais pessoas');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Não foi possível adicionar mais pessoas:', erro);
     }
   };
 
@@ -65,19 +64,19 @@ const GerirGrupo = () => {
           });
         setGrupo(grupo - 1);
       } else {
-        console.error('Erro');
+        console.error('Não foi possível diminuir o máximo de pessoas');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Não foi possível diminuir o máximo de pessoas:', erro);
     }
   };
 
   const handleEscolher = () => {
     setEscolher(true);
-    fetchMesas();
+    fetchMaximo();
   }
 
-  const fetchMesas = async () => {
+  const fetchMaximo = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor${idrestaurante}`, {
         headers: {
@@ -85,17 +84,10 @@ const GerirGrupo = () => {
         }
       });
       const data = await response.json();
-      setApi2(data);
-      if (data) {
-        console.log('Entrou no if2', data);
-        console.log(' no if2', api2);
         const grupo = Object.values(data).map(grupo => grupo.capacidadeGrupo);
         setGrupo(parseInt(grupo));
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro a obter o máximo de pessoas:', erro);
     }
   };
 
@@ -118,7 +110,7 @@ const GerirGrupo = () => {
       </div>
       <button onClick={handleEscolher2} className="add-mesas-button"> Esconder as capacidades por grupo</button>
       <button onClick={handleEscolher} className="add-mesas-button"> Ver as capacidades por grupo</button>
-      <button onClick={handleAddRestaurant} className="add-restaurant-button"> Adicionar Máximo</button>
+      <button onClick={handleAddMaximo} className="add-restaurant-button"> Adicionar Máximo</button>
       <ToastContainer/>
     </div>
       <Footer/>

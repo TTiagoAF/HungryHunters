@@ -14,7 +14,6 @@ const GerirHorarios = () => {
   const [idrestaurante,] = useState(Cookies.get("id"));
   const [horario, setHorario] = useState({});
   const [escolher, setEscolher] = useState(false);
-  const [api2, setApi2] = useState([]);
   const apiUrl = 'https://localhost:7286';
   
   useEffect(() => {
@@ -43,19 +42,19 @@ const GerirHorarios = () => {
           draggable: true,
           });
       } else {
-        console.error('Erro');
+        console.error('Erro a eliminar horário');
       }
     } catch (erro) {
-      console.error('Erro:', erro);
+      console.error('Erro a eliminar horário:', erro);
     }
   };
 
   const handleEscolher = () => {
     setEscolher(true);
-    fetchEmpresas();
+    fetchHorarios();
   }
 
-  const fetchEmpresas = async () => {
+  const fetchHorarios = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor${idrestaurante}`, {
         headers: {
@@ -63,17 +62,10 @@ const GerirHorarios = () => {
         }
       });
       const data = await response.json();
-      setApi2(data);
-      if (data) {
-        console.log('Entrou no if2', data);
-        console.log(' no if2', api2);
         const horario = Object.values(data).map(horario => horario.horaReserva);
         setHorario(horario);
-      } else {
-        console.log('Não entrou no if');
-      }
     } catch (erro) {
-      console.error('Erro ao obter as contas da API:', erro);
+      console.error('Erro ao obter horários:', erro);
     }
   };
 
