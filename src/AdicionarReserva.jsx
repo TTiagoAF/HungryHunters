@@ -28,7 +28,7 @@ const AdicionarReserva = () => {
 
   const carregarRestaurante = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor?id=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -44,7 +44,7 @@ const AdicionarReserva = () => {
 
   const fetchHorarios = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -59,7 +59,7 @@ const AdicionarReserva = () => {
 
   const handleBuscarMesas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

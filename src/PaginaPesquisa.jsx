@@ -36,7 +36,7 @@ function ResultadosPesquisa() {
 
     const carregarRestaurantes = async () => {  
         try {
-        const response = await fetch(`${apiUrl}/api/Restaurantes/PesquisaDeRestaurantes${pesquisa}`, {
+        const response = await fetch(`${apiUrl}/api/Restaurantes/PesquisaDeRestaurantes$nome=${pesquisa}`, {
             headers: {
             'Authorization': 'Bearer ' + Cookies.get("token"),
             }

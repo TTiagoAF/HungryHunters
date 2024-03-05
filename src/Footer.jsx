@@ -18,7 +18,6 @@ const Footer = () => {
             <a href="#1" className="footer-link" >Home</a>
               </Link></li>
             <li><a href="#2" className="footer-link">Sobre nós</a></li>
-            <li><a href="#3" className="footer-link">Restaurantes</a></li>
             <li><a href="#4" className="footer-link">Contato</a></li>
           </ul>
         </div>

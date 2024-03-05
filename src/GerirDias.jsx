@@ -25,7 +25,7 @@ const GerirDias = () => {
 
   const carregarFerias = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/Ferias/ListadeFeriaspor${Cookies.get("id")}`, {
+      const response = await fetch(`${apiUrl}/api/Ferias/ListadeFeriaspor?RestauranteId=${Cookies.get("id")}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -39,7 +39,7 @@ const GerirDias = () => {
 
   const carregarDiasFestivos = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/DiasFestivos/ListadeDiasFestivospor${Cookies.get("id")}`, {
+      const response = await fetch(`${apiUrl}/api/DiasFestivos/ListadeDiasFestivospor?RestauranteId=${Cookies.get("id")}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -53,7 +53,7 @@ const GerirDias = () => {
 
   const carregarDiaFolgaRestaurante = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/DiasDeFuncionamentoes/ListadeDiaspor${Cookies.get("id")}`, {
+      const response = await fetch(`${apiUrl}/api/DiasDeFuncionamentoes/ListadeDiaspor?RestauranteId=${Cookies.get("id")}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

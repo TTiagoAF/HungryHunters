@@ -52,7 +52,7 @@ const GerirMesas = () => {
 
   const handleBuscarMesas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

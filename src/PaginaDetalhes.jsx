@@ -173,7 +173,7 @@ const RestaurantDetails = () => {
 
   const carregarImagem = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/FotosRestaurantes/ObterImagensRestaurante/${params.id}`, {
+      const response = await fetch(`${apiUrl}/api/FotosRestaurantes/ObterImagensRestaurante/?restauranteId=${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -195,7 +195,7 @@ const RestaurantDetails = () => {
 
   const carregarRestaurante = async () => {  
     try {
-      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor${params.id}`, {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor?id=${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -211,7 +211,7 @@ const RestaurantDetails = () => {
 
   const fetchMenu = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/RestauranteMenus/ListadeMenuspor${params.id}`, {
+      const response = await fetch(`${apiUrl}/api/RestauranteMenus/ListadeMenuspor?RestauranteId=${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -225,7 +225,7 @@ const RestaurantDetails = () => {
 
   const fetchHorarios = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor${params.id}`, {
+      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor?RestauranteId=${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -240,7 +240,7 @@ const RestaurantDetails = () => {
 
   const handleBuscarMesas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor${params.id}`, {
+      const response = await fetch(`${apiUrl}/api/Mesas/ListadeMesaspor?RestauranteId=${params.id}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

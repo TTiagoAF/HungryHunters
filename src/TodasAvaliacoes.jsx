@@ -27,7 +27,7 @@ const TodasAvaliacoes = () => {
 
   const fetchAvaliacoes = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoescom${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Avaliacoes/ListadeAvaliacoescom?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }
@@ -52,7 +52,7 @@ const TodasAvaliacoes = () => {
   }, []);
 
   const handleTodasAvaliacoes = () => {
-    navigate("/Details/");
+    navigate("/Details/" + idrestaurante);
   }
 
   return (

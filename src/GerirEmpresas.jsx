@@ -30,7 +30,7 @@ const GerirEmpresa = () => {
     
     const fetchContas = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/Empresas/Empresaspor${razaosocial}`, {
+        const response = await fetch(`${apiUrl}/api/Empresas/Empresaspor?Razao_social=${razaosocial}`, {
           headers: {
             'Authorization': 'Bearer ' + Cookies.get("token"),
           }
@@ -127,7 +127,7 @@ const GerirEmpresa = () => {
 
   const fetchEmpresas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Restaurantes/RestaurantesporNipc/${nipc}`, {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/RestaurantesporNipc/?nipc=${nipc}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

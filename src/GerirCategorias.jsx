@@ -34,7 +34,7 @@ const GerirCategorias = () => {
 
   const fetchEmpresas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Categorias/ListadeCategoriaspor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Categorias/ListadeCategoriaspor?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

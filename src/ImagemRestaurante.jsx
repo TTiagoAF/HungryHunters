@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './css/ImagemMenu.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { Image } from 'antd';
 
 const ImagemRestaurante = () => {
   const [imagem, setImagem] = useState([]);
@@ -89,10 +90,16 @@ const ImagemRestaurante = () => {
       <div className="ver-imagem">
         {imagem.map((imagem, index) => (
           <div key={index} className="imagem-container">
-            <img src={URL.createObjectURL(imagem)} alt={`Imagem ${index + 1}`} />
+            <Image.PreviewGroup
+                preview={{
+                  onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                }}
+              >
+                <Image src={URL.createObjectURL(imagem)} alt={`Imagem ${index + 1}`} />
             <div className="imagem-buttons">
               <button className='eliminar-button' onClick={() => handleEleminarImagem(index)}>Eliminar</button>
             </div>
+              </Image.PreviewGroup>
           </div>
         ))}
       </div>

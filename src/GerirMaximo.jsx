@@ -78,7 +78,7 @@ const GerirGrupo = () => {
 
   const fetchMaximo = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Restaurantes/BuscarRestaurantepor?id=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

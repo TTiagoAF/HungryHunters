@@ -50,7 +50,7 @@ const MinhasReservasRestaurante = () => {
 
   const fetchReservas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Reservas/ListadeReservascom${Cookies.get("id")}`, {
+      const response = await fetch(`${apiUrl}/api/Reservas/ListadeReservascom?RestauranteId=${Cookies.get("id")}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

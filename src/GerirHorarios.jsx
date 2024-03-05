@@ -56,7 +56,7 @@ const GerirHorarios = () => {
 
   const fetchHorarios = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor${idrestaurante}`, {
+      const response = await fetch(`${apiUrl}/api/Horarios/ListadeHorariospor?RestauranteId=${idrestaurante}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

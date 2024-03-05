@@ -46,7 +46,7 @@ const MinhasReservasClientes = () => {
 
   const fetchReservas = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/Reservas/ListadeReservaspor${Cookies.get("id_conta")}`, {
+      const response = await fetch(`${apiUrl}/api/Reservas/ListadeReservaspor?ContaId=${Cookies.get("id_conta")}`, {
         headers: {
           'Authorization': 'Bearer ' + Cookies.get("token"),
         }

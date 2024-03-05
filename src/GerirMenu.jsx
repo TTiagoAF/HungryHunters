@@ -44,7 +44,7 @@ const GerirMenus = () => {
 
     const fetchMenu = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/RestauranteMenus/ListadeMenuspor${Cookies.get("id")}`, {
+        const response = await fetch(`${apiUrl}/api/RestauranteMenus/ListadeMenuspor?RestauranteId=${Cookies.get("id")}`, {
           headers: {
             'Authorization': 'Bearer ' + Cookies.get("token"),
           }
