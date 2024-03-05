@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineTableBar } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
-import ToolTip from './ToolTip';
+import { Popover } from 'antd';
 
 const GerirMesas = () => {
 
@@ -86,10 +86,16 @@ const GerirMesas = () => {
       <div className="gerir-mesas-buttons">
       {Object.values(mesas).map((mesa, index) => (escolher && (
         <div key={index} className="mesas-button-container">
+          <Popover content={<div>
+            <p className='info-texto'><strong>Sobre a mesa:</strong></p>
+            <p className='info-texto'>{mesa.nome}</p>
+            <p className='info-texto'>Máximo de pessoas: {mesa.maximo_pessoas}</p>
+            <p className='info-texto'>{mesa.notas}</p>
+          </div>}>
             <button className="mesas-button" onClick={handleEscolher}>
               <MdOutlineTableBar /> {mesa.nome}
             </button>
-            <ToolTip nome={mesa.nome} maximo={mesa.maximo_pessoas} desc={mesa.notas}/>
+          </Popover>
             <button onClick={() => handleRemoverMesa(mesa.id_mesa)} className="remove-mesas-button">
               <FaRegTrashAlt />
             </button>

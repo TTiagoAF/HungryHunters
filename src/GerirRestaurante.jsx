@@ -157,7 +157,7 @@ const GerirRestuarante = () => {
     fetchLogs();
     const intervalo = setInterval(() => {
       fetchLogs();
-    }, 60000);
+    }, 30000);
 
     return () => clearInterval(intervalo);
   }, []);

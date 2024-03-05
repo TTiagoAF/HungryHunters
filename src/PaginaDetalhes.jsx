@@ -24,8 +24,7 @@ import { MdGroups } from "react-icons/md";
 import { CiClock2 } from "react-icons/ci";
 import { ToastContainer, toast } from 'react-toastify';
 import { BsFillTelephoneFill } from "react-icons/bs";
-import ToolTip from './ToolTip';
-import { Avatar, Rate } from 'antd';
+import { Avatar, Popover, Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Carousel, Image } from 'antd';
 import { FloatButton, message } from 'antd';
@@ -536,8 +535,16 @@ const RestaurantDetails = () => {
       <div className="detalhes-buttons">
       {Object.values(mesas).map((mesa, index) => (
         <div key={index} className="mesas-button-container-detalhes">
-        <button className="mesas-button-detalhes" onClick={() => handleMesa(mesa.nome, mesa.id_mesa)}> <MdOutlineTableBar/> {mesa.nome}</button>
-        <ToolTip nome={mesa.nome} maximo={mesa.maximo_pessoas} desc={mesa.notas}/>
+        <Popover content={<div>
+            <p className='info-texto'><strong>Sobre a mesa:</strong></p>
+            <p className='info-texto'>{mesa.nome}</p>
+            <p className='info-texto'>Máximo de pessoas: {mesa.maximo_pessoas}</p>
+            <p className='info-texto'>{mesa.notas}</p>
+          </div>}>
+            <button className="mesas-button-detalhes" onClick={() => handleMesa(mesa.nome, mesa.id_mesa)}>
+              <MdOutlineTableBar /> {mesa.nome}
+            </button>
+          </Popover>
       </div>
       ))}
         </div>

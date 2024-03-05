@@ -101,7 +101,7 @@ const GerirEmpresa = () => {
         }
       });
       if (response.ok) {
-        toast.success("Eliminaste o teu restaurante", {
+        toast.success("Eliminaste um dos teus restaurante", {
           closeOnClick: true,
           draggable: true,
           });

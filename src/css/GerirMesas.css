@@ -69,6 +69,8 @@
 
 .info-texto {
   margin: 11px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .add-mesas-button,
