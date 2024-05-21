@@ -9,7 +9,7 @@
 
 .titulo-aberto {
   font-size: 20px;
-  color: #2ecc71;
+  color: #452211;
   margin-bottom: 20px;
 }
 
@@ -29,7 +29,7 @@
   appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #3498db;
+  border: 2px solid #da7a27;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
@@ -37,8 +37,8 @@
 }
 
 .checkbox-input-aberto:checked {
-  background-color: #3498db;
-  border: 2px solid #3498db;
+  background-color: #da7a27;
+  border: 2px solid #da7a27;
 }
 
 .checkbox-label-aberto {
@@ -52,7 +52,7 @@
 }
 
 .next-button-aberto {
-  background-color: #2ecc71;
+  background-color: #da7a27;
   color: #fff;
   padding: 12px 24px;
   font-size: 18px;
@@ -63,11 +63,11 @@
 }
 
 .next-button-aberto:hover {
-  background-color: #27ae60;
+  background-color: #aa5409;
 }
 
 .enviar-button-aberto {
-  background-color: #2ecc71;
+  background-color: #da7a27;
   color: #fff;
   padding: 12px 24px;
   font-size: 18px;
@@ -79,5 +79,5 @@
 }
 
 .enviar-button-aberto:hover {
-  background-color: #27ae60;
+  background-color: #aa5409;
 }

@@ -81,7 +81,7 @@ function RestauranteMesa() {
     <body className='pagina-adicionar'>
     <div>
       <div className='titulo'>
-        <h1 className='titulo-principal'>Registo de Mesas</h1>
+        <h1 className='titulo-principal'>Adicionar mesas</h1>
       </div>
       <div className="menu-container">
         <form className='formulario-menu'>

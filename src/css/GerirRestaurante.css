@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 54vh;
   background-color: #f7f7f7;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -21,7 +21,7 @@
 }
 
 .h1 {
-  color: #007bff;
+  color: #452211;
 }
 
 .h2 {
@@ -55,7 +55,7 @@
 .restaurante-buttons button {
   flex: 1 1 200px;
   margin: 10px;
-  background-color: #007bff;
+  background-color: #da7a27;
   color: #fff;
   padding: 12px;
   font-size: 14px;
@@ -66,7 +66,7 @@
 }
 
 .restaurante-buttons button:hover {
-  background-color: #0056b3;
+  background-color: #aa5409;
 }
 
 .reservas-section {

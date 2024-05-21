@@ -19,7 +19,7 @@ body {
 }
 
 .titulo-principal {
-  color: #333;
+  color: #452211;
   text-align: center;
 }
 
@@ -31,7 +31,7 @@ body {
 .titulo-secundario {
   font-size: 1.2em;
   margin-bottom: 10px;
-  color: #555;
+  color: #452211;
 }
 
 .horario-input {
@@ -48,14 +48,14 @@ body {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid #452211;
   border-radius: 4px;
   margin-bottom: 5px;
 }
 
 .button-remover,
 .button-novo-horario {
-  background-color: #4caf50;
+  background-color: #da7a27;
   color: #fff;
   padding: 10px;
   border: none;
@@ -65,15 +65,16 @@ body {
 
 .button-remover,
 .button-novo-horario:hover {
-  background-color: #45a049;
+  background-color: #aa5409;
 }
 
 .submeter-horario[type="submit"] {
-  background-color: #3498db;
+  background-color: #fde1a1;
+  cursor: pointer;
 }
 
 .submeter-horario[type="submit"]:hover {
-  background-color: #2980b9;
+  background-color: #f7cf75;
 }
 
 .error-message {

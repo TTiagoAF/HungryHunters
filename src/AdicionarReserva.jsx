@@ -8,8 +8,8 @@ import { MdOutlineTableBar } from "react-icons/md";
 import { MdGroups } from "react-icons/md";
 import { CiClock2 } from "react-icons/ci";
 import { ToastContainer, toast } from 'react-toastify';
-import ToolTip from './ToolTip';
 import moment from 'moment';
+import { Popover } from 'antd';
 
 const AdicionarReserva = () => {
   const [idrestaurante, ] = useState(Cookies.get("id"));
@@ -176,8 +176,8 @@ const AdicionarReserva = () => {
     <div className="restaurante-detalhes">
       <HeaderRestaurantes/>
       <div className="detalhes-page">
-      <h2>Faça a sua reserva</h2>
-      <h3>Data da reserva</h3>
+      <h2 className='titulo-reserva-cliente'>Faça a sua reserva</h2>
+      <h3 className='subtitulo-reserva-cliente'>Data da reserva</h3>
           <input
             type="date"
             id="inicioFerias"
@@ -185,7 +185,7 @@ const AdicionarReserva = () => {
             onChange={(e) => setDataDaReserva(e.target.value)}
             required
           />
-      <h3>Escolha o horário</h3>
+      <h3 className='subtitulo-reserva-cliente'>Escolha o horário</h3>
       <div className="detalhes-buttons">
       {Object.values(horario).map((horarioRestaurante, index) => (
         <div key={index} className="mesas-button-container-detalhes">
@@ -193,16 +193,24 @@ const AdicionarReserva = () => {
         </div>
       ))}
       </div>
-      <h3 id='mesas'>Escolha a sua mesa</h3>
+      <h3 className='subtitulo-reserva-cliente' id='mesas'>Escolha a sua mesa</h3>
       <div className="detalhes-buttons">
       {Object.values(mesas).map((mesa, index) => (
         <div key={index} className="mesas-button-container-detalhes">
-        <button className="mesas-button-detalhes" onClick={() => handleMesa(mesa.nome, mesa.id_mesa)}> <MdOutlineTableBar/> {mesa.nome}</button>
-        <ToolTip nome={mesa.nome} maximo={mesa.maximo_pessoas} desc={mesa.notas}/>
+        <Popover content={<div>
+            <p className='info-texto'><strong>Sobre a mesa:</strong></p>
+            <p className='info-texto'>{mesa.nome}</p>
+            <p className='info-texto'>Máximo de pessoas: {mesa.maximo_pessoas}</p>
+            <p className='info-texto'>{mesa.notas}</p>
+          </div>}>
+            <button className="mesas-button-detalhes" onClick={() => handleMesa(mesa.nome, mesa.id_mesa)}>
+              <MdOutlineTableBar /> {mesa.nome}
+            </button>
+          </Popover>
       </div>
       ))}
         </div>
-        <h3 id='pessoas'>Quantidade de pessoas</h3>
+        <h3 className='subtitulo-reserva-cliente' id='pessoas'>Quantidade de pessoas</h3>
         <div className="detalhes-buttons">
         {[...Array(grupo)].map((_, index) => (
           <div key={index} className="mesas-button-container-detalhes">

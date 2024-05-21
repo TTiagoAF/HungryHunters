@@ -57,7 +57,7 @@ function RestauranteMenu() {
           closeOnClick: true,
           draggable: true,
           });
-        navigate('/GerirRestaurante/');
+        navigate('/GerirMenus/');
         setPratos("");
       } else {
         const dataerro = await response.json();
@@ -80,7 +80,7 @@ function RestauranteMenu() {
     <body className='pagina-adicionar'>
     <div>
       <div className='titulo'>
-        <h1 className='titulo-principal'>Registar menu</h1>
+        <h1 className='titulo-principal'>Adicionar menu</h1>
       </div>
       <div className="menu-container">
         <form className='formulario-menu'>

@@ -154,9 +154,9 @@ const GerirEmpresa = () => {
     <div className="home-page">
     <HeaderEmpresas/>
     <div className="restaurant-page">
-      <h1>Administração de Restaurantes</h1>
-      <h2>Bem vindo {razaosocial}</h2>
-      <p>A empresa pode adicionar mais {numRestaurantes} restaurantes.</p>
+      <h1 className='titulo-gerir-empresa'>Os meus restaurantes</h1>
+      <h2 className='subtitulo-gerir-empresa'>Bem vindo {razaosocial}</h2>
+      <p className='texto-gerir-empresa'>A empresa pode adicionar mais {numRestaurantes} restaurantes.</p>
       <div className="restaurant-buttons">
         {[...Array(numRestaurantes)].map((_, index) => (
           <div key={index} className="restaurant-button-container">

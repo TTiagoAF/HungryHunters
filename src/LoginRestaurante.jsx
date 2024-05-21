@@ -114,13 +114,13 @@ const LoginEmpresas = () => {
           <div className="links-login">
             <p className="esqueceu-senha-login">
               <Link to="/Forgot/" class="Voltar">
-                <a href="#1">Esqueceu sua senha?</a>
+                <a href="#1">Esqueceu a sua senha?</a>
               </Link>
             </p>
             <p className="registro-login">
               Ainda não tem uma conta? 
               <Link to="/CriarRestaurante/" class="Voltar">
-                <a href="#2"> Registre-se</a>
+                <a href="#2"> Registe-se</a>
               </Link>
             </p>
             <p className="registro-login">

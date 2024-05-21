@@ -2,7 +2,7 @@
   perspective: 1px;
   transform-style: preserve-3d;
   height: auto;
-  background-color: #006e90;
+  background-color: #da7a27;
 }
 
 .search-container {
@@ -23,12 +23,12 @@
 }
 
 .search-bar:hover {
-  border-color: #007c47;
+  border-color: #452211;
 }
 
 .search-button {
   padding: 17px;
-  background-color: #007c47;
+  background-color: #da7a27;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -36,8 +36,8 @@
 }
 
 .search-button:hover {
-  background-color: #84bd00;
-  color: #000000;
+  background-color: #aa5409;
+  color: #fff;
 }
 
 .app-container {
@@ -61,7 +61,7 @@
   padding: 20px;
   border: 1px solid #ced4da;
   border-radius: 10px;
-  background-color: #fefcad;
+  background-color: #fde1a1;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   overflow: hidden;
@@ -78,13 +78,13 @@
   font-size: 1.8em;
   margin-bottom: 15px;
   text-align: left;
-  color: #343a40;
+  color: #452211;
 }
 
 .restaurante-info {
   margin-bottom: 15px;
   font-size: 1.3em;
-  color: #343140;
+  color: #452211;
   text-align: left;
 }
 
@@ -99,4 +99,18 @@
 
 .restaurante-info:hover p {
   color: #007bff;
+}
+
+@media screen and (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .restaurante-card {
+    flex: 0 0 calc(50% - 20px);
+  }
+
+  .app-heading {
+    font-size: 2em;
+  }
 }

@@ -98,7 +98,7 @@ const GerirMenus = () => {
     <div className="home-menu">
       <HeaderRestaurantes/>
       <div className="gerir-menu-page">
-      <h1>Administrar Menu</h1>
+      <h1>Gerir Menu</h1>
         <div className="restaurant-menu">
           {menuFiltrado.map((prato, index) => (
             <div key={index} className="menu-button-container">

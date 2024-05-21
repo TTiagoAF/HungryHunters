@@ -9,7 +9,7 @@ import { UserOutlined } from '@ant-design/icons';
 
 const TodasAvaliacoes = ({ nome, comida, conforto, beleza, atendimento, velocidade, comentario }) => (
   <div className="mostrar-avaliacoes-item-detalhes">
-    <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} /><p className='mostrar-avaliacoes-nome-detalhes'><b>{nome}</b></p>
+    <Avatar style={{ backgroundColor: '#DA7A27' }} icon={<UserOutlined />} /><p className='mostrar-avaliacoes-nome-detalhes'><b>{nome}</b></p>
     <p className='mostrar-avaliacoes-desc-detalhes'>Comentário: {comentario}</p>
     <p className='mostrar-avaliacoes-avaliacao'>Qualidade da comida: </p><Rate allowHalf disabled value={comida}/>
     <p className='mostrar-avaliacoes-avaliacao'>Conforto: </p><Rate allowHalf disabled value={conforto}/>

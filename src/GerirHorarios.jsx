@@ -82,7 +82,7 @@ const GerirHorarios = () => {
     <div className="home-page-gerir-horario">
       <HeaderRestaurantes/>
       <div className="gerir-horario-page">
-      <h1>Administrar horários</h1>
+      <h1 className='titulo-gerir-horarios'>Gerir horários</h1>
       <div className="gerir-horario-buttons">
         {Object.values(horario).map((horarioRestaurante, index) => (escolher == true &&(
         <div key={index} className="gerir-horario-button-container">

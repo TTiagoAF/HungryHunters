@@ -177,7 +177,7 @@ function RestauranteAberto() {
         </button>
       </div>
       <div className="ferias-form-aberto">
-        <h2>Período de Férias</h2>
+        <h2 className="titulo-aberto">Período de Férias</h2>
         <form onSubmit={handleFeriasSubmit}>
           <label htmlFor="inicioFerias">Início das Férias:</label>
           <input
@@ -199,7 +199,7 @@ function RestauranteAberto() {
         </form>
       </div>
       <div className="festivo-form-aberto">
-        <h2>Dias em que estão abertos mesmo que seja dia de folga</h2>
+        <h2 className="titulo-aberto">Dias em que estão abertos mesmo que seja dia de folga</h2>
         <form onSubmit={handleFestivoSubmit}>
           <label htmlFor="diafestivo">Dia de trabalho</label>
           <input

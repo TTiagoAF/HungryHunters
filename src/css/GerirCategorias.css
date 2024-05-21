@@ -43,9 +43,9 @@
 .gerir-categoria-button {
   padding: 55px;
   font-size: 25px;
-  border: 2px solid #4caf50;
+  border: 2px solid #da7a27;
   background-color: #fff;
-  color: #4caf50;
+  color: #da7a27;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
   border-radius: 12px;
@@ -55,7 +55,7 @@
 }
 
 .gerir-categoria-button:hover {
-  background-color: #45a049;
+  background-color: #da7a27;
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
@@ -66,7 +66,7 @@
   margin: 15px;
   padding: 15px;
   font-size: 18px;
-  background-color: #4caf50;
+  background-color: #da7a27;
   color: white;
   border: none;
   cursor: pointer;
@@ -79,7 +79,7 @@
 
 .add-gerir-categoria-button:hover,
 .remove-gerir-categoria-button:hover {
-  background-color: #45a049;
+  background-color: #aa5409;
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }

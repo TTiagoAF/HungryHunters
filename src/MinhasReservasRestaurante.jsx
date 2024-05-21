@@ -155,7 +155,7 @@ const MinhasReservasRestaurante = () => {
 };
 
   return (
-    <body className='pagina-solo'>
+    <body className='pagina-adicionar'>
     <div className="home-reservas-restaurantes">
       <HeaderRestaurantes/>
       <div className="gerir-reservas-restaurantes-page">

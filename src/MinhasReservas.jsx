@@ -112,7 +112,7 @@ const MinhasReservasClientes = () => {
     <div className="home-reservas">
       <HeaderMainPage/>
       <div className="gerir-reservas-page">
-      <h1>Minhas Reservas</h1>
+      <h1 className='titulo-reservas'>Minhas Reservas</h1>
         <div className="restaurant-reservas">
           {reserva.map((reservas, index) => (
             <div key={index} className="reservas-button-container">

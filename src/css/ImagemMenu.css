@@ -7,7 +7,7 @@
 }
 
 .titulo-principal {
-  color: #333;
+  color: #452211;
   text-align: center;
 }
 
@@ -20,7 +20,7 @@
   width: 200px;
   margin: 20px auto;
   padding: 10px;
-  background-color: #3498db;
+  background-color: #fde1a1;
   color: #fff;
   text-align: center;
   border-radius: 4px;
@@ -29,7 +29,7 @@
 }
 
 .adicionar-button:hover {
-  background-color: #2980b9;
+  background-color: #f7cf75;
 }
 
 .ver-imagem {
@@ -79,7 +79,7 @@
   width: 200px;
   margin: 20px auto;
   padding: 10px;
-  background-color: #27ae60;
+  background-color: #da7a27;
   color: #fff;
   text-align: center;
   border-radius: 4px;
@@ -88,5 +88,5 @@
 }
 
 .submeter-button:hover {
-  background-color: #219a52;
+  background-color: #aa5409;
 }

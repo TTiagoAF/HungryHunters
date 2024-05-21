@@ -20,14 +20,14 @@
 .footer-titulo {
   font-size: 24px;
   margin-bottom: 0;
-  color: #007c47;
+  color: #da7a27;
   margin-top: 2px;
 }
 
 .footer-titulo-direita {
   font-size: 24px;
   margin-bottom: 0;
-  color: #007c47;
+  color: #da7a27;
   text-align: left;
   margin-left: 200px;
   margin-top: 2px;
@@ -37,12 +37,14 @@
   margin-top: 3px;
   font-size: 14px;
   opacity: 0.8;
+  color: #452211;
 }
 
 .footer-links {
   flex-basis: 50%;
   text-align: left;
   padding: 0 10px;
+  color: #452211;
 }
 
 .footer-menu {
@@ -56,7 +58,7 @@
 
 .footer-link {
   font-size: 14px;
-  color: #333;
+  color: #452211;
   text-decoration: none;
   opacity: 0.8;
   transition: opacity 0.3s ease;

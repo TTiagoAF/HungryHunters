@@ -13,7 +13,7 @@
 }
 
 .titulo-principal {
-  color: #333;
+  color: #452211;
   text-align: center;
 }
 
@@ -25,7 +25,7 @@
 .titulo-secundario {
   font-size: 1.2em;
   margin-bottom: 10px;
-  color: #555;
+  color: #452211;
 }
 
 .menu-input {
@@ -35,21 +35,22 @@
 .etiqueta-menu {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #333;
+  color: #452211;
 }
 
 .inserir-menu {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid #452211;
   border-radius: 4px;
   margin-bottom: 5px;
+  color: #452211;
 }
 
 .button-remover,
 .button-novo-menu {
-  background-color: #4caf50;
+  background-color: #da7a27;
   color: #fff;
   padding: 10px;
   border: none;
@@ -57,17 +58,19 @@
   cursor: pointer;
 }
 
-.button-remover,
+.button-remover:hover,
 .button-novo-menu:hover {
-  background-color: #45a049;
+  background-color: #aa5409;
 }
 
 .submeter-menu[type="submit"] {
-  background-color: #3498db;
+  background-color: #fde1a1;
+  cursor: pointer;
 }
 
 .submeter-menu[type="submit"]:hover {
-  background-color: #2980b9;
+  background-color: #f7cf75;
+  cursor: pointer;
 }
 
 .error-message {
@@ -81,14 +84,22 @@
   height: 70px;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: 2px solid #452211;
   border-radius: 4px;
   background-color: #ffffff;
   font-size: 16px;
   resize: none;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #452211;
   border-radius: 4px;
   font-size: 16px;
   margin-top: 20px;
+  color: #452211;
+}
+
+@media screen and (max-width: 1450px) {
+  .menu-container {
+    width: calc(100% - 40px);
+    margin-bottom: 10px;
+  }
 }

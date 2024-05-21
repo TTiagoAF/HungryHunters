@@ -241,7 +241,7 @@ const GerirRestuarante = () => {
     <div className="home-restaurante">
       <HeaderEmpresas />
       <div className="restaurante-page">
-        <h1 className='h1'>A gerir restaurante {nome}</h1>
+        <h1 className='h1'>A configurar o meu restaurante {nome}</h1>
         {autorizado == "false" && (
           <h2 className='h2'>Espere até o seu restaurante ser autorizado</h2>
         )}

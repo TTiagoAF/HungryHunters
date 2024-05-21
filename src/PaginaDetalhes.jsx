@@ -24,11 +24,10 @@ import { MdGroups } from "react-icons/md";
 import { CiClock2 } from "react-icons/ci";
 import { ToastContainer, toast } from 'react-toastify';
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { Avatar, Popover, Rate } from 'antd';
+import { Avatar, Button, Popover, Rate } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { Carousel, Image } from 'antd';
-import { FloatButton, message } from 'antd';
-import { FaRegCopy } from "react-icons/fa";
+import { message } from 'antd';
 import moment from 'moment';
 
 const MenuItem = ({ nome, preco, desc }) => (
@@ -40,7 +39,7 @@ const MenuItem = ({ nome, preco, desc }) => (
 );
 const TodasAvaliacoes = ({ nome, comida, conforto, beleza, atendimento, velocidade, comentario }) => (
   <div className="mostrar-avaliacoes-item-detalhes">
-    <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} /><p className='mostrar-avaliacoes-nome-detalhes'><b>{nome}</b></p>
+    <Avatar style={{ backgroundColor: '#DA7A27' }} icon={<UserOutlined />} /><p className='mostrar-avaliacoes-nome-detalhes'><b>{nome}</b></p>
     <p className='mostrar-avaliacoes-desc-detalhes' style={{ whiteSpace: 'pre-line' }}>{comentario}</p>
     <p className='mostrar-avaliacoes-avaliacao'>Qualidade da comida: </p><Rate allowHalf disabled value={comida}/>
     <p className='mostrar-avaliacoes-avaliacao'>Conforto: </p><Rate allowHalf disabled value={conforto}/>
@@ -402,15 +401,6 @@ const RestaurantDetails = () => {
   return (
     <body className='pagina-solo'>
       {contextHolder}
-      <FloatButton
-        icon={<FaRegCopy />}
-        type="primary"
-        style={{
-          right: 24,
-        }}
-        onClick={handleCopy}
-        tooltip={<div>Copiar Link</div>}
-      />
     <div className="restaurante-detalhes-original">
       <HeaderMain/>
       <scroll-container>
@@ -442,6 +432,7 @@ const RestaurantDetails = () => {
         <p className="preco-medio-detalhes"> <FaMoneyBillAlt/> <strong>Preço médio:</strong> {restaurante.precoMedio.toFixed(2)}€</p>
         <p className="descricao-detalhes"><BsFillTelephoneFill/><strong>Telemóvel:</strong> {restaurante.telemovel}</p>
         <p className="descricao-detalhes"><MdDescription/><strong>Descrição:</strong> {restaurante.descricao}</p>
+        <Button className='descricao-detalhes' onClick={handleCopy} type="primary">Partilhar</Button>
         </div>
         <div className='mapa' dangerouslySetInnerHTML={{ __html: (restaurante.coordenadas)}}/>
         </div>
@@ -468,7 +459,7 @@ const RestaurantDetails = () => {
       </div>
       <div className='mostrar-form-avaliacao'>
       <div className="avaliacao-form">
-      <h2>Formulário de Avaliação</h2>
+      <h2 className='titulo-avaliacao'>Formulário de Avaliação</h2>
       <div className="campo-avaliacao">
         <h2 className='tipo-titulo-avaliacao'>Qualidade da comida:</h2>
         <div className="estrelas">
@@ -513,8 +504,8 @@ const RestaurantDetails = () => {
     </div>
       </div>
       <div className="detalhes-page">
-      <h2>Faça a sua reserva</h2>
-      <h3>Data da reserva</h3>
+      <h2 className='titulo-reserva-cliente'>Faça a sua reserva</h2>
+      <h3 className='subtitulo-reserva-cliente'>Data da reserva</h3>
           <input
             type="date"
             id="inicioFerias"
@@ -523,7 +514,7 @@ const RestaurantDetails = () => {
             required
             className='input-data-detalhes'
           />
-      <h3>Escolha o horário</h3>
+      <h3 className='subtitulo-reserva-cliente'>Escolha o horário</h3>
       <div className="detalhes-buttons">
       {Object.values(horario).map((horarioRestaurante, index) => (
         <div key={index} className="mesas-button-container-detalhes">
@@ -531,7 +522,7 @@ const RestaurantDetails = () => {
         </div>
       ))}
       </div>
-      <h3 id='mesas'>Escolha a sua mesa</h3>
+      <h3 className='subtitulo-reserva-cliente' id='mesas'>Escolha a sua mesa</h3>
       <div className="detalhes-buttons">
       {Object.values(mesas).map((mesa, index) => (
         <div key={index} className="mesas-button-container-detalhes">
@@ -548,7 +539,7 @@ const RestaurantDetails = () => {
       </div>
       ))}
         </div>
-        <h3 id='pessoas'>Quantidade de pessoas</h3>
+        <h3 className='subtitulo-reserva-cliente' id='pessoas'>Quantidade de pessoas</h3>
         <div className="detalhes-buttons">
         {[...Array(grupo)].map((_, index) => (
           <div key={index} className="mesas-button-container-detalhes">

@@ -38,7 +38,7 @@
   margin-bottom: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  background: #e6e4da;
+  background: #fde1a1;
 }
 
 .menu-item:hover {
@@ -46,18 +46,18 @@
 }
 
 .nome {
-  color: #000000;
+  color: #452211;
   font-size: 18px;
   margin-left: 10px;
 }
 .preco {
-  color: #000000;
+  color: #452211;
   font-size: 15px;
   margin-left: 1300px;
   margin-bottom: 10px;
 }
 .desc {
-  color: #000000;
+  color: #452211;
   font-size: 15px;
   margin-left: 10px;
   margin-bottom: 10px;
@@ -73,7 +73,7 @@
 }
 
 .categorias button {
-  background-color: #45a049;
+  background-color: #da7a27;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -84,7 +84,7 @@
 }
 
 .categorias button:hover {
-  background-color: #4caf50;
+  background-color: #aa5409;
 }
 
 .categorias button.active {
@@ -100,7 +100,7 @@
   margin: 15px;
   padding: 15px;
   font-size: 18px;
-  background-color: #4caf50;
+  background-color: #da7a27;
   color: white;
   border: none;
   cursor: pointer;
@@ -112,7 +112,7 @@
 }
 
 .add-gerir-menu-button:hover {
-  background-color: #45a049;
+  background-color: #aa5409;
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
@@ -125,7 +125,7 @@
   margin: 15px;
   padding: 15px;
   font-size: 18px;
-  background-color: #4caf50;
+  background-color: #da7a27;
   color: white;
   border: none;
   cursor: pointer;
@@ -137,7 +137,7 @@
 }
 
 .remove-menu-button:hover {
-  background-color: #45a049;
+  background-color: #aa5409;
   color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }

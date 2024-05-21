@@ -64,7 +64,7 @@ const GerirCategorias = () => {
     <div className="home-page-gerir-categoria">
       <HeaderRestaurantes/>
       <div className="gerir-categoria-page">
-      <h1>Administrar as categorias do seu restaurante</h1>
+      <h1>Gerir as categorias do seu restaurante</h1>
       <div className="gerir-categoria-buttons">
         {escolher == true && (
         <div className="gerir-categoria-button-container">

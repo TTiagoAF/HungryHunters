@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #006e90;
+  background-color: #da7a27;
   border: 1px solid #ddd;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -27,26 +27,26 @@
 
 .reservas-restaurantes-item {
   background-color: #ffffff;
-  border: 1px solid #dee2e6;
+  border: 1px solid #da7a27;
   border-radius: 8px;
   width: 1350px;
   margin-bottom: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  background: #fefcad;
+  background: #fde1a1;
 }
 
 .reservas-restaurantes-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .nome-restaurantes {
-  color: #000000;
+  color: #452211;
   font-size: 18px;
   margin-left: 10px;
 }
 .desc-restaurantes {
-  color: #000000;
+  color: #452211;
   font-size: 15px;
   margin-left: 10px;
   margin-bottom: 10px;
@@ -72,8 +72,8 @@
   margin-bottom: 5px;
   padding: 15px;
   font-size: 18px;
-  background-color: #f52121;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #f52121;
   border: none;
   cursor: pointer;
   display: flex;
@@ -84,8 +84,8 @@
 }
 
 .remove-reservas-restaurantes-button:hover {
-  background-color: #b81212;
-  color: #fff;
+  background-color: #ffffff;
+  color: #b81212;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -95,8 +95,8 @@
   margin-bottom: 5px;
   padding: 15px;
   font-size: 18px;
-  background-color: #41bbd9;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #41bbd9;
   border: none;
   cursor: pointer;
   display: flex;
@@ -107,8 +107,8 @@
 }
 
 .pending-reservas-restaurantes-button:hover {
-  background-color: #2297b4;
-  color: #fff;
+  background-color: #ffffff;
+  color: #2297b4;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -118,8 +118,8 @@
   margin-bottom: 5px;
   padding: 15px;
   font-size: 18px;
-  background-color: #fefcad;
-  color: #000000;
+  background-color: #ffffff;
+  color: #c5c000;
   border: none;
   cursor: pointer;
   display: flex;
@@ -130,8 +130,8 @@
 }
 
 .alimentar-reservas-restaurantes-button:hover {
-  background-color: #fffb5a;
-  color: #fff;
+  background-color: #ffffff;
+  color: #928f01;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -141,8 +141,8 @@
   margin-bottom: 5px;
   padding: 15px;
   font-size: 18px;
-  background-color: #4caf50;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #4caf50;
   border: none;
   cursor: pointer;
   display: flex;
@@ -153,8 +153,8 @@
 }
 
 .pago-reservas-restaurantes-button:hover {
-  background-color: #45a049;
-  color: #fff;
+  background-color: #ffffff;
+  color: #45a049;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -164,8 +164,8 @@
   margin-bottom: 5px;
   padding: 15px;
   font-size: 18px;
-  background-color: #ff792c;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #ff792c;
   border: none;
   cursor: pointer;
   display: flex;
@@ -176,8 +176,8 @@
 }
 
 .naopago-reservas-restaurantes-button:hover {
-  background-color: #e25300;
-  color: #fff;
+  background-color: #ffffff;
+  color: #e25300;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -187,8 +187,8 @@
   margin-bottom: 5px;
   padding: 15px;
   font-size: 18px;
-  background-color: #f52121;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #f52121;
   border: none;
   cursor: pointer;
   display: flex;
@@ -199,8 +199,8 @@
 }
 
 .cancelled-reservas-restaurantes-button:hover {
-  background-color: #b81212;
-  color: #fff;
+  background-color: #ffffff;
+  color: #b81212;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 

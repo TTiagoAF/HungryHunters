@@ -2,7 +2,7 @@
   perspective: 1px;
   transform-style: preserve-3d;
   height: auto;
-  background-color: #006e90;
+  background-color: #da7a27;
 }
 
 .app-container-search {
@@ -24,9 +24,9 @@
   flex: 0 0 calc(30% - 20px);
   margin: 20px;
   padding: 20px;
-  border: 1px solid #ced4da;
+  border: 1px solid #da7a27;
   border-radius: 10px;
-  background-color: #fefcad;
+  background-color: #fde1a1;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   overflow: hidden;
@@ -36,7 +36,7 @@
 .restaurante-card-search:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-  border-color: #f18f01;
+  border-color: #da7a27;
 }
 
 .restaurante-nome-search {

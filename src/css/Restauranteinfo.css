@@ -2,7 +2,7 @@ input {
   padding: 10px;
   font-size: 14px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #452211;
   width: 100%;
 }
 
@@ -54,13 +54,12 @@ input {
   height: 150px;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: 2px solid #452211;
   border-radius: 4px;
   background-color: #ffffff;
   font-size: 16px;
   resize: none;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   margin-top: 20px;
@@ -81,7 +80,7 @@ input {
 
 .botao-infos {
   padding: 12px;
-  background-color: #007bff;
+  background-color: #da7a27;
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -91,7 +90,7 @@ input {
 }
 
 .botao-infos:hover {
-  background-color: #0056b3;
+  background-color: #aa5409;
 }
 
 .links-infos {
@@ -99,10 +98,10 @@ input {
 }
 
 .registro-infos a {
-  color: #007bff;
+  color: #da7a27;
   text-decoration: none;
 }
 
 .registro-infos a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }

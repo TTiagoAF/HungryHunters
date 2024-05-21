@@ -145,76 +145,76 @@ const GerirDias = () => {
     <div className="home-page-gerir-dias">
       <HeaderRestaurantes />
       <div className="gerir-dias-page">
-        <h2>Gerenciar Férias <TbBeach/></h2>
+        <h2 className='titulo-gerir-dias'>Gerir Férias <TbBeach/></h2>
         {ferias.map((feria) => (
           <div key={feria.id_ferias} className="dias-button-container">
-            <p>Inicio das férias: {feria.inicioFerias.slice(0, -9)} -- Fim das férias: {feria.fimFerias.slice(0, -9)}</p>
+            <p className='texto-gerir-dias'>Inicio das férias: {feria.inicioFerias.slice(0, -9)} -- Fim das férias: {feria.fimFerias.slice(0, -9)}</p>
             <button onClick={() => eliminarFeria(feria.id_ferias)} className="remove-dias-button"><FaRegTrashAlt/></button>
           </div>
         ))}
       </div>
       <div className="gerir-dias-page">
-        <h2>Gerenciar dias de trabalho obrigatório <MdWorkOutline/></h2>
+        <h2 className='titulo-gerir-dias'>Gerir dias de trabalho obrigatório <MdWorkOutline/></h2>
         {diasFestivos.map((diaFestivo) => (
           <div key={diaFestivo.id_festivo} className="dias-button-container">
-            <p>Data: {diaFestivo.diaFestivo.slice(0, -9)}</p>
+            <p className='texto-gerir-dias'>Data: {diaFestivo.diaFestivo.slice(0, -9)}</p>
             <button onClick={() => eliminarDiaFestivo(diaFestivo.id_festivo)} className="remove-dias-button"><FaRegTrashAlt/></button>
           </div>
         ))}
       </div>
       <div className="gerir-dias-page">
-        <h2>Dia de Folga do Restaurante <MdOutlineWorkOff/></h2>
+        <h2 className='titulo-gerir-dias'>Dia de Folga do Restaurante <MdOutlineWorkOff/></h2>
         {segunda == "true" ?(
           <div>
-            <p>Estamos fechados á segunda</p>
+            <p className='texto-gerir-dias'>Estamos fechados à segunda</p>
           </div>
         ) : (
-          <p>Estamos abertos á segunda</p>
+          <p className='texto-gerir-dias'>Estamos abertos à segunda</p>
         )}
          {terca == "true" ?(
           <div>
-            <p>Estamos fechados á terça</p>
+            <p className='texto-gerir-dias'>Estamos fechados à terça</p>
           </div>
         ) : (
-          <p>Estamos abertos á terça</p>
+          <p className='texto-gerir-dias'>Estamos abertos à terça</p>
         )}
          {quarta == "true" ?(
           <div>
-            <p>Estamos fechados á quarta</p>
+            <p className='texto-gerir-dias'>Estamos fechados à quarta</p>
           </div>
         ) : (
-          <p>Estamos abertos á quarta</p>
+          <p className='texto-gerir-dias'>Estamos abertos à quarta</p>
         )}
          {quinta == "true" ?(
           <div>
-            <p>Estamos fechados á quinta</p>
+            <p className='texto-gerir-dias'>Estamos fechados à quinta</p>
           </div>
         ) : (
-          <p>Estamos abertos á quinta</p>
+          <p className='texto-gerir-dias'>Estamos abertos à quinta</p>
         )}
          {sexta == "true" ?(
           <div>
-            <p>Estamos fechados á sexta</p>
+            <p className='texto-gerir-dias'>Estamos fechados à sexta</p>
           </div>
         ) : (
-          <p>Estamos abertos á sexta</p>
+          <p className='texto-gerir-dias'>Estamos abertos à sexta</p>
         )}
          {sabado == "true" ?(
           <div>
-            <p>Estamos fechados ao sábado</p>
+            <p className='texto-gerir-dias'>Estamos fechados ao sábado</p>
           </div>
         ) : (
-          <p>Estamos abertos ao sábado</p>
+          <p className='texto-gerir-dias'>Estamos abertos ao sábado</p>
         )}
          {domingo == "true" ?(
           <div>
-            <p>Estamos fechados ao domingo</p>
+            <p className='texto-gerir-dias'>Estamos fechados ao domingo</p>
           </div>
         ) : (
-          <p>Estamos abertos ao domingo</p>
+          <p className='texto-gerir-dias'>Estamos abertos ao domingo</p>
         )}
       </div>
-      <button onClick={handleDias} className="add-gerir-dias-button">Gerenciar dias</button>
+      <button onClick={handleDias} className="add-gerir-dias-button">Gerir dias</button>
       <ToastContainer/>
       <Footer />
     </div>
