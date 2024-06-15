@@ -26,12 +26,12 @@ const HeaderRestaurantes = () => {
           <ul className="nav-list">
             <li className="nav-item">
               <Link to="/GerirRestaurante/" className="nav-link">
-                <a href="#1" className="nav-link"><FaHome/> Home</a>
+                <a href="#1" className="nav-link"><FaHome/> Inicio</a>
               </Link>
             </li>
               <li className="nav-item">
             <Link to="/Home/" className="nav-link">
-              <a href="#4" className="nav-link" onClick={handleLogout}><FaDoorOpen/> Logout</a>
+              <a href="#4" className="nav-link" onClick={handleLogout}><FaDoorOpen/> Sair</a>
               </Link>     
             </li>
           </ul>

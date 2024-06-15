@@ -25,7 +25,7 @@ const HeaderMain = () => {
           <ul className="nav-list-principal">
             <li className="nav-item-principal">
               <Link to="/MainPage/" className="nav-link-principal">
-                <a href="#1" className="nav-link-principal"><FaHome/> Home</a>
+                <a href="#1" className="nav-link-principal"><FaHome/> Inicio</a>
               </Link>
             </li>
             <li className="nav-item-principal">
@@ -35,7 +35,7 @@ const HeaderMain = () => {
                 </li>
               <li className="nav-item-principal">
             <Link to="/Home/" className="nav-link-principal">
-              <a href="#4" className="nav-link-principal" onClick={handleLogout}><FaDoorOpen/> Logout</a>
+              <a href="#4" className="nav-link-principal" onClick={handleLogout}><FaDoorOpen/> Sair</a>
               </Link>     
             </li>
           </ul>

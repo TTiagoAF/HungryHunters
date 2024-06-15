@@ -1,10 +1,10 @@
 import Header from './Header';
 import Footer from './Footer';
 import imagem from './../img/chef-cozinha.jpg';
-import img from './../img/restaurante-main.jpg'
-import imagemcarrousel1 from './../img/imagemcarrousel1.jpeg'
-import imagemcarrousel2 from './../img/restaurantecarrousel2.jpg'
-import imagemcarrousel3 from './../img/carrousel3.jpg'
+import img from './../img/restaurante-main.jpeg'
+import imagemcarrousel1 from './../img/imagemcarrousel1.webp'
+import imagemcarrousel2 from './../img/restaurantecarrousel2.webp'
+import imagemcarrousel3 from './../img/carrousel3.webp'
 import "./css/style.css"
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';

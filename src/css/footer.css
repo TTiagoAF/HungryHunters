@@ -80,9 +80,11 @@
   font-size: 12px;
   margin-bottom: 10px;
   opacity: 0.6;
+  text-decoration: none;
 }
 
 .footer-termos {
+  text-decoration: none;
   color: #007c47;
 }
 

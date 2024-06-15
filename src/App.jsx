@@ -33,6 +33,8 @@ import AdicionarReserva from "./AdicionarReserva";
 import MinhasAvaliacoes from "./MinhasAvaliacoes";
 import TodasAvaliacoes from "./TodasAvaliacoes";
 import Historico from "./Historico";
+import PrivacyPolicy from "./PrivacyPolicy";
+import EsquecerPasswordEmpresas from "./EsquecerPasswordEmpresas";
 
 const queryClient = new QueryClient({
     defaultOptions : {
@@ -81,6 +83,8 @@ const App = () => {
                         <Route path="/MinhasAvaliacoes/" element={<MinhasAvaliacoes />} />
                         <Route path="/TodasAvaliacoes/" element={<TodasAvaliacoes />} />
                         <Route path="/Historico/" element={<Historico />} />
+                        <Route path="/PrivacyPolicy/" element={<PrivacyPolicy />} />
+                        <Route path="/EsquecerPasswordEmpresas/" element={<EsquecerPasswordEmpresas />} />
                     </Routes>
                 </div>                   
             </header>

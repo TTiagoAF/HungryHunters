@@ -113,7 +113,7 @@ const LoginEmpresas = () => {
           </form>
           <div className="links-login">
             <p className="esqueceu-senha-login">
-              <Link to="/Forgot/" class="Voltar">
+              <Link to="/EsquecerPasswordEmpresas/" class="Voltar">
                 <a href="#1">Esqueceu a sua senha?</a>
               </Link>
             </p>

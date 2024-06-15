@@ -24,7 +24,11 @@ const Footer = () => {
       </div>
       <div className="footer-botao">
         <p className="footer-copia">© 2024 HungryHunters. Todos os direitos reservados.</p>
-        <p className="footer-termos">Termos de Uso | Política de Privacidade</p>
+        <p className="footer-termos">
+        <Link to="/PrivacyPolicy/" class="Voltar">
+                <a href="#2">Termos de Uso | Política de Privacidade</a>
+          </Link>
+        </p>
       </div>
     </footer>
   );

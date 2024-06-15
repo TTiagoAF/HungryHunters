@@ -133,7 +133,8 @@
   background-color: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 8px;
-  width: 1420px;
+  width: 1415px;
+  margin-left: 10px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -141,7 +142,7 @@
 }
 
 .menu-item-detalhes:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
 
@@ -177,7 +178,7 @@
 }
 
 .mostrar-avaliacoes-item-detalhes:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
