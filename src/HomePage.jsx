@@ -9,6 +9,8 @@ import "./css/style.css"
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Carousel } from 'antd';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const contentStyle = {
   margin: 0,
@@ -22,10 +24,14 @@ const HomePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    AOS.init({
+      duration: 1200,
+      once: false,
+    });
   }, []);
 
   return (
-    <div className="home-page-home">
+    <div className="home-page-home" data-aos="fade-up">
       <Header />
       <Carousel autoplay>
         <div>
@@ -43,7 +49,7 @@ const HomePage = () => {
       </Carousel>
       <div className='pos-parallax-home'>
         <div className='tem-restaurante-home'>
-          <div className='caixa-home'>
+          <div className='caixa-home' data-aos="fade-up">
             <div className='texto-home'>
               <h1 className='titulo-restaurante-home'>Registe aqui o seu restaurante</h1>
               <h2 className='titulo-cadastrar-home'>Informações</h2>
@@ -59,7 +65,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="texto-introducao-home">
+        <div className="texto-introducao-home" data-aos="fade-up">
           <h2 className="introducao-titulo-home">Bem-vindo à HungryHunters</h2>
           <p className="introducao-descricao-home">
             Encontre os melhores restaurantes perto de si e faça reservas com facilidade. HungryHunters é a sua plataforma de reserva de restaurantes que oferece uma ampla variedade de opções gastronómicas para todos os gostos.
